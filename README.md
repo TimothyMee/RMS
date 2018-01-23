@@ -6,25 +6,24 @@ PHP 7+ and Composer are required.
 
 # Installation
 After cloning the repository, Run:
-Composer update
-Copy .env.example to a new file .env
-Edit database configuration in .env, change
-   DB_DATABASE=
-    DB_USERNAME=
-    DB_PASSWORD=
+1. Composer update
+2. Copy .env.example to a new file .env
+3. Edit database configuration in .env, change
+   	DB_DATABASE=
+    	DB_USERNAME=
+    	DB_PASSWORD=
 
-
-Run php artisan migrate
-Run php artisan Rms:install
-Run npm install
+4. Run php artisan migrate
+5. Run php artisan Rms:install
+6. Run npm install
 
 # Usage
-Run php artisan serve to run on the default port 8000 or php artisan serve --port=*** to run on your preferred port.
-Run npm run dev to run the vue.js
-Next,you login as default user with credentials in the config/default.php file
+1. Run php artisan serve to run on the default port 8000 or php artisan serve --port=*** to run on your preferred port.
+2. Run npm run dev to run the vue.js
+3. Next,you login as default user with credentials in the config/default.php file
 	Identification no : “130202003”
 	Password: “secret”
-After login, create students, departments, courses, course registration for students. Your management Begins!
+4. After login, create students, departments, courses, course registration for students. Your management Begins!
 
 # Contributing
 All contributions are welcomed and can be made in form of pull requests
