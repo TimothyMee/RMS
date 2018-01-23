@@ -9,9 +9,12 @@ After cloning the repository, Run:
 1. Composer update
 2. Copy .env.example to a new file .env
 3. Edit database configuration in .env, change
+
    	DB_DATABASE=
-    	DB_USERNAME=
-    	DB_PASSWORD=
+
+	DB_USERNAME=
+    	
+	DB_PASSWORD=
 
 4. Run php artisan migrate
 5. Run php artisan Rms:install
