@@ -65,7 +65,7 @@
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        <div class="flex-center position-ref full-height" id="app">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -89,7 +89,13 @@
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
+
+                <div>
+                    <example-component></example-component>
+                </div>
             </div>
         </div>
+
+        <script src="/js/app.js"></script>
     </body>
 </html>
