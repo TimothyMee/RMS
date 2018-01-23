@@ -32,9 +32,9 @@ After cloning the repository, Run:
 All contributions are welcomed and can be made in form of pull requests
 
 # Security Vulnerabilities
-If you discover a security vulnerability within OMS, please send an e-mail to Fadayini Timothy at timothy33.tf@gmail.com 
+If you discover a security vulnerability within RMS, please send an e-mail to Fadayini Timothy at timothy33.tf@gmail.com 
 
 # License
-OMS is open-sourced software licensed under the MIT license.
+RMS is open-sourced software licensed under the MIT license.
 
 
