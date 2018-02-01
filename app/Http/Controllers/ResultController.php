@@ -131,4 +131,9 @@ class ResultController extends Controller
             return $e;
         }
     }
+
+    public function updateStatus(Request $request, Result $resultObject)
+    {
+
+    }
 }

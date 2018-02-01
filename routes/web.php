@@ -59,6 +59,9 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('view', 'ResultController@viewResultSetting');
             Route::post('edit', 'ResultController@editResultSetting');
         });
+        Route::group(['prefix' => 'status'], function (){
+           Route::post('update', 'ResultController@updateStatus');
+        });
     });
 
     Route::group(['prefix' => 'role'], function(){

@@ -104,7 +104,6 @@
             create(){
                 axios.post('/user/add', this.user)
                     .then(response => {
-                        this.fetchUsers();
                         this.$notify({type: 'success', text: 'Staff creation successful', speed:400});
                     })
                     .catch(error =>{

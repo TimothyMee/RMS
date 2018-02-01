@@ -62,8 +62,8 @@
 
                 <div class="col-xl-6">
                     <div class="row">
-                        <div class="col-sm-6">
-                            <article class="statistic-box red">
+                        {{--<div class="col-sm-6">
+                            <article class="statistic-box yellow">
                                 <div>
                                     <div class="number">26</div>
                                     <div class="caption"><div>Approved Results</div></div>
@@ -71,18 +71,26 @@
                             </article>
                         </div><!--.col-->
                         <div class="col-sm-6">
-                            <article class="statistic-box purple">
+                            <article class="statistic-box green">
                                 <div>
                                     <div class="number">12</div>
                                     <div class="caption"><div>Disapproved Results</div></div>
                                 </div>
                             </article>
-                        </div><!--.col-->
-                        <div class="col-sm-6">
-                            <article class="statistic-box yellow">
+                        </div><!--.col-->--}}
+                        <div class="col-sm-12">
+                            <article class="statistic-box red">
                                 <div>
                                     <div class="number">{{$totalOfStudents}}</div>
                                     <div class="caption"><div> Student(s)</div></div>
+                                </div>
+                            </article>
+                        </div><!--.col-->
+                        <div class="col-sm-12">
+                            <article class="statistic-box purple">
+                                <div>
+                                    <div class="number">{{$totalOfStaffs}}</div>
+                                    <div class="caption"><div> Staff(s)</div></div>
                                 </div>
                             </article>
                         </div><!--.col-->

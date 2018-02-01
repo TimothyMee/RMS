@@ -11889,7 +11889,7 @@ module.exports = Vue$3;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(12);
-module.exports = __webpack_require__(90);
+module.exports = __webpack_require__(96);
 
 
 /***/ }),
@@ -11943,12 +11943,12 @@ Vue.component('add-role', __webpack_require__(72));
 Vue.component('view-courses', __webpack_require__(75));
 Vue.component('add-course', __webpack_require__(78));
 
-Vue.component('view-registration', __webpack_require__(103));
-Vue.component('new-registration', __webpack_require__(81));
+Vue.component('view-registration', __webpack_require__(81));
+Vue.component('new-registration', __webpack_require__(84));
 
-Vue.component('create-result', __webpack_require__(84));
-Vue.component('view-result', __webpack_require__(87));
-Vue.component('edit-result', __webpack_require__(100));
+Vue.component('create-result', __webpack_require__(87));
+Vue.component('view-result', __webpack_require__(90));
+Vue.component('edit-result', __webpack_require__(93));
 
 var app = new Vue({
   el: '#app'
@@ -45329,7 +45329,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this3 = this;
 
             axios.post('/user/add', this.user).then(function (response) {
-                _this3.fetchUsers();
                 _this3.$notify({ type: 'success', text: 'Staff creation successful', speed: 400 });
             }).catch(function (error) {
                 _this3.$notify({ type: 'error', text: '<span style="color: white">Creating staff unsuccessfully. Check if user exists and try again later</span>', speed: 400 });
@@ -48778,2181 +48777,6 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/course-registration/NewRegistration.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5350e8a4", Component.options)
-  } else {
-    hotAPI.reload("data-v-5350e8a4", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 82 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            students: '',
-            courseEditor: false,
-            listOfCourses: {},
-            registrationDetails: {
-                courses: [{ course_id: '' }],
-                student_id: ''
-            },
-            check: ''
-        };
-    },
-
-
-    methods: {
-        fetchStudents: function fetchStudents() {
-            var _this = this;
-
-            axios.get('/student/view').then(function (response) {
-                if (response.status === 200) {
-                    _this.students = response.data;
-                }
-            });
-        },
-        openCourseEditor: function openCourseEditor(student_id) {
-            this.registrationDetails.student_id = student_id;
-            this.courseEditor = !this.courseEditor;
-        },
-        addCourse: function addCourse() {
-            this.registrationDetails.courses.push({ course_id: '' });
-        },
-        getCourses: function getCourses() {
-            var _this2 = this;
-
-            axios.get('/course/view').then(function (response) {
-                if (response.status === 200) {
-                    _this2.listOfCourses = response.data;
-                }
-            });
-        },
-        registerStudent: function registerStudent() {
-            var _this3 = this;
-
-            axios.post('/course/registration/add', this.registrationDetails).then(function (response) {
-                _this3.$notify({ type: 'success', text: 'Registration successfully', speed: 400 });
-            }).catch(function (error) {
-                _this3.$notify({ type: 'error', text: '<span style="color: white">Unsuccessful registration. Try again later</span>', speed: 400 });
-            });
-        }
-    },
-
-    mounted: function mounted() {
-        this.fetchStudents();
-        this.getCourses();
-    },
-
-
-    watch: {
-        check: function check() {
-            console.log(this.check);
-        }
-    }
-});
-
-/***/ }),
-/* 83 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("notifications", { attrs: { position: "top center" } }),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-4" }, [
-          _c(
-            "table",
-            { staticClass: "tbl-typical" },
-            [
-              _vm._m(0),
-              _vm._v(" "),
-              _vm._l(_vm.students, function(student, index) {
-                return _c("tr", [
-                  _c("td", [
-                    _c(
-                      "a",
-                      {
-                        attrs: { href: "#" },
-                        on: {
-                          click: function($event) {
-                            _vm.openCourseEditor(student.id)
-                          }
-                        }
-                      },
-                      [
-                        _vm._v(
-                          _vm._s(++index) +
-                            "   " +
-                            _vm._s(student.firstname) +
-                            " " +
-                            _vm._s(student.lastname) +
-                            "   " +
-                            _vm._s(student.identification_no)
-                        )
-                      ]
-                    )
-                  ])
-                ])
-              })
-            ],
-            2
-          )
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.courseEditor,
-                expression: "courseEditor"
-              }
-            ],
-            staticClass: "col-md-8"
-          },
-          [
-            _c(
-              "table",
-              { staticClass: "tbl-typical" },
-              [
-                _c("tr", [
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _c("th", [
-                    _c("h6", { staticStyle: { float: "right" } }, [
-                      _vm._v("Add Courses  "),
-                      _c("a", {
-                        staticClass: "fa fa-plus-circle",
-                        on: { click: _vm.addCourse }
-                      })
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("td", [
-                    _vm._v(
-                      "\n                            Semester:\n                            "
-                    ),
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.registrationDetails.semester,
-                            expression: "registrationDetails.semester"
-                          }
-                        ],
-                        staticClass: "form-control col-md-6",
-                        attrs: { name: "", id: "" },
-                        on: {
-                          change: function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.registrationDetails,
-                              "semester",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            )
-                          }
-                        }
-                      },
-                      [
-                        _c("option", { attrs: { value: "1st" } }, [
-                          _vm._v("First Semester")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "2nd" } }, [
-                          _vm._v("Second Semester")
-                        ])
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _vm._v(
-                      "\n                            Year:\n                            "
-                    ),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.registrationDetails.year,
-                          expression: "registrationDetails.year"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text", placeholder: "2017/2018" },
-                      domProps: { value: _vm.registrationDetails.year },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.registrationDetails,
-                            "year",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _vm._l(_vm.registrationDetails.courses, function(
-                  course,
-                  index
-                ) {
-                  return _c("tr", [
-                    _vm._m(2, true),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: course.course_id,
-                              expression: "course.course_id"
-                            }
-                          ],
-                          staticClass: "form-control col-md-6",
-                          attrs: { name: "", id: "" },
-                          on: {
-                            change: function($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function(o) {
-                                  return o.selected
-                                })
-                                .map(function(o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.$set(
-                                course,
-                                "course_id",
-                                $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              )
-                            }
-                          }
-                        },
-                        _vm._l(_vm.listOfCourses, function(singleCourse) {
-                          return _c(
-                            "option",
-                            { domProps: { value: singleCourse.id } },
-                            [
-                              _vm._v(
-                                "\n                                            " +
-                                  _vm._s(singleCourse.name) +
-                                  " || " +
-                                  _vm._s(singleCourse.course_code) +
-                                  "\n                                        "
-                              )
-                            ]
-                          )
-                        })
-                      )
-                    ])
-                  ])
-                }),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("td", [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-success",
-                        staticStyle: {
-                          "margin-left": "20px",
-                          "margin-right": "20px"
-                        },
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            _vm.registerStudent($event)
-                          }
-                        }
-                      },
-                      [_vm._v(" Save\n                            ")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-danger",
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            _vm.registeredCourses = [{ course_id: "" }]
-                          }
-                        }
-                      },
-                      [_vm._v("Clear")]
-                    )
-                  ])
-                ])
-              ],
-              2
-            )
-          ]
-        )
-      ])
-    ],
-    1
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("th", { attrs: { align: "center" } }, [_c("h3", [_vm._v("Students")])])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("th", { attrs: { align: "" } }, [
-      _c("h4", [_vm._v("Course Registration")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("label", { staticClass: "form-label", attrs: { for: "" } }, [
-        _vm._v("Course:")
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-5350e8a4", module.exports)
-  }
-}
-
-/***/ }),
-/* 84 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(85)
-/* template */
-var __vue_template__ = __webpack_require__(86)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/results/createResult.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2bc97349", Component.options)
-  } else {
-    hotAPI.reload("data-v-2bc97349", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 85 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            students: '',
-            resultEditor: false,
-            listOfCourses: {},
-            semester: '',
-            year: '',
-            params: {},
-            registeredCourses: '',
-            allCourse: '',
-            resultDetails: {
-                results: '',
-                student_id: ''
-            }
-        };
-    },
-
-
-    methods: {
-        fetchStudents: function fetchStudents() {
-            var _this = this;
-
-            axios.get('/student/view').then(function (response) {
-                if (response.status === 200) {
-                    _this.students = response.data;
-                }
-            });
-        },
-        getCourses: function getCourses() {
-            var _this2 = this;
-
-            axios.get('/course/view').then(function (response) {
-                if (response.status === 200) {
-                    _this2.listOfCourses = response.data;
-                }
-            });
-        },
-        getRegisteredCourses: function getRegisteredCourses() {
-            var _this3 = this;
-
-            this.params = {
-                semester: this.semester,
-                year: this.year
-            };
-            axios.post('/course/registration/view-selected', this.params).then(function (response) {
-                if (response.status === 200) {
-                    _this3.registeredCourses = response.data;
-
-                    var results = [];
-                    _this3.registeredCourses.forEach(function (entry) {
-                        var courses = JSON.parse(entry.courses);
-                        courses.forEach(function (courseEntry) {
-                            results.push({ course_reg_id: entry.id, student_id: entry.student_id, course_id: courseEntry, C_A: '', Exam: '' });
-                        });
-                    });
-                    _this3.allCourse = results;
-                } else {}
-            });
-        },
-        viewResultForm: function viewResultForm(student_id) {
-            this.resultEditor = !this.resultEditor;
-            this.resultDetails.student_id = student_id;
-
-            var result = [];
-            var course_reg_id;
-            this.allCourse.forEach(function (entry) {
-                if (entry.student_id == student_id) {
-                    result.push(entry);
-                    course_reg_id = entry.course_reg_id;
-                }
-            });
-
-            this.resultDetails.results = result;
-            this.resultDetails.course_reg_id = course_reg_id;
-        },
-        submitResult: function submitResult() {
-            var _this4 = this;
-
-            this.resultDetails.semester = this.params.semester;
-            this.resultDetails.year = this.params.year;
-
-            axios.post('/result/add', this.resultDetails).then(function (response) {
-                _this4.$notify({ type: 'success', text: 'Result entered sucessfully', speed: 400 });
-            }).catch(function (error) {
-                _this4.$notify({ type: 'error', text: '<span style="color: white">Entering of result unsuccessfully. Try again later</span>', speed: 400 });
-            });
-        }
-    },
-
-    mounted: function mounted() {
-        this.fetchStudents();
-        this.getCourses();
-    },
-
-
-    watch: {
-        year: function year() {
-            if (this.semester) {
-                this.getRegisteredCourses();
-            }
-        },
-        semester: function semester() {
-            if (this.year) {
-                this.getRegisteredCourses();
-            }
-        }
-    }
-});
-
-/***/ }),
-/* 86 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("notifications", { attrs: { position: "top center" } }),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c("table", { staticClass: "tbl-typical" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [
-                _vm._v(
-                  "\n                        Year:\n                        "
-                ),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.year,
-                      expression: "year"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { type: "text", placeholder: "2017/2018" },
-                  domProps: { value: _vm.year },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.year = $event.target.value
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("td", [
-                _vm._v(
-                  "\n                        Semester:\n                        "
-                ),
-                _c(
-                  "select",
-                  {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.semester,
-                        expression: "semester"
-                      }
-                    ],
-                    staticClass: "form-control col-md-6",
-                    attrs: { name: "", id: "" },
-                    on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.semester = $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      }
-                    }
-                  },
-                  [
-                    _c("option", { attrs: { value: "1st" } }, [
-                      _vm._v("First Semester")
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "2nd" } }, [
-                      _vm._v("Second Semester")
-                    ])
-                  ]
-                )
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("hr"),
-          _vm._v(" "),
-          _c(
-            "table",
-            { staticClass: "tbl-typical col-md-4" },
-            [
-              _vm._m(1),
-              _vm._v(" "),
-              _vm._l(_vm.registeredCourses, function(courseRegisteredDetails) {
-                return _c(
-                  "tr",
-                  _vm._l(_vm.students, function(student) {
-                    return _c("span", [
-                      student.id == courseRegisteredDetails.student_id
-                        ? _c("span", [
-                            _c("td", [
-                              _c(
-                                "a",
-                                {
-                                  on: {
-                                    click: function($event) {
-                                      _vm.viewResultForm(
-                                        courseRegisteredDetails.student_id
-                                      )
-                                    }
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    _vm._s(student.firstname) +
-                                      "   " +
-                                      _vm._s(student.identification_no)
-                                  )
-                                ]
-                              )
-                            ])
-                          ])
-                        : _vm._e()
-                    ])
-                  })
-                )
-              })
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _c(
-            "table",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.resultEditor,
-                  expression: "resultEditor"
-                }
-              ],
-              staticClass: "tbl-typical"
-            },
-            [
-              _vm._m(2),
-              _vm._v(" "),
-              _vm._l(_vm.resultDetails.results, function(result) {
-                return _c(
-                  "tr",
-                  [
-                    _vm._l(_vm.listOfCourses, function(courseDetails) {
-                      return _c("span", [
-                        courseDetails.id == result.course_id.course_id
-                          ? _c("td", [
-                              _vm._v(
-                                "\n                            " +
-                                  _vm._s(courseDetails.course_code) +
-                                  "\n                        "
-                              )
-                            ])
-                          : _vm._e()
-                      ])
-                    }),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: result.C_A,
-                            expression: "result.C_A"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          placeholder: "Enter C.A. scores"
-                        },
-                        domProps: { value: result.C_A },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(result, "C_A", $event.target.value)
-                          }
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: result.Exam,
-                            expression: "result.Exam"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          placeholder: "Enter Exam scores"
-                        },
-                        domProps: { value: result.Exam },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(result, "Exam", $event.target.value)
-                          }
-                        }
-                      })
-                    ])
-                  ],
-                  2
-                )
-              })
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.resultEditor,
-                  expression: "resultEditor"
-                }
-              ],
-              staticClass: "btn btn-success",
-              staticStyle: { margin: "20px", float: "right" },
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  _vm.submitResult($event)
-                }
-              }
-            },
-            [_vm._v(" Save\n            ")]
-          )
-        ])
-      ])
-    ],
-    1
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("th", { attrs: { align: "" } }, [
-        _c("h4", [_vm._v("Result Filling")])
-      ]),
-      _vm._v(" "),
-      _c("th")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [_c("th", [_vm._v("Students")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("th", [_vm._v("Course")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("C.A.")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Exams")])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-2bc97349", module.exports)
-  }
-}
-
-/***/ }),
-/* 87 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(88)
-/* template */
-var __vue_template__ = __webpack_require__(89)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/results/ViewResult.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-637377d2", Component.options)
-  } else {
-    hotAPI.reload("data-v-637377d2", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 88 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            courses: '',
-            enabled: false,
-            allResults: '',
-            allCourseInfo: '',
-            year: '2017/2018',
-            semester: '',
-            students: '',
-            showResult: false,
-            selectedStudentId: '',
-            resultArray: [],
-            gpa: {}
-        };
-    },
-
-
-    methods: {
-        fetchResults: function fetchResults() {
-            var _this = this;
-
-            var params = {
-                semester: this.semester,
-                year: this.year
-            };
-            this.resultArray = [];
-            axios.post('/result/view-selected', params).then(function (response) {
-                if (response.status === 200) {
-                    var allCourses = _this.allCourseInfo;
-                    _this.allResults = response.data;
-                    //console.log(this.allResults);
-
-                    _this.allResults.forEach(function (entry) {
-                        var result = JSON.parse(entry.results);
-                        entry.results = JSON.parse(entry.results);
-
-                        /*calculating the grade*/
-                        result.forEach(function (secondEntry) {
-                            secondEntry.total = parseInt(secondEntry.C_A) + parseInt(secondEntry.Exam);
-                            if (secondEntry.total >= 70) {
-                                secondEntry.grade = 'A';
-                                secondEntry.points = 5;
-                            } else if (secondEntry.total < 70 && secondEntry.total >= 60) {
-                                secondEntry.grade = 'B';
-                                secondEntry.points = 4;
-                            } else if (secondEntry.total < 60 && secondEntry.total >= 50) {
-                                secondEntry.grade = 'C';
-                                secondEntry.points = 3;
-                            } else if (secondEntry.total < 50 && secondEntry.total >= 40) {
-                                secondEntry.grade = 'D';
-                                secondEntry.points = 0;
-                            } else if (secondEntry.total < 40) {
-                                secondEntry.grade = 'F';
-                                secondEntry.points = 0;
-                            }
-
-                            allCourses.forEach(function (courseEntry) {
-                                if (courseEntry.id == secondEntry.course_id.course_id) {
-                                    secondEntry.unit = courseEntry.unit;
-                                    secondEntry.course_code = courseEntry.course_code;
-                                }
-                            });
-                        });
-
-                        //                                console.log(result);
-                        _this.resultArray.push(result);
-                    });
-                }
-            });
-        },
-        getAllCourses: function getAllCourses() {
-            var _this2 = this;
-
-            axios.get('/course/view').then(function (response) {
-                _this2.allCourseInfo = response.data;
-            });
-        },
-        fetchStudents: function fetchStudents() {
-            var _this3 = this;
-
-            axios.get('/student/view').then(function (response) {
-                if (response.status === 200) {
-                    _this3.students = response.data;
-                }
-            });
-        },
-        viewResult: function viewResult(student_id) {
-            //                console.log(this.allResults);
-            //                console.log(this.resultArray);
-            this.calculateCGPA(student_id);
-            this.selectedStudentId = student_id;
-            this.showResult = !this.showResult;
-        },
-
-
-        /*calculateCGPA (){
-            var totalUnits = 0.0;
-            var gradePoints = 0.0;
-            var  cgpa = 0.0;
-            var student_id = '';
-            this.resultArray.forEach(entry =>{
-                student_id = entry.student_id;
-                entry.forEach(subEntry => {
-                    var v1 = parseInt(subEntry.unit);
-                    var v2 = parseInt(subEntry.points);
-                    totalUnits += parseInt(subEntry.unit);
-                    var points = v1 * v2;
-                    gradePoints += points
-                })
-                 cgpa = gradePoints / totalUnits;
-                console.log(gradePoints);
-                console.log(totalUnits);
-                console.log(cgpa);
-                this.cgpa.push(
-                    {
-                        totalGradePoints : gradePoints,
-                        totalUnits : totalUnits,
-                        cgpa : cgpa,
-                        student_id : student_id,
-                    }
-                )
-            })
-        }*/
-
-        calculateCGPA: function calculateCGPA(student_id) {
-            var totalUnits = 0.0;
-            var gradePoints = 0.0;
-            var gpa = 0.0;
-            this.gpa = {};
-            /* var student_id = '';*/
-            this.resultArray.forEach(function (entry) {
-                entry.forEach(function (subEntry) {
-                    if (subEntry.student_id == student_id) {
-                        var v1 = parseInt(subEntry.unit);
-                        var v2 = parseInt(subEntry.points);
-                        totalUnits += parseInt(subEntry.unit);
-                        var points = v1 * v2;
-                        gradePoints += points;
-                    }
-                });
-
-                gpa = gradePoints / totalUnits;
-            });
-
-            this.gpa.totalGradePoints = gradePoints;
-            this.gpa.totalUnits = totalUnits;
-            this.gpa.gpa = gpa;
-            this.gpa.student_id = student_id;
-        }
-
-        /*update(course){
-            axios.post('/course/edit', course)
-                .then(response => {
-                    this.fetchView();
-                    this.$notify({type: 'success', text: 'Course update successful', speed:400});
-                })
-                .catch(error =>{
-                    this.$notify({type: 'error', text: '<span style="color: white">Updating course. unsuccessfully. Try again later</span>', speed:400});
-                })
-        }*/
-
-    },
-
-    mounted: function mounted() {
-        /*this.fetchView();*/
-        /*this.getAllCourses();*/
-
-    },
-
-
-    watch: {
-        year: function year() {
-            if (this.semester) {
-                this.fetchStudents();
-                this.getAllCourses();
-                this.fetchResults();
-            }
-        },
-        semester: function semester() {
-            if (this.year) {
-                this.fetchStudents();
-                this.getAllCourses();
-                this.fetchResults();
-            }
-        }
-    }
-});
-
-/***/ }),
-/* 89 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("notifications", { attrs: { position: "top center" } }),
-      _vm._v(" "),
-      _c("table", { staticClass: "tbl-typical" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("tr", [
-          _c("td", [
-            _vm._v("\n                Year:\n                "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.year,
-                  expression: "year"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", placeholder: "2017/2018" },
-              domProps: { value: _vm.year },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.year = $event.target.value
-                }
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("td", [
-            _vm._v("\n                Semester:\n                "),
-            _c(
-              "select",
-              {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.semester,
-                    expression: "semester"
-                  }
-                ],
-                staticClass: "form-control col-md-6",
-                attrs: { name: "", id: "" },
-                on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.semester = $event.target.multiple
-                      ? $$selectedVal
-                      : $$selectedVal[0]
-                  }
-                }
-              },
-              [
-                _c("option", { attrs: { value: "1st" } }, [
-                  _vm._v("First Semester")
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "2nd" } }, [
-                  _vm._v("Second Semester")
-                ])
-              ]
-            )
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c(
-        "table",
-        { staticClass: "tbl-typical col-md-4" },
-        [
-          _vm._m(1),
-          _vm._v(" "),
-          _vm._l(_vm.allResults, function(resultDetails) {
-            return _c(
-              "tr",
-              _vm._l(_vm.students, function(student) {
-                return _c("span", [
-                  student.id == resultDetails.student_id
-                    ? _c("span", [
-                        _c("td", [
-                          _c(
-                            "a",
-                            {
-                              attrs: { href: "#" },
-                              on: {
-                                click: function($event) {
-                                  _vm.viewResult(resultDetails.student_id)
-                                }
-                              }
-                            },
-                            [
-                              _vm._v(
-                                _vm._s(student.lastname) +
-                                  " " +
-                                  _vm._s(student.firstname) +
-                                  "   " +
-                                  _vm._s(student.identification_no)
-                              )
-                            ]
-                          )
-                        ])
-                      ])
-                    : _vm._e()
-                ])
-              })
-            )
-          })
-        ],
-        2
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.showResult,
-              expression: "showResult"
-            }
-          ]
-        },
-        [
-          _vm._m(2),
-          _vm._v(" "),
-          _vm._l(_vm.resultArray, function(results) {
-            return _c(
-              "span",
-              _vm._l(results, function(result) {
-                return _c("span", [
-                  result.student_id == _vm.selectedStudentId
-                    ? _c("span", [
-                        _c("table", { staticClass: "tbl-typical" }, [
-                          _c("tr", [
-                            _c("td", { attrs: { align: "center" } }, [
-                              _vm._v(_vm._s(result.course_code))
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { attrs: { align: "center" } }, [
-                              _vm._v(_vm._s(result.unit))
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { attrs: { align: "center" } }, [
-                              _vm._v(_vm._s(result.C_A))
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { attrs: { align: "center" } }, [
-                              _vm._v(_vm._s(result.Exam))
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { attrs: { align: "center" } }, [
-                              _vm._v(_vm._s(result.total))
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { attrs: { align: "center" } }, [
-                              _vm._v(_vm._s(result.grade))
-                            ])
-                          ])
-                        ])
-                      ])
-                    : _vm._e()
-                ])
-              })
-            )
-          }),
-          _vm._v(" "),
-          _c("br"),
-          _c("br"),
-          _vm._v(" "),
-          _c("table", { staticClass: "tbl-typical" }, [
-            _c("tr", [
-              _c("th", { attrs: { align: "center" } }, [
-                _vm._v(
-                  "Total Grade Points : " + _vm._s(_vm.gpa.totalGradePoints)
-                )
-              ]),
-              _vm._v(" "),
-              _c("th", { attrs: { align: "center" } }, [
-                _vm._v("Total Units : " + _vm._s(_vm.gpa.totalUnits))
-              ]),
-              _vm._v(" "),
-              _c("th", { attrs: { align: "center" } }, [
-                _vm._v("GPA : " + _vm._s(_vm.gpa.gpa))
-              ])
-            ])
-          ])
-        ],
-        2
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("th", { attrs: { align: "" } }, [
-        _c("h4", [_vm._v("Select Year and Semester")])
-      ]),
-      _vm._v(" "),
-      _c("th")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [_c("td", [_c("h4", [_vm._v("Students")])])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("table", { staticClass: "table tbl-typical" }, [
-      _c("tr", [
-        _c("th", { attrs: { align: "center" } }, [_vm._v("Course Code")]),
-        _vm._v(" "),
-        _c("th", { attrs: { align: "center" } }, [_vm._v("Unit")]),
-        _vm._v(" "),
-        _c("th", { attrs: { align: "center" } }, [_vm._v("C.A")]),
-        _vm._v(" "),
-        _c("th", { attrs: { align: "center" } }, [_vm._v("Exam")]),
-        _vm._v(" "),
-        _c("th", { attrs: { align: "center" } }, [_vm._v("Total")]),
-        _vm._v(" "),
-        _c("th", { attrs: { align: "center" } }, [_vm._v("Grade")])
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-637377d2", module.exports)
-  }
-}
-
-/***/ }),
-/* 90 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 91 */,
-/* 92 */,
-/* 93 */,
-/* 94 */,
-/* 95 */,
-/* 96 */,
-/* 97 */,
-/* 98 */,
-/* 99 */,
-/* 100 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(101)
-/* template */
-var __vue_template__ = __webpack_require__(102)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/results/EditResult.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-1b4270f7", Component.options)
-  } else {
-    hotAPI.reload("data-v-1b4270f7", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 101 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            students: '',
-            resultEditor: false,
-            listOfCourses: {},
-            semester: '',
-            year: '',
-            params: {},
-            allResults: '',
-            resultArray: '',
-            edit: false,
-            focused_student_id: '',
-
-            resultDetails: {}
-        };
-    },
-
-
-    methods: {
-        fetchStudents: function fetchStudents() {
-            var _this = this;
-
-            axios.get('/student/view').then(function (response) {
-                if (response.status === 200) {
-                    _this.students = response.data;
-                }
-            });
-        },
-        getCourses: function getCourses() {
-            var _this2 = this;
-
-            axios.get('/course/view').then(function (response) {
-                if (response.status === 200) {
-                    _this2.listOfCourses = response.data;
-                }
-            });
-        },
-        fetchResults: function fetchResults() {
-            var _this3 = this;
-
-            var params = {
-                semester: this.semester,
-                year: this.year
-            };
-            this.resultArray = [];
-            axios.post('/result/view-selected', params).then(function (response) {
-                if (response.status === 200) {
-                    _this3.allResults = response.data;
-                    console.log(_this3.allResults);
-                }
-            });
-        },
-        viewResultForm: function viewResultForm(results) {
-            this.resultEditor = !this.resultEditor;
-            this.resultArray = '';
-            this.resultArray = JSON.parse(results.results);
-            this.focused_student_id = results.student_id;
-        },
-        updateResult: function updateResult() {
-            var _this4 = this;
-
-            this.resultDetails.semester = this.semester;
-            this.resultDetails.year = this.year;
-            this.resultDetails.results = JSON.stringify(this.resultArray);
-            this.resultDetails.student_id = this.focused_student_id;
-
-            console.log(this.resultDetails);
-            axios.post('/result/edit', this.resultDetails).then(function (response) {
-                _this4.$notify({ type: 'success', text: 'Result updated sucessfully', speed: 400 });
-            }).catch(function (error) {
-                _this4.$notify({ type: 'error', text: '<span style="color: white">Updating of result unsuccessfully. Try again later</span>', speed: 400 });
-            });
-        }
-    },
-
-    mounted: function mounted() {
-        this.fetchStudents();
-        this.getCourses();
-    },
-
-
-    watch: {
-        year: function year() {
-            if (this.semester) {
-                this.fetchResults();
-            }
-        },
-        semester: function semester() {
-            if (this.year) {
-                this.fetchResults();
-            }
-        }
-    }
-});
-
-/***/ }),
-/* 102 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("notifications", { attrs: { position: "top center" } }),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c("table", { staticClass: "tbl-typical" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [
-                _vm._v(
-                  "\n                        Year:\n                        "
-                ),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.year,
-                      expression: "year"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { type: "text", placeholder: "2017/2018" },
-                  domProps: { value: _vm.year },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.year = $event.target.value
-                    }
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("td", [
-                _vm._v(
-                  "\n                        Semester:\n                        "
-                ),
-                _c(
-                  "select",
-                  {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.semester,
-                        expression: "semester"
-                      }
-                    ],
-                    staticClass: "form-control col-md-6",
-                    attrs: { name: "", id: "" },
-                    on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.semester = $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      }
-                    }
-                  },
-                  [
-                    _c("option", { attrs: { value: "1st" } }, [
-                      _vm._v("First Semester")
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "2nd" } }, [
-                      _vm._v("Second Semester")
-                    ])
-                  ]
-                )
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("hr"),
-          _vm._v(" "),
-          _c(
-            "table",
-            { staticClass: "tbl-typical col-md-4" },
-            [
-              _vm._m(1),
-              _vm._v(" "),
-              _vm._l(_vm.allResults, function(results) {
-                return _c(
-                  "tr",
-                  _vm._l(_vm.students, function(student) {
-                    return _c("span", [
-                      student.id == results.student_id
-                        ? _c("span", [
-                            _c("td", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: { href: "#" },
-                                  on: {
-                                    click: function($event) {
-                                      _vm.viewResultForm(results)
-                                    }
-                                  }
-                                },
-                                [
-                                  _vm._v(
-                                    _vm._s(student.firstname) +
-                                      "   " +
-                                      _vm._s(student.identification_no)
-                                  )
-                                ]
-                              )
-                            ])
-                          ])
-                        : _vm._e()
-                    ])
-                  })
-                )
-              })
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _c(
-            "table",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.resultEditor,
-                  expression: "resultEditor"
-                }
-              ],
-              staticClass: "tbl-typical"
-            },
-            [
-              _c("tr", [
-                _c("th", [_vm._v("Course")]),
-                _vm._v(" "),
-                _c("th", [_vm._v("C.A.")]),
-                _vm._v(" "),
-                _c("th", [_vm._v("Exams")]),
-                _vm._v(" "),
-                _c(
-                  "th",
-                  [
-                    _c("label", { staticStyle: { "margin-left": "20px" } }, [
-                      _vm._v("Edit?")
-                    ]),
-                    _c("switches", {
-                      staticStyle: { "margin-left": "10px" },
-                      attrs: { color: "blue" },
-                      model: {
-                        value: _vm.edit,
-                        callback: function($$v) {
-                          _vm.edit = $$v
-                        },
-                        expression: "edit"
-                      }
-                    })
-                  ],
-                  1
-                )
-              ]),
-              _vm._v(" "),
-              _vm._l(_vm.resultArray, function(result) {
-                return _c(
-                  "tr",
-                  [
-                    _vm._l(_vm.listOfCourses, function(courseDetails) {
-                      return _c("span", [
-                        courseDetails.id == result.course_id.course_id
-                          ? _c("td", [
-                              _vm._v(
-                                "\n                            " +
-                                  _vm._s(courseDetails.course_code) +
-                                  "\n                        "
-                              )
-                            ])
-                          : _vm._e()
-                      ])
-                    }),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: result.C_A,
-                            expression: "result.C_A"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          placeholder: "Enter C.A. scores",
-                          disabled: !_vm.edit
-                        },
-                        domProps: { value: result.C_A },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(result, "C_A", $event.target.value)
-                          }
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: result.Exam,
-                            expression: "result.Exam"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          placeholder: "Enter Exam scores",
-                          disabled: !_vm.edit
-                        },
-                        domProps: { value: result.Exam },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(result, "Exam", $event.target.value)
-                          }
-                        }
-                      })
-                    ])
-                  ],
-                  2
-                )
-              })
-            ],
-            2
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.resultEditor,
-                  expression: "resultEditor"
-                }
-              ],
-              staticClass: "btn btn-success",
-              staticStyle: { margin: "20px", float: "right" },
-              attrs: { disabled: !_vm.edit },
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  _vm.updateResult($event)
-                }
-              }
-            },
-            [_vm._v(" Save\n            ")]
-          )
-        ])
-      ])
-    ],
-    1
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("th", { attrs: { align: "" } }, [
-        _c("h4", [_vm._v("Result Filling")])
-      ]),
-      _vm._v(" "),
-      _c("th")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [_c("th", [_vm._v("Students")])])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-1b4270f7", module.exports)
-  }
-}
-
-/***/ }),
-/* 103 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(104)
-/* template */
-var __vue_template__ = __webpack_require__(105)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
 Component.options.__file = "resources/assets/js/components/course-registration/ViewRegistration.vue"
 
 /* hot reload */
@@ -50975,7 +48799,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 104 */
+/* 82 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -51154,7 +48978,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 105 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -51496,6 +49320,2172 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-507ec819", module.exports)
   }
 }
+
+/***/ }),
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(85)
+/* template */
+var __vue_template__ = __webpack_require__(86)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/course-registration/NewRegistration.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5350e8a4", Component.options)
+  } else {
+    hotAPI.reload("data-v-5350e8a4", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 85 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            students: '',
+            courseEditor: false,
+            listOfCourses: {},
+            registrationDetails: {
+                courses: [{ course_id: '' }],
+                student_id: ''
+            },
+            check: ''
+        };
+    },
+
+
+    methods: {
+        fetchStudents: function fetchStudents() {
+            var _this = this;
+
+            axios.get('/student/view').then(function (response) {
+                if (response.status === 200) {
+                    _this.students = response.data;
+                }
+            });
+        },
+        openCourseEditor: function openCourseEditor(student_id) {
+            this.registrationDetails.student_id = student_id;
+            this.courseEditor = !this.courseEditor;
+        },
+        addCourse: function addCourse() {
+            this.registrationDetails.courses.push({ course_id: '' });
+        },
+        getCourses: function getCourses() {
+            var _this2 = this;
+
+            axios.get('/course/view').then(function (response) {
+                if (response.status === 200) {
+                    _this2.listOfCourses = response.data;
+                }
+            });
+        },
+        registerStudent: function registerStudent() {
+            var _this3 = this;
+
+            axios.post('/course/registration/add', this.registrationDetails).then(function (response) {
+                _this3.$notify({ type: 'success', text: 'Registration successfully', speed: 400 });
+            }).catch(function (error) {
+                _this3.$notify({ type: 'error', text: '<span style="color: white">Unsuccessful registration. Try again later</span>', speed: 400 });
+            });
+        }
+    },
+
+    mounted: function mounted() {
+        this.fetchStudents();
+        this.getCourses();
+    },
+
+
+    watch: {
+        check: function check() {
+            console.log(this.check);
+        }
+    }
+});
+
+/***/ }),
+/* 86 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("notifications", { attrs: { position: "top center" } }),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-4" }, [
+          _c(
+            "table",
+            { staticClass: "tbl-typical" },
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              _vm._l(_vm.students, function(student, index) {
+                return _c("tr", [
+                  _c("td", [
+                    _c(
+                      "a",
+                      {
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            _vm.openCourseEditor(student.id)
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          _vm._s(++index) +
+                            "   " +
+                            _vm._s(student.firstname) +
+                            " " +
+                            _vm._s(student.lastname) +
+                            "   " +
+                            _vm._s(student.identification_no)
+                        )
+                      ]
+                    )
+                  ])
+                ])
+              })
+            ],
+            2
+          )
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.courseEditor,
+                expression: "courseEditor"
+              }
+            ],
+            staticClass: "col-md-8"
+          },
+          [
+            _c(
+              "table",
+              { staticClass: "tbl-typical" },
+              [
+                _c("tr", [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c("th", [
+                    _c("h6", { staticStyle: { float: "right" } }, [
+                      _vm._v("Add Courses  "),
+                      _c("a", {
+                        staticClass: "fa fa-plus-circle",
+                        on: { click: _vm.addCourse }
+                      })
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", [
+                    _vm._v(
+                      "\n                            Semester:\n                            "
+                    ),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.registrationDetails.semester,
+                            expression: "registrationDetails.semester"
+                          }
+                        ],
+                        staticClass: "form-control col-md-6",
+                        attrs: { name: "", id: "" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.registrationDetails,
+                              "semester",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      [
+                        _c("option", { attrs: { value: "1st" } }, [
+                          _vm._v("First Semester")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2nd" } }, [
+                          _vm._v("Second Semester")
+                        ])
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      "\n                            Year:\n                            "
+                    ),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.registrationDetails.year,
+                          expression: "registrationDetails.year"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", placeholder: "2017/2018" },
+                      domProps: { value: _vm.registrationDetails.year },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.registrationDetails,
+                            "year",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.registrationDetails.courses, function(
+                  course,
+                  index
+                ) {
+                  return _c("tr", [
+                    _vm._m(2, true),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: course.course_id,
+                              expression: "course.course_id"
+                            }
+                          ],
+                          staticClass: "form-control col-md-6",
+                          attrs: { name: "", id: "" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                course,
+                                "course_id",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        _vm._l(_vm.listOfCourses, function(singleCourse) {
+                          return _c(
+                            "option",
+                            { domProps: { value: singleCourse.id } },
+                            [
+                              _vm._v(
+                                "\n                                            " +
+                                  _vm._s(singleCourse.name) +
+                                  " || " +
+                                  _vm._s(singleCourse.course_code) +
+                                  "\n                                        "
+                              )
+                            ]
+                          )
+                        })
+                      )
+                    ])
+                  ])
+                }),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success",
+                        staticStyle: {
+                          "margin-left": "20px",
+                          "margin-right": "20px"
+                        },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            _vm.registerStudent($event)
+                          }
+                        }
+                      },
+                      [_vm._v(" Save\n                            ")]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger",
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            _vm.registeredCourses = [{ course_id: "" }]
+                          }
+                        }
+                      },
+                      [_vm._v("Clear")]
+                    )
+                  ])
+                ])
+              ],
+              2
+            )
+          ]
+        )
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", { attrs: { align: "center" } }, [_c("h3", [_vm._v("Students")])])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("th", { attrs: { align: "" } }, [
+      _c("h4", [_vm._v("Course Registration")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("label", { staticClass: "form-label", attrs: { for: "" } }, [
+        _vm._v("Course:")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5350e8a4", module.exports)
+  }
+}
+
+/***/ }),
+/* 87 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(88)
+/* template */
+var __vue_template__ = __webpack_require__(89)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/results/createResult.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2bc97349", Component.options)
+  } else {
+    hotAPI.reload("data-v-2bc97349", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 88 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            students: '',
+            resultEditor: false,
+            listOfCourses: {},
+            semester: '',
+            year: '',
+            params: {},
+            registeredCourses: '',
+            allCourse: '',
+            resultDetails: {
+                results: '',
+                student_id: ''
+            }
+        };
+    },
+
+
+    methods: {
+        fetchStudents: function fetchStudents() {
+            var _this = this;
+
+            axios.get('/student/view').then(function (response) {
+                if (response.status === 200) {
+                    _this.students = response.data;
+                }
+            });
+        },
+        getCourses: function getCourses() {
+            var _this2 = this;
+
+            axios.get('/course/view').then(function (response) {
+                if (response.status === 200) {
+                    _this2.listOfCourses = response.data;
+                }
+            });
+        },
+        getRegisteredCourses: function getRegisteredCourses() {
+            var _this3 = this;
+
+            this.params = {
+                semester: this.semester,
+                year: this.year
+            };
+            axios.post('/course/registration/view-selected', this.params).then(function (response) {
+                if (response.status === 200) {
+                    _this3.registeredCourses = response.data;
+
+                    var results = [];
+                    _this3.registeredCourses.forEach(function (entry) {
+                        var courses = JSON.parse(entry.courses);
+                        courses.forEach(function (courseEntry) {
+                            results.push({ course_reg_id: entry.id, student_id: entry.student_id, course_id: courseEntry, C_A: '', Exam: '' });
+                        });
+                    });
+                    _this3.allCourse = results;
+                } else {}
+            });
+        },
+        viewResultForm: function viewResultForm(student_id) {
+            this.resultEditor = !this.resultEditor;
+            this.resultDetails.student_id = student_id;
+
+            var result = [];
+            var course_reg_id;
+            this.allCourse.forEach(function (entry) {
+                if (entry.student_id == student_id) {
+                    result.push(entry);
+                    course_reg_id = entry.course_reg_id;
+                }
+            });
+
+            this.resultDetails.results = result;
+            this.resultDetails.course_reg_id = course_reg_id;
+        },
+        submitResult: function submitResult() {
+            var _this4 = this;
+
+            this.resultDetails.semester = this.params.semester;
+            this.resultDetails.year = this.params.year;
+
+            axios.post('/result/add', this.resultDetails).then(function (response) {
+                _this4.$notify({ type: 'success', text: 'Result entered sucessfully', speed: 400 });
+            }).catch(function (error) {
+                _this4.$notify({ type: 'error', text: '<span style="color: white">Entering of result unsuccessfully. Try again later</span>', speed: 400 });
+            });
+        }
+    },
+
+    mounted: function mounted() {
+        this.fetchStudents();
+        this.getCourses();
+    },
+
+
+    watch: {
+        year: function year() {
+            if (this.semester) {
+                this.getRegisteredCourses();
+            }
+        },
+        semester: function semester() {
+            if (this.year) {
+                this.getRegisteredCourses();
+            }
+        }
+    }
+});
+
+/***/ }),
+/* 89 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("notifications", { attrs: { position: "top center" } }),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("table", { staticClass: "tbl-typical" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [
+                _vm._v(
+                  "\n                        Year:\n                        "
+                ),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.year,
+                      expression: "year"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", placeholder: "2017/2018" },
+                  domProps: { value: _vm.year },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.year = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  "\n                        Semester:\n                        "
+                ),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.semester,
+                        expression: "semester"
+                      }
+                    ],
+                    staticClass: "form-control col-md-6",
+                    attrs: { name: "", id: "" },
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.semester = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      }
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { value: "1st" } }, [
+                      _vm._v("First Semester")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "2nd" } }, [
+                      _vm._v("Second Semester")
+                    ])
+                  ]
+                )
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c(
+            "table",
+            { staticClass: "tbl-typical col-md-4" },
+            [
+              _vm._m(1),
+              _vm._v(" "),
+              _vm._l(_vm.registeredCourses, function(courseRegisteredDetails) {
+                return _c(
+                  "tr",
+                  _vm._l(_vm.students, function(student) {
+                    return _c("span", [
+                      student.id == courseRegisteredDetails.student_id
+                        ? _c("span", [
+                            _c("td", [
+                              _c(
+                                "a",
+                                {
+                                  on: {
+                                    click: function($event) {
+                                      _vm.viewResultForm(
+                                        courseRegisteredDetails.student_id
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    _vm._s(student.firstname) +
+                                      "   " +
+                                      _vm._s(student.identification_no)
+                                  )
+                                ]
+                              )
+                            ])
+                          ])
+                        : _vm._e()
+                    ])
+                  })
+                )
+              })
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c(
+            "table",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.resultEditor,
+                  expression: "resultEditor"
+                }
+              ],
+              staticClass: "tbl-typical"
+            },
+            [
+              _vm._m(2),
+              _vm._v(" "),
+              _vm._l(_vm.resultDetails.results, function(result) {
+                return _c(
+                  "tr",
+                  [
+                    _vm._l(_vm.listOfCourses, function(courseDetails) {
+                      return _c("span", [
+                        courseDetails.id == result.course_id.course_id
+                          ? _c("td", [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(courseDetails.course_code) +
+                                  "\n                        "
+                              )
+                            ])
+                          : _vm._e()
+                      ])
+                    }),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: result.C_A,
+                            expression: "result.C_A"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Enter C.A. scores"
+                        },
+                        domProps: { value: result.C_A },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(result, "C_A", $event.target.value)
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: result.Exam,
+                            expression: "result.Exam"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Enter Exam scores"
+                        },
+                        domProps: { value: result.Exam },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(result, "Exam", $event.target.value)
+                          }
+                        }
+                      })
+                    ])
+                  ],
+                  2
+                )
+              })
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.resultEditor,
+                  expression: "resultEditor"
+                }
+              ],
+              staticClass: "btn btn-success",
+              staticStyle: { margin: "20px", float: "right" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.submitResult($event)
+                }
+              }
+            },
+            [_vm._v(" Save\n            ")]
+          )
+        ])
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", { attrs: { align: "" } }, [
+        _c("h4", [_vm._v("Result Filling")])
+      ]),
+      _vm._v(" "),
+      _c("th")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [_c("th", [_vm._v("Students")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("Course")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("C.A.")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Exams")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2bc97349", module.exports)
+  }
+}
+
+/***/ }),
+/* 90 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(91)
+/* template */
+var __vue_template__ = __webpack_require__(92)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/results/ViewResult.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-637377d2", Component.options)
+  } else {
+    hotAPI.reload("data-v-637377d2", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 91 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            courses: '',
+            enabled: false,
+            allResults: '',
+            allCourseInfo: '',
+            year: '2017/2018',
+            semester: '',
+            students: '',
+            showResult: false,
+            selectedStudentId: '',
+            resultArray: [],
+            gpa: {}
+        };
+    },
+
+
+    methods: {
+        fetchResults: function fetchResults() {
+            var _this = this;
+
+            var params = {
+                semester: this.semester,
+                year: this.year
+            };
+            this.resultArray = [];
+            axios.post('/result/view-selected', params).then(function (response) {
+                if (response.status === 200) {
+                    var allCourses = _this.allCourseInfo;
+                    _this.allResults = response.data;
+                    //console.log(this.allResults);
+
+                    _this.allResults.forEach(function (entry) {
+                        var result = JSON.parse(entry.results);
+                        entry.results = JSON.parse(entry.results);
+
+                        /*calculating the grade*/
+                        result.forEach(function (secondEntry) {
+                            secondEntry.total = parseInt(secondEntry.C_A) + parseInt(secondEntry.Exam);
+                            if (secondEntry.total >= 70) {
+                                secondEntry.grade = 'A';
+                                secondEntry.points = 5;
+                            } else if (secondEntry.total < 70 && secondEntry.total >= 60) {
+                                secondEntry.grade = 'B';
+                                secondEntry.points = 4;
+                            } else if (secondEntry.total < 60 && secondEntry.total >= 50) {
+                                secondEntry.grade = 'C';
+                                secondEntry.points = 3;
+                            } else if (secondEntry.total < 50 && secondEntry.total >= 40) {
+                                secondEntry.grade = 'D';
+                                secondEntry.points = 0;
+                            } else if (secondEntry.total < 40) {
+                                secondEntry.grade = 'F';
+                                secondEntry.points = 0;
+                            }
+
+                            allCourses.forEach(function (courseEntry) {
+                                if (courseEntry.id == secondEntry.course_id.course_id) {
+                                    secondEntry.unit = courseEntry.unit;
+                                    secondEntry.course_code = courseEntry.course_code;
+                                }
+                            });
+                        });
+
+                        //                                console.log(result);
+                        _this.resultArray.push(result);
+                    });
+                }
+            });
+        },
+        getAllCourses: function getAllCourses() {
+            var _this2 = this;
+
+            axios.get('/course/view').then(function (response) {
+                _this2.allCourseInfo = response.data;
+            });
+        },
+        fetchStudents: function fetchStudents() {
+            var _this3 = this;
+
+            axios.get('/student/view').then(function (response) {
+                if (response.status === 200) {
+                    _this3.students = response.data;
+                }
+            });
+        },
+        viewResult: function viewResult(student_id) {
+            //                console.log(this.allResults);
+            //                console.log(this.resultArray);
+            this.calculateCGPA(student_id);
+            this.selectedStudentId = student_id;
+            this.showResult = !this.showResult;
+        },
+
+
+        /*calculateCGPA (){
+            var totalUnits = 0.0;
+            var gradePoints = 0.0;
+            var  cgpa = 0.0;
+            var student_id = '';
+            this.resultArray.forEach(entry =>{
+                student_id = entry.student_id;
+                entry.forEach(subEntry => {
+                    var v1 = parseInt(subEntry.unit);
+                    var v2 = parseInt(subEntry.points);
+                    totalUnits += parseInt(subEntry.unit);
+                    var points = v1 * v2;
+                    gradePoints += points
+                })
+                 cgpa = gradePoints / totalUnits;
+                console.log(gradePoints);
+                console.log(totalUnits);
+                console.log(cgpa);
+                this.cgpa.push(
+                    {
+                        totalGradePoints : gradePoints,
+                        totalUnits : totalUnits,
+                        cgpa : cgpa,
+                        student_id : student_id,
+                    }
+                )
+            })
+        }*/
+
+        calculateCGPA: function calculateCGPA(student_id) {
+            var totalUnits = 0.0;
+            var gradePoints = 0.0;
+            var gpa = 0.0;
+            this.gpa = {};
+            /* var student_id = '';*/
+            this.resultArray.forEach(function (entry) {
+                entry.forEach(function (subEntry) {
+                    if (subEntry.student_id == student_id) {
+                        var v1 = parseInt(subEntry.unit);
+                        var v2 = parseInt(subEntry.points);
+                        totalUnits += parseInt(subEntry.unit);
+                        var points = v1 * v2;
+                        gradePoints += points;
+                    }
+                });
+
+                gpa = gradePoints / totalUnits;
+            });
+
+            this.gpa.totalGradePoints = gradePoints;
+            this.gpa.totalUnits = totalUnits;
+            this.gpa.gpa = gpa;
+            this.gpa.student_id = student_id;
+        }
+
+        /*update(course){
+            axios.post('/course/edit', course)
+                .then(response => {
+                    this.fetchView();
+                    this.$notify({type: 'success', text: 'Course update successful', speed:400});
+                })
+                .catch(error =>{
+                    this.$notify({type: 'error', text: '<span style="color: white">Updating course. unsuccessfully. Try again later</span>', speed:400});
+                })
+        }*/
+
+    },
+
+    mounted: function mounted() {
+        /*this.fetchView();*/
+        /*this.getAllCourses();*/
+
+    },
+
+
+    watch: {
+        year: function year() {
+            if (this.semester) {
+                this.fetchStudents();
+                this.getAllCourses();
+                this.fetchResults();
+            }
+        },
+        semester: function semester() {
+            if (this.year) {
+                this.fetchStudents();
+                this.getAllCourses();
+                this.fetchResults();
+            }
+        }
+    }
+});
+
+/***/ }),
+/* 92 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("notifications", { attrs: { position: "top center" } }),
+      _vm._v(" "),
+      _c("table", { staticClass: "tbl-typical" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("tr", [
+          _c("td", [
+            _vm._v("\n                Year:\n                "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.year,
+                  expression: "year"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", placeholder: "2017/2018" },
+              domProps: { value: _vm.year },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.year = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("td", [
+            _vm._v("\n                Semester:\n                "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.semester,
+                    expression: "semester"
+                  }
+                ],
+                staticClass: "form-control col-md-6",
+                attrs: { name: "", id: "" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.semester = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { value: "1st" } }, [
+                  _vm._v("First Semester")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "2nd" } }, [
+                  _vm._v("Second Semester")
+                ])
+              ]
+            )
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "table",
+        { staticClass: "tbl-typical col-md-4" },
+        [
+          _vm._m(1),
+          _vm._v(" "),
+          _vm._l(_vm.allResults, function(resultDetails) {
+            return _c(
+              "tr",
+              _vm._l(_vm.students, function(student) {
+                return _c("span", [
+                  student.id == resultDetails.student_id
+                    ? _c("span", [
+                        _c("td", [
+                          _c(
+                            "a",
+                            {
+                              attrs: { href: "#" },
+                              on: {
+                                click: function($event) {
+                                  _vm.viewResult(resultDetails.student_id)
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                _vm._s(student.lastname) +
+                                  " " +
+                                  _vm._s(student.firstname) +
+                                  "   " +
+                                  _vm._s(student.identification_no)
+                              )
+                            ]
+                          )
+                        ])
+                      ])
+                    : _vm._e()
+                ])
+              })
+            )
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.showResult,
+              expression: "showResult"
+            }
+          ]
+        },
+        [
+          _vm._m(2),
+          _vm._v(" "),
+          _vm._l(_vm.resultArray, function(results) {
+            return _c(
+              "span",
+              _vm._l(results, function(result) {
+                return _c("span", [
+                  result.student_id == _vm.selectedStudentId
+                    ? _c("span", [
+                        _c("table", { staticClass: "tbl-typical" }, [
+                          _c("tr", [
+                            _c("td", { attrs: { align: "center" } }, [
+                              _vm._v(_vm._s(result.course_code))
+                            ]),
+                            _vm._v(" "),
+                            _c("td", { attrs: { align: "center" } }, [
+                              _vm._v(_vm._s(result.unit))
+                            ]),
+                            _vm._v(" "),
+                            _c("td", { attrs: { align: "center" } }, [
+                              _vm._v(_vm._s(result.C_A))
+                            ]),
+                            _vm._v(" "),
+                            _c("td", { attrs: { align: "center" } }, [
+                              _vm._v(_vm._s(result.Exam))
+                            ]),
+                            _vm._v(" "),
+                            _c("td", { attrs: { align: "center" } }, [
+                              _vm._v(_vm._s(result.total))
+                            ]),
+                            _vm._v(" "),
+                            _c("td", { attrs: { align: "center" } }, [
+                              _vm._v(_vm._s(result.grade))
+                            ])
+                          ])
+                        ])
+                      ])
+                    : _vm._e()
+                ])
+              })
+            )
+          }),
+          _vm._v(" "),
+          _c("br"),
+          _c("br"),
+          _vm._v(" "),
+          _c("table", { staticClass: "tbl-typical" }, [
+            _c("tr", [
+              _c("th", { attrs: { align: "center" } }, [
+                _vm._v(
+                  "Total Grade Points : " + _vm._s(_vm.gpa.totalGradePoints)
+                )
+              ]),
+              _vm._v(" "),
+              _c("th", { attrs: { align: "center" } }, [
+                _vm._v("Total Units : " + _vm._s(_vm.gpa.totalUnits))
+              ]),
+              _vm._v(" "),
+              _c("th", { attrs: { align: "center" } }, [
+                _vm._v("GPA : " + _vm._s(_vm.gpa.gpa))
+              ])
+            ])
+          ])
+        ],
+        2
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", { attrs: { align: "" } }, [
+        _c("h4", [_vm._v("Select Year and Semester")])
+      ]),
+      _vm._v(" "),
+      _c("th")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [_c("td", [_c("h4", [_vm._v("Students")])])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("table", { staticClass: "table tbl-typical" }, [
+      _c("tr", [
+        _c("th", { attrs: { align: "center" } }, [_vm._v("Course Code")]),
+        _vm._v(" "),
+        _c("th", { attrs: { align: "center" } }, [_vm._v("Unit")]),
+        _vm._v(" "),
+        _c("th", { attrs: { align: "center" } }, [_vm._v("C.A")]),
+        _vm._v(" "),
+        _c("th", { attrs: { align: "center" } }, [_vm._v("Exam")]),
+        _vm._v(" "),
+        _c("th", { attrs: { align: "center" } }, [_vm._v("Total")]),
+        _vm._v(" "),
+        _c("th", { attrs: { align: "center" } }, [_vm._v("Grade")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-637377d2", module.exports)
+  }
+}
+
+/***/ }),
+/* 93 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(94)
+/* template */
+var __vue_template__ = __webpack_require__(95)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/results/EditResult.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1b4270f7", Component.options)
+  } else {
+    hotAPI.reload("data-v-1b4270f7", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 94 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            students: '',
+            resultEditor: false,
+            listOfCourses: {},
+            semester: '',
+            year: '',
+            params: {},
+            allResults: '',
+            resultArray: '',
+            edit: false,
+            focused_student_id: '',
+
+            resultDetails: {}
+        };
+    },
+
+
+    methods: {
+        fetchStudents: function fetchStudents() {
+            var _this = this;
+
+            axios.get('/student/view').then(function (response) {
+                if (response.status === 200) {
+                    _this.students = response.data;
+                }
+            });
+        },
+        getCourses: function getCourses() {
+            var _this2 = this;
+
+            axios.get('/course/view').then(function (response) {
+                if (response.status === 200) {
+                    _this2.listOfCourses = response.data;
+                }
+            });
+        },
+        fetchResults: function fetchResults() {
+            var _this3 = this;
+
+            var params = {
+                semester: this.semester,
+                year: this.year
+            };
+            this.resultArray = [];
+            axios.post('/result/view-selected', params).then(function (response) {
+                if (response.status === 200) {
+                    _this3.allResults = response.data;
+                    console.log(_this3.allResults);
+                }
+            });
+        },
+        viewResultForm: function viewResultForm(results) {
+            this.resultEditor = !this.resultEditor;
+            this.resultArray = '';
+            this.resultArray = JSON.parse(results.results);
+            this.focused_student_id = results.student_id;
+        },
+        updateResult: function updateResult() {
+            var _this4 = this;
+
+            this.resultDetails.semester = this.semester;
+            this.resultDetails.year = this.year;
+            this.resultDetails.results = JSON.stringify(this.resultArray);
+            this.resultDetails.student_id = this.focused_student_id;
+
+            console.log(this.resultDetails);
+            axios.post('/result/edit', this.resultDetails).then(function (response) {
+                _this4.$notify({ type: 'success', text: 'Result updated sucessfully', speed: 400 });
+            }).catch(function (error) {
+                _this4.$notify({ type: 'error', text: '<span style="color: white">Updating of result unsuccessfully. Try again later</span>', speed: 400 });
+            });
+        }
+    },
+
+    mounted: function mounted() {
+        this.fetchStudents();
+        this.getCourses();
+    },
+
+
+    watch: {
+        year: function year() {
+            if (this.semester) {
+                this.fetchResults();
+            }
+        },
+        semester: function semester() {
+            if (this.year) {
+                this.fetchResults();
+            }
+        }
+    }
+});
+
+/***/ }),
+/* 95 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("notifications", { attrs: { position: "top center" } }),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("table", { staticClass: "tbl-typical" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("tr", [
+              _c("td", [
+                _vm._v(
+                  "\n                        Year:\n                        "
+                ),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.year,
+                      expression: "year"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", placeholder: "2017/2018" },
+                  domProps: { value: _vm.year },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.year = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  "\n                        Semester:\n                        "
+                ),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.semester,
+                        expression: "semester"
+                      }
+                    ],
+                    staticClass: "form-control col-md-6",
+                    attrs: { name: "", id: "" },
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.semester = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      }
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { value: "1st" } }, [
+                      _vm._v("First Semester")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "2nd" } }, [
+                      _vm._v("Second Semester")
+                    ])
+                  ]
+                )
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c(
+            "table",
+            { staticClass: "tbl-typical col-md-4" },
+            [
+              _vm._m(1),
+              _vm._v(" "),
+              _vm._l(_vm.allResults, function(results) {
+                return _c(
+                  "tr",
+                  _vm._l(_vm.students, function(student) {
+                    return _c("span", [
+                      student.id == results.student_id
+                        ? _c("span", [
+                            _c("td", [
+                              _c(
+                                "a",
+                                {
+                                  attrs: { href: "#" },
+                                  on: {
+                                    click: function($event) {
+                                      _vm.viewResultForm(results)
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    _vm._s(student.firstname) +
+                                      "   " +
+                                      _vm._s(student.identification_no)
+                                  )
+                                ]
+                              )
+                            ])
+                          ])
+                        : _vm._e()
+                    ])
+                  })
+                )
+              })
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c(
+            "table",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.resultEditor,
+                  expression: "resultEditor"
+                }
+              ],
+              staticClass: "tbl-typical"
+            },
+            [
+              _c("tr", [
+                _c("th", [_vm._v("Course")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("C.A.")]),
+                _vm._v(" "),
+                _c("th", [_vm._v("Exams")]),
+                _vm._v(" "),
+                _c(
+                  "th",
+                  [
+                    _c("label", { staticStyle: { "margin-left": "20px" } }, [
+                      _vm._v("Edit?")
+                    ]),
+                    _c("switches", {
+                      staticStyle: { "margin-left": "10px" },
+                      attrs: { color: "blue" },
+                      model: {
+                        value: _vm.edit,
+                        callback: function($$v) {
+                          _vm.edit = $$v
+                        },
+                        expression: "edit"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.resultArray, function(result) {
+                return _c(
+                  "tr",
+                  [
+                    _vm._l(_vm.listOfCourses, function(courseDetails) {
+                      return _c("span", [
+                        courseDetails.id == result.course_id.course_id
+                          ? _c("td", [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(courseDetails.course_code) +
+                                  "\n                        "
+                              )
+                            ])
+                          : _vm._e()
+                      ])
+                    }),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: result.C_A,
+                            expression: "result.C_A"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Enter C.A. scores",
+                          disabled: !_vm.edit
+                        },
+                        domProps: { value: result.C_A },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(result, "C_A", $event.target.value)
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: result.Exam,
+                            expression: "result.Exam"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Enter Exam scores",
+                          disabled: !_vm.edit
+                        },
+                        domProps: { value: result.Exam },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(result, "Exam", $event.target.value)
+                          }
+                        }
+                      })
+                    ])
+                  ],
+                  2
+                )
+              })
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.resultEditor,
+                  expression: "resultEditor"
+                }
+              ],
+              staticClass: "btn btn-success",
+              staticStyle: { margin: "20px", float: "right" },
+              attrs: { disabled: !_vm.edit },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.updateResult($event)
+                }
+              }
+            },
+            [_vm._v(" Save\n            ")]
+          )
+        ])
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", { attrs: { align: "" } }, [
+        _c("h4", [_vm._v("Result Filling")])
+      ]),
+      _vm._v(" "),
+      _c("th")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [_c("th", [_vm._v("Students")])])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1b4270f7", module.exports)
+  }
+}
+
+/***/ }),
+/* 96 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
