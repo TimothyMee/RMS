@@ -48203,8 +48203,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.get('/course/view').then(function (response) {
-                if (response.status === 200) {
-                    _this.courses = response.data;
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this.courses = _response.data;
                 }
             });
         },
@@ -48212,8 +48213,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             axios.post('/course/edit', course).then(function (response) {
-                _this2.fetchView();
-                _this2.$notify({ type: 'success', text: 'Course update successful', speed: 400 });
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this2.fetchView();
+                    _this2.$notify({ type: 'success', text: 'Course update successful', speed: 400 });
+                } else {
+                    _this2.$notify({ type: 'error', text: '<span style="color: white">Updating course. unsuccessfully. Try again later</span>', speed: 400 });
+                }
             }).catch(function (error) {
                 _this2.$notify({ type: 'error', text: '<span style="color: white">Updating course. unsuccessfully. Try again later</span>', speed: 400 });
             });
@@ -48604,7 +48610,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.post('/course/add', this.course).then(function (response) {
-                _this.$notify({ type: 'success', text: 'Course added sucessfully', speed: 400 });
+                var _response = response.data;
+                if (_response.status == 0) {
+                    _this.$notify({ type: 'success', text: 'Course added sucessfully', speed: 400 });
+                } else {
+                    _this.$notify({ type: 'error', text: '<span style="color: white">Process unsuccessfully.Check if course exists and try again later</span>', speed: 400 });
+                }
             }).catch(function (error) {
                 _this.$notify({ type: 'error', text: '<span style="color: white">Process unsuccessfully.Check if course exists and try again later</span>', speed: 400 });
             });

@@ -70,16 +70,24 @@
             fetchView(){
                 axios.get('/course/view')
                     .then(response => {
-                        if(response.status === 200){
-                            this.courses = response.data;
+                        var _response = response.data;
+                        if(_response.status === 0){
+                            this.courses = _response.data;
                         }
                     })
             },
             update(course){
                 axios.post('/course/edit', course)
                     .then(response => {
-                        this.fetchView();
-                        this.$notify({type: 'success', text: 'Course update successful', speed:400});
+                        var _response = response.data;
+                        if(_response.status === 0){
+                            this.fetchView();
+                            this.$notify({type: 'success', text: 'Course update successful', speed:400});
+                        }
+
+                        else{
+                            this.$notify({type: 'error', text: '<span style="color: white">Updating course. unsuccessfully. Try again later</span>', speed:400});
+                        }
                     })
                     .catch(error =>{
                         this.$notify({type: 'error', text: '<span style="color: white">Updating course. unsuccessfully. Try again later</span>', speed:400});

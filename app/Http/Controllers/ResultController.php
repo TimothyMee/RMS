@@ -134,6 +134,13 @@ class ResultController extends Controller
 
     public function updateStatus(Request $request, Result $resultObject)
     {
+        try
+        {
 
+        }
+        catch (\Exception $e)
+        {
+
+        }
     }
 }

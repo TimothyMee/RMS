@@ -15,8 +15,15 @@ class CourseController extends Controller
     }
     public function add(Request $request, Course $course)
     {
-        $result  =  $course->createNew($request->all());
-        return $result;
+        try
+        {
+            $result = $course->createNew($request->all());
+            return apiSuccess($result);
+        }
+        catch (\Exception $e)
+        {
+            return apiFailure($e);
+        }
     }
 
     public function viewCourses(Course $course)
@@ -24,11 +31,11 @@ class CourseController extends Controller
         try
         {
             $result = $course->viewAll();
-            return $result;
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 
@@ -37,11 +44,11 @@ class CourseController extends Controller
         try
         {
             $result = $course->view($request->all());
-            return $result;
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 
@@ -52,16 +59,16 @@ class CourseController extends Controller
             $result = $course->updateCourses($request->all());
             if($result)
             {
-                return $result;
+                return apiSuccess($result);
             }
             else
             {
-                return false;
+                return apiFailure(false);
             }
         }
         catch(\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 }
