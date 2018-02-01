@@ -5,7 +5,7 @@
             <div class="col-md-12">
                 <table class="tbl-typical">
                     <tr>
-                        <th align=""><h4>Result Filling</h4></th>
+                        <th align=""><h4>Edit Result</h4></th>
                         <th></th>
                     </tr>
                     <tr>
@@ -93,8 +93,9 @@
             fetchStudents(){
                 axios.get('/student/view')
                     .then(response => {
-                        if(response.status === 200){
-                            this.students = response.data;
+                        var _response = response.data;
+                        if(_response.status === 0){
+                            this.students = _response.data;
                         }
                     })
             },
@@ -102,8 +103,9 @@
             getCourses(){
                 axios.get('/course/view')
                     .then(response => {
-                        if (response.status === 200){
-                            this.listOfCourses =  response.data;
+                        var _response = response.data;
+                        if(_response.status === 0){
+                            this.listOfCourses =  _response.data;
                         }
                     })
             },
@@ -116,8 +118,9 @@
                 this.resultArray = [];
                 axios.post('/result/view-selected', params)
                     .then(response => {
-                        if(response.status === 200){
-                            this.allResults = response.data;
+                        var _response = response.data;
+                        if(_response.status === 0){
+                            this.allResults = _response.data;
                             console.log(this.allResults);
                         }
                     })
@@ -140,7 +143,13 @@
                 console.log(this.resultDetails);
                 axios.post('/result/edit', this.resultDetails)
                     .then(response => {
-                        this.$notify({type: 'success', text: 'Result updated sucessfully', speed:400});
+                        var _response = response.data;
+                        if(_response.status === 0){
+                            this.$notify({type: 'success', text: 'Result updated sucessfully', speed:400});
+                        }
+                        else{
+                            this.$notify({type: 'error', text: '<span style="color: white">Updating of result unsuccessfully. Try again later</span>', speed:400});
+                        }
                     })
                     .catch(error =>{
                         this.$notify({type: 'error', text: '<span style="color: white">Updating of result unsuccessfully. Try again later</span>', speed:400});

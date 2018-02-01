@@ -78,9 +78,10 @@
             fetchDepartments(){
                 axios.get('/department/view')
                     .then(response => {
-                        if(response.status === 200)
+                        var _response = response.data;
+                        if(_response.status === 0)
                         {
-                            this.departments = response.data;
+                            this.departments = _response.data;
                         }
                         else{
 
@@ -91,9 +92,10 @@
             fetchRoles(){
                 axios.get('/role/view')
                     .then(response => {
-                        if(response.status === 200)
+                        var _response = response.data;
+                        if(_response.status === 0)
                         {
-                            this.roles = response.data;
+                            this.roles = _response.data;
                         }
                         else{
 
@@ -104,7 +106,13 @@
             create(){
                 axios.post('/user/add', this.user)
                     .then(response => {
-                        this.$notify({type: 'success', text: 'Staff creation successful', speed:400});
+                        var _response = response.data;
+                        if(_response.status === 0){
+                            this.$notify({type: 'success', text: 'Staff creation successful', speed:400});
+                        }
+                        else{
+                            this.$notify({type: 'error', text: '<span style="color: white">Creating staff unsuccessfully. Check if user exists and try again later</span>', speed:400});
+                        }
                     })
                     .catch(error =>{
                         this.$notify({type: 'error', text: '<span style="color: white">Creating staff unsuccessfully. Check if user exists and try again later</span>', speed:400});

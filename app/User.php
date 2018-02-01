@@ -36,8 +36,6 @@ class User extends Authenticatable
             $data['password'] = isset($data['password']) ? bcrypt($data['password']) : bcrypt('secret');
             return $this->create($data);
         }
-
-        return false;
     }
 
     public function deleteUser($data)

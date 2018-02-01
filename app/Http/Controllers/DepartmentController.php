@@ -17,11 +17,11 @@ class DepartmentController extends Controller
         try
         {
             $result = $department->createNew($request->all());
-            return $result;
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 
@@ -31,11 +31,11 @@ class DepartmentController extends Controller
         try
         {
             $result = $department->deleteDepartment($request->all());
-            return $result;
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 
@@ -44,11 +44,11 @@ class DepartmentController extends Controller
         try
         {
             $result = $department->viewAll();
-            return $result;
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 
@@ -57,11 +57,11 @@ class DepartmentController extends Controller
         try
         {
             $result = $department->view($request->all());
-            return $result;
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 
@@ -70,11 +70,11 @@ class DepartmentController extends Controller
         try
         {
             $result = $department->updateDepartment($request->all());
-            return $result;
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 }

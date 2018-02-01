@@ -41,7 +41,13 @@
             create(){
                 axios.post('/department/add', this.department)
                     .then(response => {
-                        this.$notify({type: 'success', text: 'Department creation successful', speed:400});
+                        var _response = response.data;
+                        if(_response.status === 0){
+                            this.$notify({type: 'success', text: 'Department creation successful', speed:400});
+                        }
+                        else{
+                            this.$notify({type: 'error', text: '<span style="color: white">Creating department. unsuccessfully. Try again later</span>', speed:400});
+                        }
                     })
                     .catch(error =>{
                         this.$notify({type: 'error', text: '<span style="color: white">Creating department. unsuccessfully. Try again later</span>', speed:400});

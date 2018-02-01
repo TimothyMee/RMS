@@ -82,8 +82,9 @@
             fetchUsers(){
                 axios.get('/user/view')
                     .then(response => {
-                        if(response.status === 200){
-                            this.users = response.data;
+                        var _response = response.data;
+                        if(_response.status === 0){
+                            this.users = _response.data;
                         }
                     })
             },
@@ -91,8 +92,14 @@
             update(user){
                 axios.post('/user/edit', user)
                     .then(response => {
-                        this.fetchUsers();
-                        this.$notify({type: 'success', text: 'Staff update successful', speed:400});
+                        var _response = response.data;
+                        if (_response.status === 0){
+                            this.fetchUsers();
+                            this.$notify({type: 'success', text: 'Staff update successful', speed:400});
+                        }
+                        else{
+                            this.$notify({type: 'error', text: '<span style="color: white">Updating Staff\'s info. unsuccessfully. Try again later</span>', speed:400});
+                        }
                     })
                     .catch(error =>{
                         this.$notify({type: 'error', text: '<span style="color: white">Updating Staff\'s info. unsuccessfully. Try again later</span>', speed:400});

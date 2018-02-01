@@ -44766,8 +44766,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.get('/user/view').then(function (response) {
-                if (response.status === 200) {
-                    _this.users = response.data;
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this.users = _response.data;
                 }
             });
         },
@@ -44775,8 +44776,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             axios.post('/user/edit', user).then(function (response) {
-                _this2.fetchUsers();
-                _this2.$notify({ type: 'success', text: 'Staff update successful', speed: 400 });
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this2.fetchUsers();
+                    _this2.$notify({ type: 'success', text: 'Staff update successful', speed: 400 });
+                } else {
+                    _this2.$notify({ type: 'error', text: '<span style="color: white">Updating Staff\'s info. unsuccessfully. Try again later</span>', speed: 400 });
+                }
             }).catch(function (error) {
                 _this2.$notify({ type: 'error', text: '<span style="color: white">Updating Staff\'s info. unsuccessfully. Try again later</span>', speed: 400 });
             });
@@ -45311,8 +45317,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.get('/department/view').then(function (response) {
-                if (response.status === 200) {
-                    _this.departments = response.data;
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this.departments = _response.data;
                 } else {}
             });
         },
@@ -45320,8 +45327,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             axios.get('/role/view').then(function (response) {
-                if (response.status === 200) {
-                    _this2.roles = response.data;
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this2.roles = _response.data;
                 } else {}
             });
         },
@@ -45329,7 +45337,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this3 = this;
 
             axios.post('/user/add', this.user).then(function (response) {
-                _this3.$notify({ type: 'success', text: 'Staff creation successful', speed: 400 });
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this3.$notify({ type: 'success', text: 'Staff creation successful', speed: 400 });
+                } else {
+                    _this3.$notify({ type: 'error', text: '<span style="color: white">Creating staff unsuccessfully. Check if user exists and try again later</span>', speed: 400 });
+                }
             }).catch(function (error) {
                 _this3.$notify({ type: 'error', text: '<span style="color: white">Creating staff unsuccessfully. Check if user exists and try again later</span>', speed: 400 });
             });
@@ -45751,7 +45764,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             if (this.password.new_password == this.c_new_password) {
                 axios.post('/user/password', this.password).then(function (response) {
-                    _this.$notify({ type: 'success', text: 'Password Changed successfully', speed: 400 });
+                    var _response = response.data;
+                    if (_response.status === 0) {
+                        _this.$notify({ type: 'success', text: 'Password Changed successfully', speed: 400 });
+                    } else {
+                        _this.$notify({ type: 'error', text: '<span style="color: white">Password Change Unsuccessful. Check old password and try again later</span>', speed: 400 });
+                    }
                 }).catch(function (error) {
                     _this.$notify({ type: 'error', text: '<span style="color: white">Password Change Unsuccessful. Check old password and try again later</span>', speed: 400 });
                 });
@@ -46996,8 +47014,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.post('/department/edit', department).then(function (response) {
-                _this.fetchDepartments();
-                _this.$notify({ type: 'success', text: 'Department update successful', speed: 400 });
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this.fetchDepartments();
+                    _this.$notify({ type: 'success', text: 'Department update successful', speed: 400 });
+                } else {
+                    _this.$notify({ type: 'error', text: '<span style="color: white">Updating Department\'s info. unsuccessfully. Try again later</span>', speed: 400 });
+                }
             }).catch(function (error) {
                 _this.$notify({ type: 'error', text: '<span style="color: white">Updating Department\'s info. unsuccessfully. Try again later</span>', speed: 400 });
             });
@@ -47006,8 +47029,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             axios.get('/department/view').then(function (response) {
-                if (response.status === 200) {
-                    _this2.departments = response.data;
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this2.departments = _response.data;
                 }
             });
         }
@@ -47360,7 +47384,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.post('/department/add', this.department).then(function (response) {
-                _this.$notify({ type: 'success', text: 'Department creation successful', speed: 400 });
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this.$notify({ type: 'success', text: 'Department creation successful', speed: 400 });
+                } else {
+                    _this.$notify({ type: 'error', text: '<span style="color: white">Creating department. unsuccessfully. Try again later</span>', speed: 400 });
+                }
             }).catch(function (error) {
                 _this.$notify({ type: 'error', text: '<span style="color: white">Creating department. unsuccessfully. Try again later</span>', speed: 400 });
             });
@@ -47606,8 +47635,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.get('/role/view').then(function (response) {
-                if (response.status === 200) {
-                    _this.roles = response.data;
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this.roles = _response.data;
                 }
             });
         },
@@ -47615,8 +47645,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             axios.post('/role/edit', role).then(function (response) {
-                _this2.fetchRole();
-                _this2.$notify({ type: 'success', text: 'Role update successful', speed: 400 });
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this2.fetchRole();
+                    _this2.$notify({ type: 'success', text: 'Role update successful', speed: 400 });
+                } else {
+                    _this2.$notify({ type: 'error', text: '<span style="color: white">Updating Role. unsuccessfully. Try again later</span>', speed: 400 });
+                }
             }).catch(function (error) {
                 _this2.$notify({ type: 'error', text: '<span style="color: white">Updating Role. unsuccessfully. Try again later</span>', speed: 400 });
             });
@@ -47964,7 +47999,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.post('/role/add', this.role).then(function (response) {
-                _this.$notify({ type: 'success', text: 'Creation of role.. successfully', speed: 400 });
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this.$notify({ type: 'success', text: 'Creation of role.. successfully', speed: 400 });
+                } else {
+                    _this.$notify({ type: 'error', text: '<span style="color: white">Unsuccessful role creation. Try again later</span>', speed: 400 });
+                }
             }).catch(function (error) {
                 _this.$notify({ type: 'error', text: '<span style="color: white">Unsuccessful role creation. Try again later</span>', speed: 400 });
             });
@@ -50003,8 +50043,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.get('/student/view').then(function (response) {
-                if (response.status === 200) {
-                    _this.students = response.data;
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this.students = _response.data;
                 }
             });
         },
@@ -50012,8 +50053,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             axios.get('/course/view').then(function (response) {
-                if (response.status === 200) {
-                    _this2.listOfCourses = response.data;
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this2.listOfCourses = _response.data;
                 }
             });
         },
@@ -50025,8 +50067,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 year: this.year
             };
             axios.post('/course/registration/view-selected', this.params).then(function (response) {
-                if (response.status === 200) {
-                    _this3.registeredCourses = response.data;
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this3.registeredCourses = _response.data;
 
                     var results = [];
                     _this3.registeredCourses.forEach(function (entry) {
@@ -50062,7 +50105,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.resultDetails.year = this.params.year;
 
             axios.post('/result/add', this.resultDetails).then(function (response) {
-                _this4.$notify({ type: 'success', text: 'Result entered sucessfully', speed: 400 });
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this4.$notify({ type: 'success', text: 'Result entered sucessfully', speed: 400 });
+                } else {
+                    _this4.$notify({ type: 'error', text: '<span style="color: white">Entering of result unsuccessfully. Try again later</span>', speed: 400 });
+                }
             }).catch(function (error) {
                 _this4.$notify({ type: 'error', text: '<span style="color: white">Entering of result unsuccessfully. Try again later</span>', speed: 400 });
             });
@@ -50552,9 +50600,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             };
             this.resultArray = [];
             axios.post('/result/view-selected', params).then(function (response) {
-                if (response.status === 200) {
+                var _response = response.data;
+                if (_response.status === 0) {
                     var allCourses = _this.allCourseInfo;
-                    _this.allResults = response.data;
+                    _this.allResults = _response.data;
                     //console.log(this.allResults);
 
                     _this.allResults.forEach(function (entry) {
@@ -50599,15 +50648,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             axios.get('/course/view').then(function (response) {
-                _this2.allCourseInfo = response.data;
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this2.allCourseInfo = _response.data;
+                }
             });
         },
         fetchStudents: function fetchStudents() {
             var _this3 = this;
 
             axios.get('/student/view').then(function (response) {
-                if (response.status === 200) {
-                    _this3.students = response.data;
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this3.students = _response.data;
                 }
             });
         },
@@ -51127,8 +51180,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.get('/student/view').then(function (response) {
-                if (response.status === 200) {
-                    _this.students = response.data;
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this.students = _response.data;
                 }
             });
         },
@@ -51136,8 +51190,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             axios.get('/course/view').then(function (response) {
-                if (response.status === 200) {
-                    _this2.listOfCourses = response.data;
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this2.listOfCourses = _response.data;
                 }
             });
         },
@@ -51150,8 +51205,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             };
             this.resultArray = [];
             axios.post('/result/view-selected', params).then(function (response) {
-                if (response.status === 200) {
-                    _this3.allResults = response.data;
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this3.allResults = _response.data;
                     console.log(_this3.allResults);
                 }
             });
@@ -51172,7 +51228,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             console.log(this.resultDetails);
             axios.post('/result/edit', this.resultDetails).then(function (response) {
-                _this4.$notify({ type: 'success', text: 'Result updated sucessfully', speed: 400 });
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this4.$notify({ type: 'success', text: 'Result updated sucessfully', speed: 400 });
+                } else {
+                    _this4.$notify({ type: 'error', text: '<span style="color: white">Updating of result unsuccessfully. Try again later</span>', speed: 400 });
+                }
             }).catch(function (error) {
                 _this4.$notify({ type: 'error', text: '<span style="color: white">Updating of result unsuccessfully. Try again later</span>', speed: 400 });
             });
@@ -51496,9 +51557,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("tr", [
-      _c("th", { attrs: { align: "" } }, [
-        _c("h4", [_vm._v("Result Filling")])
-      ]),
+      _c("th", { attrs: { align: "" } }, [_c("h4", [_vm._v("Edit Result")])]),
       _vm._v(" "),
       _c("th")
     ])

@@ -63,8 +63,9 @@
             fetchRole(){
                 axios.get('/role/view')
                     .then(response => {
-                        if(response.status === 200){
-                            this.roles = response.data;
+                        var _response = response.data;
+                        if(_response.status === 0){
+                            this.roles = _response.data;
                         }
                     })
             },
@@ -72,8 +73,14 @@
             update(role){
                 axios.post('/role/edit', role)
                     .then(response => {
-                        this.fetchRole();
-                        this.$notify({type: 'success', text: 'Role update successful', speed:400});
+                        var _response = response.data;
+                        if (_response.status === 0){
+                            this.fetchRole();
+                            this.$notify({type: 'success', text: 'Role update successful', speed:400});
+                        }
+                        else{
+                            this.$notify({type: 'error', text: '<span style="color: white">Updating Role. unsuccessfully. Try again later</span>', speed:400});
+                        }
                     })
                     .catch(error =>{
                         this.$notify({type: 'error', text: '<span style="color: white">Updating Role. unsuccessfully. Try again later</span>', speed:400});

@@ -91,8 +91,9 @@
             fetchStudents(){
                 axios.get('/student/view')
                     .then(response => {
-                        if(response.status === 200){
-                            this.students = response.data;
+                        var _response = response.data;
+                        if(_response.status === 0){
+                            this.students = _response.data;
                         }
                     })
             },
@@ -100,8 +101,9 @@
             getCourses(){
                 axios.get('/course/view')
                     .then(response => {
-                        if (response.status === 200){
-                            this.listOfCourses =  response.data;
+                        var _response = response.data;
+                        if (_response.status === 0){
+                            this.listOfCourses =  _response.data;
                         }
                     })
             },
@@ -113,8 +115,9 @@
                 }
               axios.post('/course/registration/view-selected', this.params)
                   .then(response =>{
-                      if(response.status === 200){
-                          this.registeredCourses = response.data;
+                      var _response = response.data;
+                      if(_response.status === 0){
+                          this.registeredCourses = _response.data;
 
                           var results = [];
                           this.registeredCourses.forEach( entry=>{
@@ -154,7 +157,13 @@
 
                 axios.post('/result/add', this.resultDetails)
                     .then(response => {
-                        this.$notify({type: 'success', text: 'Result entered sucessfully', speed:400});
+                        var _response = response.data;
+                        if (_response.status === 0){
+                            this.$notify({type: 'success', text: 'Result entered sucessfully', speed:400});
+                        }
+                        else{
+                            this.$notify({type: 'error', text: '<span style="color: white">Entering of result unsuccessfully. Try again later</span>', speed:400});
+                        }
                     })
                     .catch(error =>{
                         this.$notify({type: 'error', text: '<span style="color: white">Entering of result unsuccessfully. Try again later</span>', speed:400});

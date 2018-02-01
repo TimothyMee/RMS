@@ -21,8 +21,6 @@ class Result extends Model
             return $this->create($data);
         }
 
-        return false;
-
 
     }
 

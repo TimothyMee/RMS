@@ -21,11 +21,17 @@ class UserController extends Controller
         try
         {
             $result = $user->createNew($request->all());
-            return $result;
+            if ($result){
+                return apiSuccess($result);
+            }
+            else
+            {
+                return apiFailure('');
+            }
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 
@@ -36,11 +42,11 @@ class UserController extends Controller
         try
         {
             $result = $user->updateUser($request->all());
-            return $result;
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 
@@ -61,11 +67,11 @@ class UserController extends Controller
         try
         {
             $result = $user->updateUserPassword($request->all());
-            return $result;
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 
@@ -74,11 +80,11 @@ class UserController extends Controller
         try
         {
             $result = $user->deleteUser($request->all());
-            return $result;
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 
@@ -87,11 +93,11 @@ class UserController extends Controller
         try
         {
             $result = $user->viewAll();
-            return $result;
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 
@@ -100,11 +106,11 @@ class UserController extends Controller
         try
         {
             $result = $user->view($request->all());
-            return $result;
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 }

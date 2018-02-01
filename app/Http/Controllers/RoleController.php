@@ -19,11 +19,11 @@ class RoleController extends Controller
         try
         {
             $result = $role->createNew($request->all());
-            return $result;
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 
@@ -33,11 +33,11 @@ class RoleController extends Controller
         try
         {
             $result = $role->deleteRole($request->all());
-            return $result;
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 
@@ -46,11 +46,11 @@ class RoleController extends Controller
         try
         {
             $result = $role->viewAll();
-            return $result;
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 
@@ -59,11 +59,11 @@ class RoleController extends Controller
         try
         {
             $result = $role->view($request->all());
-            return $result;
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 
@@ -72,11 +72,11 @@ class RoleController extends Controller
         try
         {
             $result = $role->updateRole($request->all());
-            return $result;
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 }

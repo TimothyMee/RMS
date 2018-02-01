@@ -31,12 +31,16 @@ class ResultController extends Controller
         try
         {
             $result = $resultObject->createNew($request->all());
-            return $result;
+            if ($result){
+                return apiSuccess($result);
+            }
+            else{
+                return apiFailure('');
+            }
         }
         catch (\Exception $e)
         {
-            $responder['status'] = 400;
-            return response()->json($responder);
+            return apiFailure($e);
         }
     }
 
@@ -45,11 +49,11 @@ class ResultController extends Controller
         try
         {
             $result = $resultObject->deleteResult($request->all());
-            return $result;
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 
@@ -58,11 +62,11 @@ class ResultController extends Controller
         try
         {
             $result = $resultObject->updateResult($request->all());
-            return $result;
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 
@@ -71,11 +75,11 @@ class ResultController extends Controller
         try
         {
             $result = $resultObject->viewAll();
-            return $result;
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 
@@ -84,11 +88,11 @@ class ResultController extends Controller
         try
         {
             $result = $resultObject->view($request->all());
-            return $result;
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 
@@ -97,11 +101,11 @@ class ResultController extends Controller
         try
         {
             $result = $resultSetting->getSetting();
-            return $result;
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 
@@ -110,11 +114,11 @@ class ResultController extends Controller
         try
         {
             $result = $resultSetting->updateSetting($request->all());
-            return $result;
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 
@@ -124,11 +128,11 @@ class ResultController extends Controller
         {
             $result = $resultObject->viewSelected($request->all());
 
-            return $result;
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 

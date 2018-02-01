@@ -39,7 +39,13 @@
             create(){
                 axios.post('/role/add', this.role)
                     .then(response => {
-                        this.$notify({type: 'success', text: 'Creation of role.. successfully', speed:400});
+                        var _response = response.data;
+                        if (_response.status === 0){
+                            this.$notify({type: 'success', text: 'Creation of role.. successfully', speed:400});
+                        }
+                        else{
+                            this.$notify({type: 'error', text: '<span style="color: white">Unsuccessful role creation. Try again later</span>', speed:400});
+                        }
                     })
                     .catch(error =>{
                         this.$notify({type: 'error', text: '<span style="color: white">Unsuccessful role creation. Try again later</span>', speed:400});

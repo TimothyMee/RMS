@@ -63,8 +63,14 @@
             update(department){
                 axios.post('/department/edit', department)
                     .then(response => {
-                        this.fetchDepartments();
-                        this.$notify({type: 'success', text: 'Department update successful', speed:400});
+                        var _response = response.data;
+                        if (_response.status === 0){
+                            this.fetchDepartments();
+                            this.$notify({type: 'success', text: 'Department update successful', speed:400});
+                        }
+                        else{
+                            this.$notify({type: 'error', text: '<span style="color: white">Updating Department\'s info. unsuccessfully. Try again later</span>', speed:400});
+                        }
                     })
                     .catch(error =>{
                         this.$notify({type: 'error', text: '<span style="color: white">Updating Department\'s info. unsuccessfully. Try again later</span>', speed:400});
@@ -74,8 +80,9 @@
             fetchDepartments(){
                 axios.get('/department/view')
                     .then(response => {
-                        if(response.status === 200){
-                            this.departments = response.data;
+                        var _response = response.data;
+                        if(_response.status === 0){
+                            this.departments = _response.data;
                         }
                     })
             }

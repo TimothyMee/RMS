@@ -103,9 +103,10 @@
                 this.resultArray = [];
                 axios.post('/result/view-selected', params)
                     .then(response => {
-                        if(response.status === 200){
+                        var _response = response.data;
+                        if(_response.status === 0){
                             var allCourses = this.allCourseInfo;
-                            this.allResults = response.data;
+                            this.allResults = _response.data;
                             //console.log(this.allResults);
 
                             this.allResults.forEach( entry => {
@@ -151,15 +152,19 @@
             getAllCourses(){
                 axios.get('/course/view')
                     .then(response => {
-                        this.allCourseInfo = response.data;
+                        var _response = response.data;
+                        if (_response.status === 0){
+                            this.allCourseInfo = _response.data;
+                        }
                     })
             },
 
             fetchStudents(){
                 axios.get('/student/view')
                     .then(response => {
-                        if(response.status === 200){
-                            this.students = response.data;
+                        var _response = response.data;
+                        if(_response.status === 0){
+                            this.students = _response.data;
                         }
                     })
             },

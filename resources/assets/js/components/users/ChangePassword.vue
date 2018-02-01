@@ -47,7 +47,13 @@
                 if(this.password.new_password == this.c_new_password){
                     axios.post('/user/password', this.password)
                         .then(response => {
-                            this.$notify({type: 'success', text: 'Password Changed successfully', speed:400});
+                            var _response = response.data;
+                            if(_response.status === 0){
+                                this.$notify({type: 'success', text: 'Password Changed successfully', speed:400});
+                            }
+                            else{
+                                this.$notify({type: 'error', text: '<span style="color: white">Password Change Unsuccessful. Check old password and try again later</span>', speed:400});
+                            }
                         })
                         .catch(error =>{
                             this.$notify({type: 'error', text: '<span style="color: white">Password Change Unsuccessful. Check old password and try again later</span>', speed:400});
