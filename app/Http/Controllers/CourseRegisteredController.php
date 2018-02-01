@@ -24,11 +24,16 @@ class CourseRegisteredController extends Controller
         try
         {
             $result = $courseRegistered->createNew($request->all());
-            return $result;
+            if ($result){
+                return apiSuccess($result);
+            }
+            else{
+                return apiFailure('');
+            }
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 
@@ -38,11 +43,11 @@ class CourseRegisteredController extends Controller
         try
         {
             $result = $courseRegistered->deleteRegistration($request->all());
-            return $result;
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 
@@ -51,11 +56,11 @@ class CourseRegisteredController extends Controller
         try
         {
             $result = $courseRegistered->updateRegistration($request->all());
-            return $result;
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 
@@ -64,11 +69,11 @@ class CourseRegisteredController extends Controller
         try
         {
             $result = $courseRegistered->viewAll();
-            return $result;
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 
@@ -77,11 +82,11 @@ class CourseRegisteredController extends Controller
         try
         {
             $result = $courseRegistered->view($request->all());
-            return $result;
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 
@@ -91,11 +96,11 @@ class CourseRegisteredController extends Controller
         {
             $result = $courseRegistered->viewSelected($request->all());
 
-            return $result;
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 

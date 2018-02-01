@@ -18,7 +18,12 @@ class CourseController extends Controller
         try
         {
             $result = $course->createNew($request->all());
-            return apiSuccess($result);
+            if ($result){
+                return apiSuccess($result);
+            }
+            else{
+                return apiFailure('');
+            }
         }
         catch (\Exception $e)
         {

@@ -94,8 +94,9 @@
             fetchStudents(){
                 axios.get('/student/view')
                     .then(response => {
-                        if(response.status === 200){
-                            this.students = response.data;
+                        var _response = response.data;
+                        if(_response.status === 0){
+                            this.students = _response.data;
                         }
                     })
             },
@@ -103,8 +104,9 @@
             getCourses(){
                 axios.get('/course/view')
                     .then(response => {
-                        if (response.status === 200){
-                            this.listOfCourses =  response.data;
+                        var _response = response.data;
+                        if(_response.status === 0){
+                            this.listOfCourses =  _response.data;
                         }
                     })
             },
@@ -117,8 +119,9 @@
                 this.courseArray = [];
                 axios.post('/course/registration/view-selected', params)
                     .then(response => {
-                        if(response.status === 200){
-                            this.allRegisteredCourses = response.data;
+                        var _response = response.data;
+                        if(_response.status === 0){
+                            this.allRegisteredCourses = _response.data;
                             console.log(this.allRegisteredCourses);
                         }
                     })
@@ -142,10 +145,16 @@
                 this.registrationDetails.courses = JSON.stringify(this.courseArray);
                 this.registrationDetails.student_id = this.focused_student_id;
 
-                console.log(this.resultDetails);
+                /*console.log(this.resultDetails);*/
                 axios.post('/course/registration/edit', this.registrationDetails)
                     .then(response => {
-                        this.$notify({type: 'success', text: 'Course registration updated sucessfully', speed:400});
+                        var _response = response.data;
+                        if(_response.status === 0){
+                            this.$notify({type: 'success', text: 'Course registration updated sucessfully', speed:400});
+                        }
+                        else{
+                            this.$notify({type: 'error', text: '<span style="color: white">Updating of course registration unsuccessfully. Try again later</span>', speed:400});
+                        }
                     })
                     .catch(error =>{
                         this.$notify({type: 'error', text: '<span style="color: white">Updating of course registration unsuccessfully. Try again later</span>', speed:400});

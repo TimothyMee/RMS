@@ -46584,8 +46584,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.get('/department/view').then(function (response) {
-                if (response.status === 200) {
-                    _this.departments = response.data;
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this.departments = _response.data;
                 } else {}
             });
         },
@@ -48913,8 +48914,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.get('/student/view').then(function (response) {
-                if (response.status === 200) {
-                    _this.students = response.data;
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this.students = _response.data;
                 }
             });
         },
@@ -48922,8 +48924,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             axios.get('/course/view').then(function (response) {
-                if (response.status === 200) {
-                    _this2.listOfCourses = response.data;
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this2.listOfCourses = _response.data;
                 }
             });
         },
@@ -48936,8 +48939,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             };
             this.courseArray = [];
             axios.post('/course/registration/view-selected', params).then(function (response) {
-                if (response.status === 200) {
-                    _this3.allRegisteredCourses = response.data;
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this3.allRegisteredCourses = _response.data;
                     console.log(_this3.allRegisteredCourses);
                 }
             });
@@ -48959,9 +48963,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.registrationDetails.courses = JSON.stringify(this.courseArray);
             this.registrationDetails.student_id = this.focused_student_id;
 
-            console.log(this.resultDetails);
+            /*console.log(this.resultDetails);*/
             axios.post('/course/registration/edit', this.registrationDetails).then(function (response) {
-                _this4.$notify({ type: 'success', text: 'Course registration updated sucessfully', speed: 400 });
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this4.$notify({ type: 'success', text: 'Course registration updated sucessfully', speed: 400 });
+                } else {
+                    _this4.$notify({ type: 'error', text: '<span style="color: white">Updating of course registration unsuccessfully. Try again later</span>', speed: 400 });
+                }
             }).catch(function (error) {
                 _this4.$notify({ type: 'error', text: '<span style="color: white">Updating of course registration unsuccessfully. Try again later</span>', speed: 400 });
             });
@@ -49470,8 +49479,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.get('/student/view').then(function (response) {
-                if (response.status === 200) {
-                    _this.students = response.data;
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this.students = _response.data;
                 }
             });
         },
@@ -49486,8 +49496,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             axios.get('/course/view').then(function (response) {
-                if (response.status === 200) {
-                    _this2.listOfCourses = response.data;
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this2.listOfCourses = _response.data;
                 }
             });
         },
@@ -49495,7 +49506,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this3 = this;
 
             axios.post('/course/registration/add', this.registrationDetails).then(function (response) {
-                _this3.$notify({ type: 'success', text: 'Registration successfully', speed: 400 });
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this3.$notify({ type: 'success', text: 'Registration successfully', speed: 400 });
+                } else {
+                    _this3.$notify({ type: 'error', text: '<span style="color: white">Unsuccessful registration. Try again later</span>', speed: 400 });
+                }
             }).catch(function (error) {
                 _this3.$notify({ type: 'error', text: '<span style="color: white">Unsuccessful registration. Try again later</span>', speed: 400 });
             });

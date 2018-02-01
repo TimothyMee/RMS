@@ -72,9 +72,10 @@
             fetchDepartments(){
                 axios.get('/department/view')
                     .then(response => {
-                        if(response.status === 200)
+                        var _response = response.data;
+                        if(_response.status === 0)
                         {
-                            this.departments = response.data;
+                            this.departments = _response.data;
                         }
                         else{
 

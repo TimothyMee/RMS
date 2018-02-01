@@ -20,11 +20,11 @@ class StudentController extends Controller
         try
         {
             $result = $student->createNew($request->all());
-            return $result;
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 
@@ -35,11 +35,11 @@ class StudentController extends Controller
         try
         {
             $result = $student->updateStudent($request->all());
-            return $result;
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 
@@ -48,11 +48,11 @@ class StudentController extends Controller
         try
         {
             $result = $student->deleteUser($request->all());
-            return $result;
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 
@@ -61,11 +61,11 @@ class StudentController extends Controller
         try
         {
             $result = $student->view($request->all());
-            return $result;
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 
@@ -74,11 +74,11 @@ class StudentController extends Controller
         try
         {
             $result = $student->viewAll();
-            return $result;
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-            return $e;
+            return apiFailure($e);
         }
     }
 }

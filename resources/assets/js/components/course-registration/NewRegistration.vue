@@ -83,8 +83,9 @@
             fetchStudents(){
                 axios.get('/student/view')
                     .then(response => {
-                        if(response.status === 200){
-                            this.students = response.data;
+                        var _response = response.data;
+                        if(_response.status === 0){
+                            this.students = _response.data;
                         }
                     })
             },
@@ -102,8 +103,9 @@
             getCourses(){
                 axios.get('/course/view')
                     .then(response => {
-                        if (response.status === 200){
-                            this.listOfCourses =  response.data;
+                        var _response = response.data;
+                        if (_response.status === 0){
+                            this.listOfCourses =  _response.data;
                         }
                     })
             },
@@ -111,7 +113,13 @@
             registerStudent(){
                 axios.post('/course/registration/add', this.registrationDetails)
                     .then(response => {
-                        this.$notify({type: 'success', text: 'Registration successfully', speed:400});
+                        var _response = response.data;
+                        if (_response.status === 0){
+                            this.$notify({type: 'success', text: 'Registration successfully', speed:400});
+                        }
+                        else{
+                            this.$notify({type: 'error', text: '<span style="color: white">Unsuccessful registration. Try again later</span>', speed:400});
+                        }
                     })
                     .catch(error =>{
                         this.$notify({type: 'error', text: '<span style="color: white">Unsuccessful registration. Try again later</span>', speed:400});
