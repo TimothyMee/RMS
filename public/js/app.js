@@ -46051,8 +46051,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.get('/student/view').then(function (response) {
-                if (response.status === 200) {
-                    _this.students = response.data;
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this.students = _response.data;
                 }
             });
         },
@@ -46060,8 +46061,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             axios.post('/student/edit', student).then(function (response) {
-                _this2.fetchStudents();
-                _this2.$notify({ type: 'success', text: 'Student update successful', speed: 400 });
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this2.fetchStudents();
+                    _this2.$notify({ type: 'success', text: 'Student update successful', speed: 400 });
+                } else {
+                    _this2.$notify({ type: 'error', text: '<span style="color: white">Updating Student\'s info. unsuccessfully. Try again later</span>', speed: 400 });
+                }
             }).catch(function (error) {
                 _this2.$notify({ type: 'error', text: '<span style="color: white">Updating Student\'s info. unsuccessfully. Try again later</span>', speed: 400 });
             });
@@ -46594,7 +46600,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this2 = this;
 
             axios.post('/student/add', this.student).then(function (response) {
-                _this2.$notify({ type: 'success', text: 'Student creation successful', speed: 400 });
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this2.$notify({ type: 'success', text: 'Student creation successful', speed: 400 });
+                } else {
+                    _this2.$notify({ type: 'error', text: '<span style="color: white">Creating student unsuccessfully. Check if user exists and try again later</span>', speed: 400 });
+                }
             }).catch(function (error) {
                 _this2.$notify({ type: 'error', text: '<span style="color: white">Creating student unsuccessfully. Check if user exists and try again later</span>', speed: 400 });
             });

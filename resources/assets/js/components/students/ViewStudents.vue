@@ -79,8 +79,10 @@
             fetchStudents(){
                 axios.get('/student/view')
                     .then(response => {
-                        if(response.status === 200){
-                            this.students = response.data;
+                        var _response = response.data;
+                        if(_response.status === 0)
+                        {
+                            this.students = _response.data;
                         }
                     })
             },
@@ -88,8 +90,13 @@
             update(student){
                 axios.post('/student/edit', student)
                     .then(response => {
-                        this.fetchStudents();
-                        this.$notify({type: 'success', text: 'Student update successful', speed:400});
+                        var _response = response.data;
+                        if(_response.status === 0) {
+                            this.fetchStudents();
+                            this.$notify({type: 'success', text: 'Student update successful', speed: 400});
+                        }else{
+                            this.$notify({type: 'error', text: '<span style="color: white">Updating Student\'s info. unsuccessfully. Try again later</span>', speed:400});
+                        }
                     })
                     .catch(error =>{
                         this.$notify({type: 'error', text: '<span style="color: white">Updating Student\'s info. unsuccessfully. Try again later</span>', speed:400});

@@ -85,8 +85,14 @@
 
             create(){
                 axios.post('/student/add', this.student)
+
                     .then(response => {
-                        this.$notify({type: 'success', text: 'Student creation successful', speed:400});
+                        var _response = response.data;
+                        if(_response.status === 0) {
+                            this.$notify({type: 'success', text: 'Student creation successful', speed: 400});
+                        }else{
+                            this.$notify({type: 'error', text: '<span style="color: white">Creating student unsuccessfully. Check if user exists and try again later</span>', speed:400});
+                        }
                     })
                     .catch(error =>{
                         this.$notify({type: 'error', text: '<span style="color: white">Creating student unsuccessfully. Check if user exists and try again later</span>', speed:400});
