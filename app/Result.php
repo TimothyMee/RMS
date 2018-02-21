@@ -53,6 +53,18 @@ class Result extends Model
                             ]);
     }
 
+    public function updateResultStatus($data)
+    {
+        $data['staff_id'] = auth()->id();
+        return $this->where('student_id', $data['student_id'])
+            ->where('semester', $data['semester'])
+            ->where('year', $data['year'])
+            ->update([
+                'status' => $data['status'],
+                'staff_id' => $data['staff_id']
+            ]);
+    }
+
     public function viewAll()
     {
         $result = $this->all();

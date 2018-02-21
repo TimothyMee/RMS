@@ -102,7 +102,7 @@
                     Users <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="{{route('role.index')}}">Create Roles</a></li>
+                    <li><a href="{{route('UserType.index')}}">Create User Types</a></li>
                     <li><a href="{{route('user.index')}}">Create Users</a></li>
                     <li><a href="{{route('user.password')}}">Change Password</a></li>
                 </ul>

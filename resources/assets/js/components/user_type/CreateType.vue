@@ -4,19 +4,19 @@
         <form action="">
             <div class="row">
                 <div class="form-group">
-                    <label for="">Role's Name:</label>
-                    <input type="text" class="form-control form-control-xs" v-model="role.name">
+                    <label for="">User Type:</label>
+                    <input type="text" class="form-control form-control-xs" v-model="user_type.name">
                 </div>
                 <div class="form-group">
                     <label class="">Description:</label>
-                    <textarea name="" id="" class="form-control form-control-xs" cols="30" rows="10" v-model="role.description"></textarea>
+                    <textarea name="" id="" class="form-control form-control-xs" cols="30" rows="10" v-model="user_type.description"></textarea>
                 </div>
                 <div class="form-group">
                     <br>
                     <button class="btn btn-success" style="margin-left:20px; margin-right:20px;" @click.prevent="create">
                         <!--<img src="/assets/loaders/Spinner.svg" alt="loading" v-if="loading">--> Save
                     </button>
-                    <button class="btn btn-danger" @click.prevent="role = {}">Clear</button>
+                    <button class="btn btn-danger" @click.prevent="user_type = {}">Clear</button>
                 </div>
             </div>
         </form>
@@ -27,7 +27,7 @@
     export default {
         data() {
             return {
-                role:{}
+                user_type:{}
             }
         },
 
@@ -37,7 +37,7 @@
 
         methods: {
             create(){
-                axios.post('/role/add', this.role)
+                axios.post('/UserType/add', this.user_type)
                     .then(response => {
                         var _response = response.data;
                         if (_response.status === 0){

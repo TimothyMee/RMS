@@ -14,11 +14,13 @@
 /*Route::get('/', function () {
     return view('welcome');
 });
-
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');*/
 
+
+Route::get('/', function (){
+   return redirect()->route('login');
+});
 
 Route::get('login', 'AuthController@login')->name('login');
 Route::get('logout', 'AuthController@logout')->name('logout');
@@ -64,12 +66,12 @@ Route::group(['middleware' => 'auth'], function () {
         });
     });
 
-    Route::group(['prefix' => 'role'], function(){
-        Route::post('add', 'RoleController@add');
-        Route::post('edit', 'RoleController@edit');
-        Route::get('view', 'RoleController@viewRoles');
-        Route::post('view', 'RoleController@viewRole');
-        Route::get('index', 'RoleController@index')->name('role.index');
+    Route::group(['prefix' => 'UserType'], function(){
+        Route::post('add', 'UserTypeController@add');
+        Route::post('edit', 'UserTypeController@edit');
+        Route::get('view', 'UserTypeController@viewRoles');
+        Route::post('view', 'UserTypeController@viewRole');
+        Route::get('index', 'UserTypeController@index')->name('UserType.index');
     });
 
     Route::group(['prefix' => 'student'], function(){
@@ -103,3 +105,19 @@ Route::group(['middleware' => 'auth'], function () {
         return view('welcome');
     })->name('home');*/
 });
+
+
+/*Admin Routes*/
+
+
+Route::group(['middleware' => 'auth'], function (){
+
+    Route::group(['prefix' => 'admin'], function (){
+
+        Route::get('home', function (){
+            return 'Admin';
+        });
+    });
+
+});
+

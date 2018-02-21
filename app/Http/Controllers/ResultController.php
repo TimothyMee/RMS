@@ -140,11 +140,12 @@ class ResultController extends Controller
     {
         try
         {
-
+            $result = $resultObject->updateResultStatus($request->all());
+            return apiSuccess($result);
         }
         catch (\Exception $e)
         {
-
+            return apiFailure($e);
         }
     }
 }

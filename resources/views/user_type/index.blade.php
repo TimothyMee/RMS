@@ -7,12 +7,12 @@
 
                 <div class="col-xl-12">
                     <div class="row">
-                        <add-role></add-role>
+                        <add-type></add-type>
                     </div><!--.row-->
                 </div><!--.col-->
 
                 <div class="col-xl-12">
-                    <view-roles></view-roles>
+                    <view-types></view-types>
                 </div><!--.col-->
 
             </div><!--.row-->

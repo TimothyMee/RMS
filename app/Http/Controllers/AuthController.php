@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Mockery\Exception;
 
 class AuthController extends Controller
 {
@@ -16,7 +17,7 @@ class AuthController extends Controller
     {
         $data = $request->all();
         try{
-            if (auth()->attempt(['identification_no' => $data['identification_no'], 'password' => $data['password'], 'is_active' => true])) {
+            if (auth()->attempt(['email' => $data['email'], 'password' => $data['password'], 'is_active' => true])) {
                 return redirect()->intended(route('home'));
             }
             return redirect()->back()->with('error', 'Identification No and Password Combination Incorrect')->withInput();
@@ -32,4 +33,5 @@ class AuthController extends Controller
         auth()->logout();
         return redirect()->route('login');
     }
+
 }

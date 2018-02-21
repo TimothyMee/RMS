@@ -2,25 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Student;
-use App\User;
+use App\UserType;
 use Illuminate\Http\Request;
 
-class StudentController extends Controller
+class UserTypeController extends Controller
 {
     //
 
     public function index()
     {
-        return view('students.index');
+        return view('user_type.index');
     }
-    public function add(Request $request, User $user)
-    {
-        /*$this->validate()*/
 
+    public function add(Request $request, UserType $userType)
+    {
         try
         {
-            $result = $student->createNew($request->all());
+            $result = $userType->createNew($request->all());
             return apiSuccess($result);
         }
         catch (\Exception $e)
@@ -29,13 +27,12 @@ class StudentController extends Controller
         }
     }
 
-    public function edit(Request $request, User $user)
-    {
-        /*$this->validate()*/
 
+    public function delete(Request $request, UserType $userType)
+    {
         try
         {
-            $result = $student->updateStudent($request->all());
+            $result = $userType->deleteRole($request->all());
             return apiSuccess($result);
         }
         catch (\Exception $e)
@@ -44,11 +41,11 @@ class StudentController extends Controller
         }
     }
 
-    public function delete(Request $request, User $user)
+    public function viewRoles(UserType $userType)
     {
         try
         {
-            $result = $student->deleteUser($request->all());
+            $result = $userType->viewAll();
             return apiSuccess($result);
         }
         catch (\Exception $e)
@@ -57,11 +54,11 @@ class StudentController extends Controller
         }
     }
 
-    public function viewStudent(Request $request, User $user)
+    public function viewRole(Request $request, UserType $userType)
     {
         try
         {
-            $result = $student->view($request->all());
+            $result = $userType->view($request->all());
             return apiSuccess($result);
         }
         catch (\Exception $e)
@@ -70,11 +67,11 @@ class StudentController extends Controller
         }
     }
 
-    public function viewStudents(Student $student)
+    public function edit(Request $request, UserType $userType)
     {
         try
         {
-            $result = $student->viewAll();
+            $result = $userType->updateRole($request->all());
             return apiSuccess($result);
         }
         catch (\Exception $e)

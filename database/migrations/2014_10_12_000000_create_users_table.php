@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('identification_no')->unique();
             $table->string('password');
             $table->integer('department_id');
-            $table->integer('role_id');
+            $table->integer('user_type');
             $table->integer('staff_id');
             $table->boolean('is_active')->default(true);
             $table->rememberToken();
