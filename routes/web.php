@@ -101,23 +101,9 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
 
+    Route
     /*Route::get('/', function () {
         return view('welcome');
     })->name('home');*/
-});
-
-
-/*Admin Routes*/
-
-
-Route::group(['middleware' => 'auth'], function (){
-
-    Route::group(['prefix' => 'admin'], function (){
-
-        Route::get('home', function (){
-            return 'Admin';
-        });
-    });
-
 });
 

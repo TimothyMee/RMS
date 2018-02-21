@@ -40,7 +40,7 @@
                 <div class="form-group" style="margin-left: 30px;">
                     <label class="">User Types:</label>
                     <select name="" id="" class="form-control form-control-xs" v-model="user.user_type" v-if="userTypes.length">
-                        <option v-for="userType in userTypes" :value=userType.id>{{userType.name}}</option>
+                        <option v-for="userType in userTypes" :value=userType.id v-if="userType.id == 1 || userType.id == 2">{{userType.name}}</option>
                     </select>
                     <span v-else="" style="color:red">
                         No Existing Role... Please Create a User Type First

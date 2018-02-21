@@ -20,7 +20,7 @@ class StudentController extends Controller
 
         try
         {
-            $result = $student->createNew($request->all());
+            $result = $user->createNew($request->all());
             return apiSuccess($result);
         }
         catch (\Exception $e)
@@ -70,7 +70,7 @@ class StudentController extends Controller
         }
     }
 
-    public function viewStudents(Student $student)
+    public function viewStudents(User $user)
     {
         try
         {

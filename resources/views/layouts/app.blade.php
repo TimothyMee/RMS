@@ -127,21 +127,21 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li><a href="{{route('course.index')}}">Add New Course</a></li>
-                    <li><a href="{{route('course-registration.new')}}">Student's Course Registration</a></li>
-                    <li><a href="{{route('course-registration.edit')}}">Edit Registration</a></li>
+                   {{-- <li><a href="{{route('course-registration.new')}}">Student's Course Registration</a></li>--}}
+                   {{-- <li><a href="{{route('course-registration.edit')}}">Edit Registration</a></li>--}}
                 </ul>
             </li>
 
-            <li class="dropdown">
+            {{--<li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     <i class="tag-color pink"></i>
-                    Students <span class="caret"></span>
+                    Students <span class="caret"></span>--}}{{-- <li><a href="{{route('course-registration.edit')}}">Edit Registration</a></li>--}}{{--
                 </a>
                 <ul class="dropdown-menu">
                     <li><a href="{{route('student.index')}}">Create Students</a></li>
                     <li><a href="{{route('department.index')}}">Create Departments</a></li>
                 </ul>
-            </li>
+            </li>--}}
 
 
 

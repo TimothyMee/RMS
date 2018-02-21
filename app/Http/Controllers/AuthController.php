@@ -18,7 +18,19 @@ class AuthController extends Controller
         $data = $request->all();
         try{
             if (auth()->attempt(['email' => $data['email'], 'password' => $data['password'], 'is_active' => true])) {
-                return redirect()->intended(route('home'));
+                if (auth()->user()->user_type == 1 || auth()->user()->user_type == 2)
+                {
+                    return redirect()->intended(route('home'));
+                }
+
+                elseif(auth()->user()->user_type == 3)
+                {
+                    return redirect()->intended(route('home'));
+                }
+                elseif(auth()->user()->user_type == 4)
+                {
+                    return 'Parent';
+                }
             }
             return redirect()->back()->with('error', 'Identification No and Password Combination Incorrect')->withInput();
         } catch (\Exception $e)

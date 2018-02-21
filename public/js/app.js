@@ -45748,9 +45748,11 @@ var render = function() {
                     }
                   },
                   _vm._l(_vm.userTypes, function(userType) {
-                    return _c("option", { domProps: { value: userType.id } }, [
-                      _vm._v(_vm._s(userType.name))
-                    ])
+                    return userType.id == 1 || userType.id == 2
+                      ? _c("option", { domProps: { value: userType.id } }, [
+                          _vm._v(_vm._s(userType.name))
+                        ])
+                      : _vm._e()
                   })
                 )
               : _c("span", { staticStyle: { color: "red" } }, [
