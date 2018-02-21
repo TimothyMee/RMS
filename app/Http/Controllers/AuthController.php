@@ -4,9 +4,30 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Mockery\Exception;
+use App\User;
 
 class AuthController extends Controller
 {
+    public function registerStudent()
+    {
+        return view ('auth.register');
+    }
+
+    public function postStudentRegistration(Request $request, User $user)
+    {
+        try
+        {
+            $result = $user->createNew($request->all());
+            if ($result){
+                return view('auth.login');
+            }
+        }
+        catch (\Exception $e)
+        {
+            return apiFailure($e);
+        }
+    }
+
     public function login()
     {
         $title = 'Login to your account';
@@ -25,7 +46,7 @@ class AuthController extends Controller
 
                 elseif(auth()->user()->user_type == 3)
                 {
-                    return redirect()->intended(route('home'));
+                    return redirect()->intended(route('student.home'));
                 }
                 elseif(auth()->user()->user_type == 4)
                 {

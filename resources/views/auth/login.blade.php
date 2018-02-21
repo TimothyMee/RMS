@@ -68,13 +68,17 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
+                            <div class="col-md-9 col-md-offset-2">
                                 <button type="submit" class="btn btn-primary">
                                     Login
                                 </button>
 
                                 <a class="btn btn-link" href="">
                                     Forgot Your Password?
+                                </a>
+
+                                <a href="{{route('register')}}" style="color: red">
+                                    Student and Don't have an account?
                                 </a>
                             </div>
                         </div>

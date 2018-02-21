@@ -25,6 +25,9 @@ Route::get('/', function (){
 Route::get('login', 'AuthController@login')->name('login');
 Route::get('logout', 'AuthController@logout')->name('logout');
 Route::post('login', 'AuthController@postLogin')->name('auth.login');
+Route::get('register', 'AuthController@registerStudent')->name('student.register');
+Route::post('register', 'AuthController@postStudentRegistration')->name('register');
+
 
 Route::group(['middleware' => 'auth'], function () {
 
@@ -101,7 +104,9 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
 
-    Route
+    Route::group(['prefix' => 'student'],  function (){
+        Route::get('home', 'HomeController@studentHome')->name('student.home');
+    });
     /*Route::get('/', function () {
         return view('welcome');
     })->name('home');*/
