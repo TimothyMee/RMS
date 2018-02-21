@@ -26,20 +26,7 @@
 
                 <hr>
 
-                <table class="tbl-typical col-md-4">
-                    <tr>
-                        <th>Students</th>
-                    </tr>
-                    <tr v-for="course in allRegisteredCourses">
-                        <span v-for="student in students">
-                            <span v-if="student.id == course.student_id">
-                                <td><a href="#" @click="viewCourseForm(course)">{{student.firstname}} &emsp; {{student.identification_no}}</a></td>
-                            </span>
-                        </span>
-                    </tr>
-                </table>
-
-                <table class="tbl-typical" v-show="courseEditor">
+                <table class="tbl-typical">
                     <tr>
                         <th>Course</th>
                         <th><label style="margin-left: 20px;">Edit?</label><switches v-model="edit" color="blue" style="margin-left:10px;"></switches></th>
@@ -76,11 +63,10 @@
         data(){
             return {
                 students :'',
-                courseEditor:false,
                 listOfCourses:{},
                 semester:'',
                 year:'',
-                params :{},
+//                params :{},
                 allRegisteredCourses : '',
                 courseArray: '',
                 edit:false,
@@ -91,12 +77,12 @@
         },
 
         methods: {
-            fetchStudents(){
-                axios.get('/student/view')
+            fetchStudent(){
+                axios.get('/student/loggedIn')
                     .then(response => {
                         var _response = response.data;
                         if(_response.status === 0){
-                            this.students = _response.data;
+                            this.focused_student_id = _response.data;
                         }
                     })
             },
@@ -115,20 +101,22 @@
                 var params = {
                     semester: this.semester,
                     year: this.year,
+                    student_id : this.focused_student_id,
                 }
                 this.courseArray = [];
-                axios.post('/course/registration/view-selected', params)
+                axios.post('/student/registration/view-selected', params)
                     .then(response => {
                         var _response = response.data;
                         if(_response.status === 0){
                             this.allRegisteredCourses = _response.data;
                             console.log(this.allRegisteredCourses);
+
+                            this.viewCourseForm(this.allRegisteredCourses[0]);
                         }
                     })
             },
 
             viewCourseForm(courses){
-                this.courseEditor = !this.courseEditor;
                 this.courseArray = '';
                 this.courseArray = JSON.parse(courses.courses);
                 this.focused_student_id = courses.student_id;
@@ -146,7 +134,7 @@
                 this.registrationDetails.student_id = this.focused_student_id;
 
                 /*console.log(this.resultDetails);*/
-                axios.post('/course/registration/edit', this.registrationDetails)
+                axios.post('/student/registration/edit', this.registrationDetails)
                     .then(response => {
                         var _response = response.data;
                         if(_response.status === 0){
@@ -163,7 +151,7 @@
         },
 
         mounted(){
-            this.fetchStudents();
+            this.fetchStudent();
             this.getCourses();
         },
 

@@ -14,15 +14,20 @@
 /*Route::get('/', function () {
     return view('welcome');
 });
-
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');*/
 
+
+Route::get('/', function (){
+   return redirect()->route('login');
+});
 
 Route::get('login', 'AuthController@login')->name('login');
 Route::get('logout', 'AuthController@logout')->name('logout');
 Route::post('login', 'AuthController@postLogin')->name('auth.login');
+Route::get('register', 'AuthController@registerStudent')->name('student.register');
+Route::post('register', 'AuthController@postStudentRegistration')->name('register');
+
 
 Route::group(['middleware' => 'auth'], function () {
 
@@ -34,15 +39,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('view', 'CourseController@viewCourses');
         Route::post('view', 'CourseController@viewCourse');
         Route::get('index', 'CourseController@index')->name('course.index');
-        Route::group(['prefix' => 'registration'], function (){
-            Route::post('add', 'CourseRegisteredController@add');
-            Route::post('edit', 'CourseRegisteredController@edit');
-            Route::get('view', 'CourseRegisteredController@viewRegistrations');
-            Route::post('view', 'CourseRegisteredController@viewRegistration');
-            Route::post('view-selected', 'CourseRegisteredController@viewSelectedRegistration');
-            Route::get('edit', 'CourseRegisteredController@editIndex')->name('course-registration.edit');
-            Route::get('new', 'CourseRegisteredController@newRegistration')->name('course-registration.new');
-        });
     });
 
     Route::group(['prefix' => 'result'], function (){
@@ -64,12 +60,12 @@ Route::group(['middleware' => 'auth'], function () {
         });
     });
 
-    Route::group(['prefix' => 'role'], function(){
-        Route::post('add', 'RoleController@add');
-        Route::post('edit', 'RoleController@edit');
-        Route::get('view', 'RoleController@viewRoles');
-        Route::post('view', 'RoleController@viewRole');
-        Route::get('index', 'RoleController@index')->name('role.index');
+    Route::group(['prefix' => 'UserType'], function(){
+        Route::post('add', 'UserTypeController@add');
+        Route::post('edit', 'UserTypeController@edit');
+        Route::get('view', 'UserTypeController@viewRoles');
+        Route::post('view', 'UserTypeController@viewRole');
+        Route::get('index', 'UserTypeController@index')->name('UserType.index');
     });
 
     Route::group(['prefix' => 'student'], function(){
@@ -99,7 +95,25 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
 
+    Route::group(['prefix' => 'student'],  function (){
+        Route::get('home', 'HomeController@studentHome')->name('student.home');
+        Route::get('loggedIn', 'HomeController@collectAuthUser');
+        Route::group(['prefix' => 'registration'], function (){
+            Route::post('add', 'CourseRegisteredController@add');
+            Route::post('edit', 'CourseRegisteredController@edit');
+            Route::get('view', 'CourseRegisteredController@viewRegistrations');
+            Route::post('view', 'CourseRegisteredController@viewRegistration');
+            Route::post('view-selected', 'CourseRegisteredController@viewSelectedRegistration');
+            Route::get('edit', 'CourseRegisteredController@editIndex')->name('course-registration.edit');
+            Route::get('new', 'CourseRegisteredController@newRegistration')->name('course-registration.new');
+        });
+        Route::get('view-selected-result', 'ResultController@viewForStudent')->name('student-view-result');
+        Route::get('profile', 'StudentController@viewStudentProfile')->name('student-profile');
+
+
+    });
     /*Route::get('/', function () {
         return view('welcome');
     })->name('home');*/
 });
+

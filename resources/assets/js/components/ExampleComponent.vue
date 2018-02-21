@@ -8,6 +8,10 @@
                     <div class="panel-body">
                         I'm an example component!
                     </div>
+
+                    <form action="">
+                        <button @click.prevent="api1">Api 1</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -18,6 +22,15 @@
     export default {
         mounted() {
             console.log('Component mounted.')
+        },
+
+        methods: {
+            api1(){
+                axios.get('api1')
+                    .then(response => {
+                        console.log('api call 1');
+                    })
+            }
         }
     }
 </script>

@@ -22,9 +22,9 @@ class CreateUsersTable extends Migration
             $table->string('email');
             $table->string('identification_no')->unique();
             $table->string('password');
-            $table->integer('department_id');
-            $table->integer('role_id');
-            $table->integer('staff_id');
+            $table->integer('department_id')->nullable();
+            $table->integer('user_type');
+            $table->integer('staff_id')->nullable();
             $table->boolean('is_active')->default(true);
             $table->rememberToken();
             $table->softDeletes();

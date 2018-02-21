@@ -16,7 +16,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'firstname', 'middlename', 'lastname', 'tel_no', 'email', 'password',
-        'identification_no', 'department_id', 'role_id', 'staff_id', 'is_active'
+        'identification_no', 'department_id', 'user_type', 'staff_id', 'is_active'
     ];
 
     /**
@@ -71,7 +71,7 @@ class User extends Authenticatable
                 'email' => $data['email'],
                 'identification_no' => $data['identification_no'],
                 'department_id' => $data['department_id'],
-                'role_id' => $data['role_id'],
+                'user_type' => $data['user_type'],
                 'staff_id' => $data['staff_id']
                 ]
             );

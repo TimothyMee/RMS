@@ -21,7 +21,7 @@ Vue.component('switches', Switches);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-/**/
+Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
 Vue.component('view-users', require('./components/users/ViewUsers.vue'));
 Vue.component('add-user', require('./components/users/CreateUser.vue'));
@@ -33,18 +33,19 @@ Vue.component('add-students', require('./components/students/CreateStudents.vue'
 Vue.component('view-departments', require('./components/departments/ViewDepartments.vue'));
 Vue.component('add-department', require('./components/departments/CreateDepartment.vue'));
 
-Vue.component('view-roles', require('./components/roles/ViewRoles.vue'));
-Vue.component('add-role', require('./components/roles/CreateRole.vue'));
+Vue.component('view-types', require('./components/user_type/ViewTypes.vue'));
+Vue.component('add-type', require('./components/user_type/CreateType.vue'));
 
 Vue.component('view-courses', require('./components/courses/ViewCourses.vue'));
 Vue.component('add-course', require('./components/courses/CreateCourse.vue'));
 
-Vue.component('view-registration', require('./components/course-registration/ViewRegistration.vue'));
 Vue.component('new-registration', require('./components/course-registration/NewRegistration.vue'));
+Vue.component('view-registration', require('./components/course-registration/ViewRegistration.vue'));
 
 Vue.component('create-result', require('./components/results/createResult.vue'));
 Vue.component('view-result', require('./components/results/ViewResult.vue'));
 Vue.component('edit-result', require('./components/results/EditResult.vue'));
+Vue.component('student-view-result', require('./components/results/ViewResultForStudent.vue'));
 
 
 

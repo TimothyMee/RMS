@@ -10,12 +10,14 @@ return [
         'email'     => 'timothy33.tf@gmail.com',
         'tel_no'     => '07088775522',
         'department_id' => 1,
-        'role_id'   => 1,
+        'user_type'   => 1,
         'staff_id' => 1,
     ],
 
-    'roles'     => [
-        ['name' => 'SuperAdmin', 'description' => 'Has all rights to any part of the system', 'staff_id' => 1, ]
+    'user_type'     => [
+        ['name' => 'SuperAdmin', 'description' => 'Has all rights to any part of the system', 'staff_id' => 1, ],
+        ['name' => 'Admin', 'description' => 'Has rights to create,delete and update all except admins', 'staff_id' => 1, ],
+        ['name' => 'Student', 'description' => 'The main subject of the Application', 'staff_id' => 1, ],
     ],
 
     'department'   => [

@@ -37,13 +37,13 @@
                     </span>
                 </div>
 
-                <div class="form-group">
-                    <label class="">Role:</label>
-                    <select name="" id="" class="form-control form-control-xs" v-model="user.role_id" v-if="roles.length">
-                        <option v-for="role in roles" :value=role.id>{{role.name}}</option>
+                <div class="form-group" style="margin-left: 30px;">
+                    <label class="">User Types:</label>
+                    <select name="" id="" class="form-control form-control-xs" v-model="user.user_type" v-if="userTypes.length">
+                        <option v-for="userType in userTypes" :value=userType.id v-if="userType.id == 1 || userType.id == 2">{{userType.name}}</option>
                     </select>
                     <span v-else="" style="color:red">
-                        No Existing Role... Please Create a Role First
+                        No Existing Role... Please Create a User Type First
                     </span>
                 </div>
 
@@ -65,7 +65,7 @@
             return {
                 user: {},
                 departments:'',
-                roles: ''
+                userTypes: ''
             }
         },
 
@@ -90,12 +90,12 @@
             },
 
             fetchRoles(){
-                axios.get('/role/view')
+                axios.get('/UserType/view')
                     .then(response => {
                         var _response = response.data;
                         if(_response.status === 0)
                         {
-                            this.roles = _response.data;
+                            this.userTypes = _response.data;
                         }
                         else{
 

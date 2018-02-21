@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use App\User;
-use App\Role;
+use App\UserType;
 use App\Department;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
@@ -42,7 +42,7 @@ class InstallRms extends Command
     public function handle()
     {
         DB::transaction(function () {
-            $this->setRole();
+            $this->setUserTypes();
             $this->setDepartment();
             $this->setDefaultUsers();
         });
@@ -64,11 +64,11 @@ class InstallRms extends Command
         return $user->createNew(config('default.superadmin'));
     }
 
-    public function setRole()
+    public function setUserTypes()
     {
-        $role = new Role();
-        foreach (config('default.roles') as $defaultRole) {
-            $role->createNew($defaultRole);
+        $userType = new UserType();
+        foreach (config('default.user_type') as $defaultRole) {
+            $userType->createNew($defaultRole);
         }
         return ;
     }
