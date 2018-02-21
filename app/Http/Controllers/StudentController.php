@@ -61,7 +61,20 @@ class StudentController extends Controller
     {
         try
         {
-            $result = $student->view($request->all());
+            $result = $user->view($request->all());
+            return apiSuccess($result);
+        }
+        catch (\Exception $e)
+        {
+            return apiFailure($e);
+        }
+    }
+
+    public function viewStudentProfile(User $user)
+    {
+        try
+        {
+            $result = $user->view([auth()->id()]);
             return apiSuccess($result);
         }
         catch (\Exception $e)
@@ -74,7 +87,7 @@ class StudentController extends Controller
     {
         try
         {
-            $result = $student->viewAll();
+            $result = $user->viewAll();
             return apiSuccess($result);
         }
         catch (\Exception $e)

@@ -35,12 +35,12 @@
             <a href="" class="site-logo">
                 {{--<img class="hidden-md-down" src="img/logo-2.png" alt="">--}}
                 <img class="hidden-lg-down" src="/img/logo-2-mob.png" alt="">
-                <a href="{{route('home')}}" class="link"> HOME</a>
+                <a href="{{route('home')}}" class="link"> Home</a>
             </a>
 
-            <button id="show-hide-sidebar-toggle" class="show-hide-sidebar">
+            {{--<button id="show-hide-sidebar-toggle" class="show-hide-sidebar">
                 <span>toggle menu</span>
-            </button>
+            </button>--}}
 
             <button class="hamburger hamburger--htla">
                 <span>toggle menu</span>
@@ -93,7 +93,7 @@
     </ul>--}}
 
     <section>
-        <header class="side-menu-title">Tags</header>
+        <header class="side-menu-title">Menu</header>
         <ul class="side-menu-list">
 
             <li class="dropdown">
@@ -127,8 +127,8 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li><a href="{{route('course.index')}}">Add New Course</a></li>
-                    <li><a href="{{route('course-registration.new')}}">Student's Course Registration</a></li>
-                    <li><a href="{{route('course-registration.edit')}}">Edit Registration</a></li>
+                   {{-- <li><a href="{{route('course-registration.new')}}">Student's Course Registration</a></li>
+                    <li><a href="{{route('course-registration.edit')}}">Edit Registration</a></li>--}}
                 </ul>
             </li>
 

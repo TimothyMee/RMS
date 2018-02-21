@@ -2,18 +2,7 @@
     <div>
         <notifications position="top center" />
         <div class="row">
-           <div class="col-md-4">
-               <table class="tbl-typical">
-                   <tr>
-                       <th align="center"><h3>Students</h3></th>
-                   </tr>
-                   <tr v-for="(student, index) in students">
-                       <td><a href="#" @click="openCourseEditor(student.id)">{{++index}} &emsp; {{student.firstname}} {{student.lastname}} &emsp; {{student.identification_no}}</a></td>
-                   </tr>
-               </table>
-           </div>
-
-            <div class="col-md-8" v-show="courseEditor">
+            <div class="col-md-8">
                     <table class="tbl-typical">
                         <tr>
                             <th align=""><h4>Course Registration</h4></th>
@@ -80,20 +69,14 @@
         },
 
         methods: {
-            fetchStudents(){
-                axios.get('/student/view')
+            fetchStudent(){
+                axios.get('/student/loggedIn')
                     .then(response => {
                         var _response = response.data;
                         if(_response.status === 0){
-                            this.students = _response.data;
+                            this.registrationDetails.student_id = _response.data;
                         }
                     })
-            },
-
-            openCourseEditor(student_id){
-                this.registrationDetails.student_id = student_id;
-                this.courseEditor = !this.courseEditor;
-
             },
 
             addCourse(){
@@ -111,7 +94,7 @@
             },
 
             registerStudent(){
-                axios.post('/course/registration/add', this.registrationDetails)
+                axios.post('/student/registration/add', this.registrationDetails)
                     .then(response => {
                         var _response = response.data;
                         if (_response.status === 0){
@@ -128,7 +111,7 @@
         },
 
         mounted(){
-            this.fetchStudents();
+            this.fetchStudent();
             this.getCourses();
         },
 

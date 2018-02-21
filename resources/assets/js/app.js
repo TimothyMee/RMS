@@ -39,12 +39,13 @@ Vue.component('add-type', require('./components/user_type/CreateType.vue'));
 Vue.component('view-courses', require('./components/courses/ViewCourses.vue'));
 Vue.component('add-course', require('./components/courses/CreateCourse.vue'));
 
-Vue.component('view-registration', require('./components/course-registration/ViewRegistration.vue'));
 Vue.component('new-registration', require('./components/course-registration/NewRegistration.vue'));
+Vue.component('view-registration', require('./components/course-registration/ViewRegistration.vue'));
 
 Vue.component('create-result', require('./components/results/createResult.vue'));
 Vue.component('view-result', require('./components/results/ViewResult.vue'));
 Vue.component('edit-result', require('./components/results/EditResult.vue'));
+Vue.component('student-view-result', require('./components/results/ViewResultForStudent.vue'));
 
 
 

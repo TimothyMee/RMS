@@ -30,6 +30,11 @@ class HomeController extends Controller
         return view('home', ['totalOfStudents' => $totalOfStudents, 'totalOfStaffs' =>$totalOfStaffs]);
     }
 
+    public function collectAuthUser()
+    {
+        return apiSuccess(auth()->id());
+    }
+
     public function studentHome()
     {
         return view('studentHome', ['id' => auth()->user()->identification_no,]);

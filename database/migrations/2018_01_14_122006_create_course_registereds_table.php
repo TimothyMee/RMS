@@ -19,7 +19,6 @@ class CreateCourseRegisteredsTable extends Migration
             $table->string('semester');
             $table->string('year');
             $table->json('courses');
-            $table->integer('staff_id');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -20,7 +20,6 @@ class CourseRegistered extends Model
 
         if ($existingData === null){
             $data['courses'] = json_encode($data['courses']);
-            $data['staff_id'] = auth()->id();
             return $this->create($data);
         }
         return false;
@@ -48,6 +47,7 @@ class CourseRegistered extends Model
 
         $results = $this->where('semester', $data['semester'])
                         ->where('year', $data['year'])
+                        ->where('student_id', $data['student_id'])
                         ->get();
 
         return $results;
@@ -59,7 +59,7 @@ class CourseRegistered extends Model
         return $this->where('student_id', $data['student_id'])
             ->where('semester', $data['semester'])
             ->where('year', $data['year'])
-            ->update(['courses' => $data['courses'],'staff_id' => $data['staff_id']]);
+            ->update(['courses' => $data['courses'],]);
 
     }
 

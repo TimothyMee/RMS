@@ -39,15 +39,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('view', 'CourseController@viewCourses');
         Route::post('view', 'CourseController@viewCourse');
         Route::get('index', 'CourseController@index')->name('course.index');
-        Route::group(['prefix' => 'registration'], function (){
-            Route::post('add', 'CourseRegisteredController@add');
-            Route::post('edit', 'CourseRegisteredController@edit');
-            Route::get('view', 'CourseRegisteredController@viewRegistrations');
-            Route::post('view', 'CourseRegisteredController@viewRegistration');
-            Route::post('view-selected', 'CourseRegisteredController@viewSelectedRegistration');
-            Route::get('edit', 'CourseRegisteredController@editIndex')->name('course-registration.edit');
-            Route::get('new', 'CourseRegisteredController@newRegistration')->name('course-registration.new');
-        });
     });
 
     Route::group(['prefix' => 'result'], function (){
@@ -106,6 +97,20 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'student'],  function (){
         Route::get('home', 'HomeController@studentHome')->name('student.home');
+        Route::get('loggedIn', 'HomeController@collectAuthUser');
+        Route::group(['prefix' => 'registration'], function (){
+            Route::post('add', 'CourseRegisteredController@add');
+            Route::post('edit', 'CourseRegisteredController@edit');
+            Route::get('view', 'CourseRegisteredController@viewRegistrations');
+            Route::post('view', 'CourseRegisteredController@viewRegistration');
+            Route::post('view-selected', 'CourseRegisteredController@viewSelectedRegistration');
+            Route::get('edit', 'CourseRegisteredController@editIndex')->name('course-registration.edit');
+            Route::get('new', 'CourseRegisteredController@newRegistration')->name('course-registration.new');
+        });
+        Route::get('view-selected-result', 'ResultController@viewForStudent')->name('student-view-result');
+        Route::get('profile', 'StudentController@viewStudentProfile')->name('student-profile');
+
+
     });
     /*Route::get('/', function () {
         return view('welcome');

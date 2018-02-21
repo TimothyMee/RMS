@@ -148,4 +148,9 @@ class ResultController extends Controller
             return apiFailure($e);
         }
     }
+
+    public function viewForStudent()
+    {
+        return view('results/viewForStudent');
+    }
 }

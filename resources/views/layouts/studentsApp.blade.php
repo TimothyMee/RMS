@@ -35,7 +35,7 @@
             <a href="" class="site-logo">
                 {{--<img class="hidden-md-down" src="img/logo-2.png" alt="">--}}
                 <img class="hidden-lg-down" src="/img/logo-2-mob.png" alt="">
-                <a href="{{route('student.home')}}" class="link">logo</a>
+                <a href="{{route('student.home')}}" class="link">Home</a>
             </a>
 
             <button class="hamburger hamburger--htla">
@@ -67,25 +67,8 @@
 
 <div class="mobile-menu-left-overlay"></div>
 <nav class="side-menu">
-    {{--<ul class="side-menu-list">
-        <li class="grey with-sub">
-	            <span>
-	                <i class="font-icon font-icon-dashboard"></i>
-	                <span class="lbl">Dashboard</span>
-	            </span>
-            <ul></ul>
-        </li>
-        <li class="brown with-sub">
-	            <span>
-	                <i class="font-icon glyphicon glyphicon-tint"></i>
-	                <span class="lbl">Skins</span>
-	            </span>
-            <ul></ul>
-        </li>
-    </ul>--}}
-
     <section>
-        <header class="side-menu-title">Tags</header>
+        <header class="side-menu-title">Menu</header>
         <ul class="side-menu-list">
 
             <li class="dropdown">
@@ -94,14 +77,13 @@
                     Courses <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="{{route('course.index')}}">Add New Course</a></li>
-                    <li><a href="{{route('course-registration.new')}}">Student's Course Registration</a></li>
+                    <li><a href="{{route('course-registration.new')}}">Course Registration</a></li>
                     <li><a href="{{route('course-registration.edit')}}">Edit Registration</a></li>
                 </ul>
             </li>
 
             <li class="dropdown">
-                <a href="#">
+                <a href="{{route('student-view-result')}}">
                     <i class="tag-color pink"></i>
                     Result
                 </a>
