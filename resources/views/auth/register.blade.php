@@ -188,7 +188,8 @@
                                     <button type="submit" class="btn btn-primary">
                                         Register
                                     </button>
-                                </div>
+
+                                    <a href="{{route('login')}}">Go Back to the Login?</a>
                             </div>
                         </form>
                     </div>
