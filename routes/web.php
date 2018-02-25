@@ -32,6 +32,7 @@ Route::post('register', 'AuthController@postStudentRegistration')->name('registe
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('home', 'HomeController@index')->name('home');
+    Route::get('test', 'HomeController@test');
 
     Route::group(['prefix' => 'course'], function (){
         Route::post('add', 'CourseController@add');
