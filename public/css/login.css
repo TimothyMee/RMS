@@ -1,0 +1,332 @@
+.authentication {
+  height: 100vh;
+  background: url(../images/login-bg.html) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.authentication > .container-fluid .p-l-0,
+.authentication > .container-fluid .p-r-0 {
+  padding: 0 !important;
+}
+
+#authentication .sketch {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+}
+.authentication #instance1{position:absolute; top:0; height:98vh; width:98%;}
+/* Container */
+.container.active .card:first-child {
+  background: #f2f2f2;
+  margin: 0 15px;
+}
+
+.container.active .card:nth-child(2) {
+  background: #fafafa;
+}
+
+.container.active .card.alt {
+  top: 20px;
+  right: 0;
+  width: 100%;
+  min-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  padding: 50px 0 40px;
+  overflow: hidden;
+}
+
+.container.active .card.alt .toggle {
+  position: absolute;
+  top: 40px;
+  right: -10px;
+  box-shadow: none;
+  -webkit-transform: scale(50);
+  transform: scale(50);
+  -webkit-transition: -webkit-transform .3s ease;
+  transition: -webkit-transform .3s ease;
+  transition: transform .3s ease;
+  transition: transform .3s ease, -webkit-transform .3s ease;
+}
+
+.container.active .card.alt .toggle:before {
+  content: '';
+}
+
+.sign-up, .card.alt .title {
+  display: none;
+}
+
+.container.active .card.alt .title, .container.active .card.alt .sign-up {
+  left: 0;
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition: .3s ease;
+  transition: .3s ease;
+  display: block;
+}
+/* Card */
+.authentication .card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 0;
+  padding: 30% 30px 0;
+  box-sizing: border-box;
+  height: 100vh;
+  margin: 0;
+  border: none;
+  z-index: 5;
+}
+
+.locked .thumb {
+  float: left;
+  margin-right: 15px;
+}
+
+.locked .thumb .media-object {
+  display: inline-block;
+  width: 70px;
+}
+
+.locked .col-md-7 {
+  padding-left: 0;
+}
+
+.locked .col-md-12 {
+  margin-top: 25px;
+}
+
+.locked .media-heading {
+  padding-top: 10px;
+  color: #555;
+}
+
+.locked .media-heading strong {
+  display: block;
+  font-weight: normal;
+}
+
+.card-top:first-child {
+  background: #fafafa;
+  height: 10px;
+  border-radius: 5px 5px 0 0;
+  margin: 0 10px;
+  padding: 0;
+}
+
+.card .title {
+  position: relative;
+  z-index: 1;
+  border-left: 5px solid #00adef;
+  margin: 0 0 25px;
+  padding: 10px 0 10px 42px;
+  color: #00adef;
+  font-size: 22px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.card .title span {
+  font-size: 13px;
+  display: block;
+  margin: 0;
+  line-height: 18px;
+  font-weight: 400;
+  color: #444;
+}
+
+.card .title .msg {
+  font-size: 13px;
+  color: #666;
+  display: block;
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+  line-height: 18px;
+  margin-top: 10px;
+  text-transform: none;
+}
+
+.card .input-container {
+  position: relative;
+  margin: 0 0px 30px;
+}
+
+.form-line .search-btn {
+  display: inline-block;
+  position: absolute;
+  right: 50px;
+  top: 0;
+}
+
+.form-line .search-btn button {
+  box-shadow: none;
+  margin: 0;
+}
+
+.l-detail {
+  margin-top: 20%;
+  padding: 0 100px;
+  color: #fff;
+}
+
+.l-login {
+  padding: 0 7.5px;
+  text-transform: uppercase;
+}
+
+.l-login .msg {
+  font-size: 15px;
+  font-weight: 400;
+  text-transform: none;
+}
+
+.l-detail h1 {
+  margin: 0;
+  font-size: 60px;
+  font-weight: 300;
+  color: #fff;
+}
+
+.l-detail h1 img {
+  width: 52px;
+  vertical-align: top;
+  margin-top: 12px;
+}
+
+.l-detail h1 span {
+  font-weight: 700;
+}
+
+.l-detail h5 {
+  font-size: 20px;
+  margin: 0;
+  letter-spacing: 2px;
+  font-weight: 400;
+}
+
+.l-detail h3 {
+  text-transform: uppercase;
+  font-weight: 400;
+  z-index: 6;
+}
+
+.l-detail p {
+  font-size: 17px;
+  line-height: 28px;
+  font-weight: 300;
+}
+
+.l-social {
+  margin-top: 5%;
+}
+
+.l-social li {
+  display: inline-block;
+}
+
+.l-social li a {
+  text-align: center;
+  padding: 10px 5px;
+}
+
+.l-social li a i {
+  font-size: 20px;
+  color: #fff;
+}
+
+.l-menu {
+  position: fixed;
+  bottom: 70px;
+  z-index: 6;
+}
+
+.l-menu li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.l-menu li a {
+  padding: 10px 0;
+  font-size: 16px;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.authentication .position {
+  position: relative;
+  z-index: 6;
+}
+
+@media only screen and (max-width:1400px) {
+  .authentication .card {
+    padding: 30% 10px 0;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1024px) {
+    
+  .l-detail {
+    padding: 0 20px;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .authentication .card {
+    padding: 40px 15px;
+    height: auto;
+  }
+
+  .l-detail {
+    margin-top: 15%;
+    padding: 0 0px;
+    color: #fff;
+    text-align: center;
+  }
+
+  .l-menu {
+    margin: 30px 0;
+    position: inherit;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+	.authentication #instance1{display:none;}
+  .authentication .card {
+    margin-bottom: 15px;
+  }
+
+  .l-detail h3 {
+    font-size: 20px;
+  }
+
+  .l-detail p {
+    font-size: 15px;
+  }
+}
+
+@media only screen and (max-width: 340px) {
+  .authentication .card {
+    padding: 40px 0;
+  }
+}
+
+/* Keyframes */
+@-webkit-keyframes buttonFadeInUp {
+  0% {
+    bottom: 30px;
+    opacity: 0;
+  }
+}
+
+@keyframes buttonFadeInUp {
+  0% {
+    bottom: 30px;
+    opacity: 0;
+  }
+}

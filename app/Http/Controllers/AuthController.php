@@ -2,29 +2,45 @@
 
 namespace App\Http\Controllers;
 
+use App\Department;
 use Illuminate\Http\Request;
 use Mockery\Exception;
 use App\User;
 
 class AuthController extends Controller
 {
-    public function registerStudent()
+    public function registerStudent(Department $department)
     {
-        return view ('auth.register');
+        $departments = $department->viewAll();
+        return view ('auth.register')->with('departments', $departments);
     }
 
-    public function postStudentRegistration(Request $request, User $user)
+    public function postStudentRegistration(Request $request, User $user,Department $department)
     {
         try
         {
+                if($request->hasFile('photo')){
+                    $request['image'] = $request->photo->storeAs('images', $request['identification_no']);
+                }
+                else
+                {
+                    $departments = $department->viewAll();
+                    return view ('auth.register')->with('departments', $departments);
+                }
+
+            if($request['password']!= $request['c_password']){
+                $request['password'] = '';
+            }
+
             $result = $user->createNew($request->all());
+
             if ($result){
                 return view('auth.login');
             }
         }
         catch (\Exception $e)
         {
-            return apiFailure($e);
+
         }
     }
 
