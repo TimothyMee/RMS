@@ -1,95 +1,89 @@
-<!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+
+
+<!doctype html>
+<html class="no-js " lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta name="description" content="RMS, Result Management System">
+    <meta name="keywords" content="RMS, Result Management System, Timothy, Timothy-mee">
+
+    <!-- Favicon-->
+    {{--<link rel="icon" href="favicon.ico" type="image/x-icon">--}}
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="/css/login2.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/login.css">
+
 </head>
-<body>
 
-    <div class="container">
-    <div class="row" style="margin-top: 10%;">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
+<body class="theme-blue">
+<div class="authentication">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-9 col-md-8 col-xs-12 p-l-0">
+                <div class="l-detail">
+                    <h5 class="position">Welcome <h6>to the</h6></h5>
+                    <h1>Result Management System</h1>
+                    <h3 class="position">Sign in to start</h3>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-xs-12 p-r-0">
+                <div class="card position">
+                    <h4 class="l-login">Login</h4>
 
-                @if(session()->has('error'))
-                    <p class="text-danger">{{ session('error') }}</p>
-                @endif
-
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('auth.login') }}">
+                    <form class="col-md-12" id="sign_in" method="POST" action="{{ route('auth.login') }}">
                         {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">Email</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="text" class="form-control" placeholder="Email" name="email" required autofocus>
+                            </div>
+                            @if ($errors->has('email'))
+                                <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
-                                @endif
-                            </div>
+                            @endif
                         </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
+                        <div class="form-group form-float">
+                            <div class="form-line">
+                                <input type="password" class="form-control" placeholder="Password" name="password" required autofocus>
+                            </div>
+                            @if ($errors->has('password'))
+                                <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
-                                @endif
-                            </div>
+                            @endif
                         </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                                    </label>
-                                </div>
-                            </div>
+                        <div>
+                            <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-cyan">
+                            <label for="rememberme">Remember Me</label>
                         </div>
-
-                        <div class="form-group">
-                            <div class="col-md-9 col-md-offset-2">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-
-                                <a class="btn btn-link" href="">
-                                    Forgot Your Password?
-                                </a>
-
-                                <a href="{{route('register')}}" style="color: red">
-                                    Student and Don't have an account?
-                                </a>
-                            </div>
-                        </div>
+                        <button class="btn btn-raised btn-info waves-effect" type="submit">SIGN IN</button>
+{{--
+                        <a href="sign-up.html" class="btn btn-raised waves-effect" type="submit">SIGN UP</a>
+--}}
+                        <a href="forgot-password.html">Forgot Password?</a>
+                        <br>
+                        <a href="{{route('register')}}">
+                            Student and Don't have an account?
+                        </a>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    <div id="instance1"></div>
 </div>
 
-<!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+<script src="/js/login2/jparticles.html"></script>
+<script src="/js/login2/particle.html"></script>
+
+<script src="/js/login2/event.html"></script>
 </body>
+
 </html>
