@@ -18,6 +18,7 @@ return [
         ['name' => 'SuperAdmin', 'description' => 'Has all rights to any part of the system', 'staff_id' => 1, ],
         ['name' => 'Admin', 'description' => 'Has rights to create,delete and update all except admins', 'staff_id' => 1, ],
         ['name' => 'Student', 'description' => 'The main subject of the Application', 'staff_id' => 1, ],
+        ['name' => 'Professor', 'description' => 'Lecturers', 'staff_id' => 1, ],
     ],
 
     'department'   => [
