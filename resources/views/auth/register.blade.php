@@ -1,312 +1,201 @@
+
 <!DOCTYPE html>
-<html>
-
-<head lang="en">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>RMS</title>
-
-    <link href="/img/favicon.144x144.html" rel="apple-touch-icon" type="image/png" sizes="144x144">
-    <link href="/img/favicon.114x114.html" rel="apple-touch-icon" type="image/png" sizes="114x114">
-    <link href="/img/favicon.72x72.html" rel="apple-touch-icon" type="image/png" sizes="72x72">
-    <link href="/img/favicon.57x57.html" rel="apple-touch-icon" type="image/png">
-    <link href="/img/favicon.html" rel="icon" type="image/png">
-    <link href="/img/favicon-2.html" rel="shortcut icon">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    <link rel="stylesheet" href="/css/lobipanel/lobipanel.min.css">
-    <link rel="stylesheet" href="/css/vendor/lobipanel.min.css">
-    <link rel="stylesheet" href="/css/jqueryui/jquery-ui.min.css">
-    <link rel="stylesheet" href="/css/pages/widgets.min.css">
-    <link rel="stylesheet" href="/css/font-awesome/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/css/main.css">
+<html lang="en">
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta name="description" content="RMS, Result Management System">
+    <meta name="keywords" content="RMS, Result Management System, Timothy, Timothy-mee">
+    <title>RMS | Register</title>
+    <!-- google font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" type="text/css" />
+    <!-- icons -->
+    <link href="/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <!-- Material Design Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!--bootstrap -->
+    <link href="/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- Material Design Lite CSS -->
+    <link rel="stylesheet" href="/plugins/material/material.min.css">
+    <link rel="stylesheet" href="/css/material_style.css">
+    <!-- Theme Styles -->
+    <link href="/css/theme/light/theme_style.css" rel="stylesheet" id="rt_style_components" type="text/css" />
+    <link href="/css/theme/light/style.css" rel="stylesheet" type="text/css" />
+    <link href="/css/plugins.min.css" rel="stylesheet" type="text/css" />
+    <link href="/css/responsive.css" rel="stylesheet" type="text/css" />
+    <link href="/css/theme/light/theme-color.css" rel="stylesheet" type="text/css" />
+    <!-- dropzone -->
+    <link href="/plugins/dropzone/dropzone.css" rel="stylesheet" media="screen">
+    <!-- Date Time item CSS -->
+    <link rel="stylesheet" href="/plugins/material-datetimepicker/bootstrap-material-datetimepicker.css" />
+    <!-- favicon -->
+    {{--<link rel="shortcut icon" href="../assets/img/favicon.ico" />--}}
 </head>
-<body class="with-side-menu control-panel control-panel-compact">
-
-<header class="site-header">
-    <div class="container-fluid">
-        <a href="" class="site-logo">
-            {{--<img class="hidden-md-down" src="img/logo-2.png" alt="">--}}
-            <img class="hidden-lg-down" src="/img/logo-2-mob.png" alt="">
-        </a>
-
-        {{--<button id="show-hide-sidebar-toggle" class="show-hide-sidebar">
-            <span>toggle menu</span>
-        </button>--}}
-
-        <button class="hamburger hamburger--htla">
-            <span>toggle menu</span>
-        </button>
-        <div class="site-header-content">
-            <div class="site-header-content-in">
-                <div class="site-header-shown">
-                    <div class="dropdown user-menu">
-
+<!-- END HEAD -->
+<body class="">
+<div class="">
+    <div class="page-container">
+        <!-- start page content -->
+        <div class="page-content-wrapper">
+            <div class="page-content">
+                <div class="breadcrumb">
+                    <div class="breadcrumb">
+                        <div class="pull-left">
+                            <div class="page-title"><span style="color:rebeccapurple">Add Student</span></div>
+                        </div>
                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card-box">
+                            <div class="card-head">
+                                <header><h4>Basic Information</h4></header>
+                            </div>
+                            <form method="post" action="{{ route('register') }}" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+                                <div class="card-body row">
+                                    <div class="col-lg-6 p-t-20">
+                                        <div class = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                            <input class="mdl-textfield__input" type = "text" name= "firstname">
+                                            <label class="mdl-textfield__label">First Name</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 p-t-20">
+                                        <div class = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                            <input class="mdl-textfield__input" type = "text" name= "middlename">
+                                            <label class="mdl-textfield__label">Second Name</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 p-t-20">
+                                        <div class = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                            <input class="mdl-textfield__input" type = "text" name="lastname">
+                                            <label class="mdl-textfield__label" >Last Name</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 p-t-20">
+                                        <div class = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                            <input class="mdl-textfield__input" type = "text" name="identification_no">
+                                            <label class="mdl-textfield__label" >Identification No</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 p-t-20">
+                                        <div class = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                            <input class="mdl-textfield__input" type = "email" name="email">
+                                            <label class="mdl-textfield__label" >Email</label>
+                                            <span class="mdl-textfield__error">Enter Valid Email Address!</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 p-t-20">
+                                        <div class = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                            <input class = "mdl-textfield__input" type = "text"
+                                                   pattern = "-?[0-9]*(\.[0-9]+)?" name = "tel_no" id="telephone">
+                                            <label class = "mdl-textfield__label" for = "telephone">Mobile Number</label>
+                                            <span class = "mdl-textfield__error">Number required!</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 p-t-20">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
+                                            <select name="department_id" id="" class="form-control">
+                                                <option value="">Department</option>
+                                                @foreach($departments as $department)
+                                                    <option value="{{$department->id}}">{{$department->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 p-t-20">
+                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
+                                            <select name="gender" id="" class="form-control">
+                                                <option value="" class="mdl-menu__item">Gender</option>
+                                                <option value="Male" class="mdl-menu__item">Male</option>
+                                                <option value="Female" class="mdl-menu__item">Female</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 p-t-20">
+                                        <div class = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                            <input class = "mdl-textfield__input" type = "text" name = "DOB" id="dateOfBirth">
+                                            <label class = "mdl-textfield__label" >Birth Date</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 p-t-20">
+                                        <div class = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                            <input class="mdl-textfield__input" type = "password" name="password">
+                                            <label class="mdl-textfield__label" >Password</label>
+                                            <span class="mdl-textfield__error">Enter Your Password!</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 p-t-20">
+                                        <div class = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                            <input class="mdl-textfield__input" type = "password" name="c_password">
+                                            <label class="mdl-textfield__label" >Confirm Password</label>
+                                            <span class="mdl-textfield__error">Enter Same Password!</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 p-t-20">
+                                        <div class = "mdl-textfield mdl-js-textfield txt-full-width">
+						                     <textarea class = "mdl-textfield__input" rows =  "4"
+                                                       name = "address" id="address"></textarea>
+                                            <label class = "mdl-textfield__label" for = "address">Address</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 p-t-20">
+                                        <label class="control-label col-md-3">Upload Photo
+                                        </label>
+                                        <div class="col-md-12">
+                                            <input type="file" id="" class="dropzone col-md-12 form-control" name="photo"/>
+                                        </div>
+                                    </div>
 
-                    <button type="button" class="burger-right">
-                        <i class="font-icon-menu-addl"></i>
-                    </button>
-                </div><!--.site-header-shown-->
+                                    <input type="hidden" name ="user_type" value="3">
 
-                <div class="mobile-menu-right-overlay"></div>
-
-            </div><!--site-header-content-in-->
-        </div><!--.site-header-content-->
-    </div><!--.container-fluid-->
-</header><!--.site-header-->
-
-<div class="page-content">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading"><h2>Register</h2></div>
-
-                    <div class="panel-body">
-                        <form class="form-horizontal" method="POST" action="{{ route('register') }}">
-                            {{ csrf_field() }}
-
-                            <div class="form-group{{ $errors->has('identification_no') ? ' has-error' : '' }}">
-                                <label for="identification_no" class="col-md-4 control-label">Identification No</label>
-
-                                <div class="col-md-6">
-                                    <input id="identification_no" type="text" class="form-control" name="identification_no" value="{{ old('identification_no') }}" required autofocus>
-
-                                    @if ($errors->has('identification_no'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('identification_no') }}</strong>
-                                    </span>
-                                    @endif
+                                    <div class="col-lg-12 p-t-20 text-center">
+                                        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-pink">Submit</button>
+                                        <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default">Cancel</button>
+                                        <a href="{{route('login')}}" class="text">Login?</a>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="form-group{{ $errors->has('firstname') ? ' has-error' : '' }}">
-                                <label for="firstname" class="col-md-4 control-label">First Name</label>
-
-                                <div class="col-md-6">
-                                    <input id="firstname" type="text" class="form-control" name="firstname" value="{{ old('firstname') }}" required autofocus>
-
-                                    @if ($errors->has('firstname'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('firstname') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
-                                <label for="lastname" class="col-md-4 control-label">Last Name</label>
-
-                                <div class="col-md-6">
-                                    <input id="lastname" type="text" class="form-control" name="lastname" value="{{ old('lastname') }}" required autofocus>
-
-                                    @if ($errors->has('lastname'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('lastname') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group{{ $errors->has('middlename') ? ' has-error' : '' }}">
-                                <label for="middlename" class="col-md-4 control-label">Middle Name</label>
-
-                                <div class="col-md-6">
-                                    <input id="middlename" type="text" class="form-control" name="middlename" value="{{ old('middlename') }}" required autofocus>
-
-                                    @if ($errors->has('middlename'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('middlename') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                                <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                                    @if ($errors->has('email'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group{{ $errors->has('tel_no') ? ' has-error' : '' }}">
-                                <label for="tel_no" class="col-md-4 control-label">Telephone Number</label>
-
-                                <div class="col-md-6">
-                                    <input id="tel_no" type="tel_no" class="form-control" name="tel_no" value="{{ old('tel_no') }}" required>
-
-                                    @if ($errors->has('tel_no'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('tel_no') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                <label for="password" class="col-md-4 control-label">Password</label>
-
-                                <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control" name="password" required>
-
-                                    @if ($errors->has('password'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
-                                <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                                </div>
-                            </div>
-
-
-                            <input type="hidden" name ="user_type" value="3">
-
-                            <div class="form-group">
-                                <div class="col-md-6 col-md-offset-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        Register
-                                    </button>
-
-                                    <a href="{{route('login')}}">Go Back to the Login?</a>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- end page content -->
     </div>
-
-</div><!--.page-content-->
-
-<script src="/js/lib/jquery/jquery-3.2.1.min.js"></script>
-<script src="/js/lib/popper/popper.min.js"></script>
-<script src="/js/lib/tether/tether.min.js"></script>
-<script src="/js/lib/bootstrap/bootstrap.min.js"></script>
-<script src="/https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
-<script src="/js/plugins.js"></script>
-<script>
-    $(document).ready(function() {
-        $('.panel').each(function () {
-            try {
-                $(this).lobiPanel({
-                    sortable: true
-                }).on('dragged.lobiPanel', function(ev, lobiPanel){
-                    $('.dahsboard-column').matchHeight();
-                });
-            } catch (err) {}
-        });
-
-        google.charts.load('current', {'packages':['corechart']});
-        google.charts.setOnLoadCallback(drawChart);
-        function drawChart() {
-            var dataTable = new google.visualization.DataTable();
-            dataTable.addColumn('string', 'Day');
-            dataTable.addColumn('number', 'Values');
-            // A column for custom tooltip content
-            dataTable.addColumn({type: 'string', role: 'tooltip', 'p': {'html': true}});
-            dataTable.addRows([
-                ['MON',  130, ' '],
-                ['TUE',  130, '130'],
-                ['WED',  180, '180'],
-                ['THU',  175, '175'],
-                ['FRI',  200, '200'],
-                ['SAT',  170, '170'],
-                ['SUN',  250, '250'],
-                ['MON',  220, '220'],
-                ['TUE',  220, ' ']
-            ]);
-
-            var options = {
-                height: 314,
-                legend: 'none',
-                areaOpacity: 0.18,
-                axisTitlesPosition: 'out',
-                hAxis: {
-                    title: '',
-                    textStyle: {
-                        color: '#fff',
-                        fontName: 'Proxima Nova',
-                        fontSize: 11,
-                        bold: true,
-                        italic: false
-                    },
-                    textPosition: 'out'
-                },
-                vAxis: {
-                    minValue: 0,
-                    textPosition: 'out',
-                    textStyle: {
-                        color: '#fff',
-                        fontName: 'Proxima Nova',
-                        fontSize: 11,
-                        bold: true,
-                        italic: false
-                    },
-                    baselineColor: '#16b4fc',
-                    ticks: [0,25,50,75,100,125,150,175,200,225,250,275,300,325,350],
-                    gridlines: {
-                        color: '#1ba0fc',
-                        count: 15
-                    }
-                },
-                lineWidth: 2,
-                colors: ['#fff'],
-                curveType: 'function',
-                pointSize: 5,
-                pointShapeType: 'circle',
-                pointFillColor: '#f00',
-                backgroundColor: {
-                    fill: '#008ffb',
-                    strokeWidth: 0,
-                },
-                chartArea:{
-                    left:0,
-                    top:0,
-                    width:'100%',
-                    height:'100%'
-                },
-                fontSize: 11,
-                fontName: 'Proxima Nova',
-                tooltip: {
-                    trigger: 'selection',
-                    isHtml: true
-                }
-            };
-
-            var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
-            chart.draw(dataTable, options);
-        }
-        $(window).resize(function(){
-            drawChart();
-            setTimeout(function(){
-            }, 1000);
-        });
-    });
-</script>
-<script src="/js/app1.js"></script>
-<script src="/js/app.js"></script>
+    <!-- end page container -->
+    <!-- start footer -->
+    <div class="page-footer">
+        <div class="page-footer-inner"> 2017 &copy; RMS</div>
+        {{--<div class="scroll-to-top">--}}
+            {{--<i class="icon-arrow-up"></i>--}}
+        {{--</div>--}}
+    </div>
+    <!-- end footer -->
+</div>
+<!-- start js include path -->
+<script src="/plugins/jquery/jquery.min.js" ></script>
+<script src="/plugins/popper/popper.js" ></script>
+<script src="/plugins/jquery-blockui/jquery.blockui.min.js" ></script>
+<script src="/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+<!-- bootstrap -->
+<script src="/plugins/bootstrap/js/bootstrap.min.js" ></script>
+<!-- Common js-->
+<script src="/js/app(copy).js" ></script>
+<script src="/js/layout.js" ></script>
+<script src="/js/theme-color.js" ></script>
+<!-- Material -->
+<script src="/plugins/material/material.min.js"></script>
+<script src="/js/pages/material-select/getmdl-select.js" ></script>
+<script  src="/plugins/material-datetimepicker/moment-with-locales.min.js"></script>
+<script  src="/plugins/material-datetimepicker/bootstrap-material-datetimepicker.js"></script>
+<script  src="/plugins/material-datetimepicker/datetimepicker.js"></script>
+<!-- dropzone -->
+<script src="/plugins/dropzone/dropzone.js" ></script>
+<script src="/plugins/dropzone/dropzone-call.js" ></script>
+<!-- end js include path -->
 </body>
 </html>
-
