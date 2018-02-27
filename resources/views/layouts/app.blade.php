@@ -150,7 +150,7 @@
 </nav><!--.side-menu-->
 
 <div class="page-content">
-    @yield('content')
+   pp
 </div><!--.page-content-->
 
 <div class="control-panel-container">

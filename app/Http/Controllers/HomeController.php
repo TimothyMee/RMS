@@ -20,30 +20,12 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(User $user,  Course $course, Department $department)
     {
-        $totalOfStudents = Student::count();
-        $totalOfStaffs = User::count();
-        return view('home', ['totalOfStudents' => $totalOfStudents, 'totalOfStaffs' =>$totalOfStaffs]);
-    }
+        if(auth()->user()->user_type != 1 && auth()->user()->user_type != 2){
+            return view('auth.login');
+        }
 
-    public function collectAuthUser()
-    {
-        return apiSuccess(auth()->id());
-    }
-
-    public function studentHome()
-    {
-        return view('studentHome', ['id' => auth()->user()->identification_no,]);
-    }
-
-    public function test(User $user,  Course $course, Department $department)
-    {
         $courses = $course->viewAll();
         $users = $user->viewAll();
         $departments = $department->viewAll();
@@ -88,16 +70,31 @@ class HomeController extends Controller
         }
 
         $data = [
-                'courses' => $courses,
-                'student' => $student,
-                'admin' => $admin,
-                'professor' => $professor,
-                'adminCount' => $adminCount,
-                'studentCount' => $studentCount,
-                'professorCount' => $professorCount,
-                'courseCount' => $courseCount,
-                ];
+            'courses' => $courses,
+            'student' => $student,
+            'admin' => $admin,
+            'professor' => $professor,
+            'adminCount' => $adminCount,
+            'studentCount' => $studentCount,
+            'professorCount' => $professorCount,
+            'courseCount' => $courseCount,
+        ];
 
         return view('welcome')->with('data',$data);
+    }
+
+    public function collectAuthUser()
+    {
+        return apiSuccess(auth()->id());
+    }
+
+    public function studentHome()
+    {
+        return view('studentHome', ['id' => auth()->user()->identification_no,]);
+    }
+
+    public function test()
+    {
+        return view('welcome');
     }
 }

@@ -11889,7 +11889,7 @@ module.exports = Vue$3;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(12);
-module.exports = __webpack_require__(102);
+module.exports = __webpack_require__(105);
 
 
 /***/ }),
@@ -11950,6 +11950,8 @@ Vue.component('create-result', __webpack_require__(90));
 Vue.component('view-result', __webpack_require__(93));
 Vue.component('edit-result', __webpack_require__(96));
 Vue.component('student-view-result', __webpack_require__(99));
+
+Vue.component('view-professors', __webpack_require__(102));
 
 var app = new Vue({
   el: '#app'
@@ -52108,6 +52110,451 @@ if (false) {
 
 /***/ }),
 /* 102 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(103)
+/* template */
+var __vue_template__ = __webpack_require__(104)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/professors/ViewProfessors.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-15cf4be6", Component.options)
+  } else {
+    hotAPI.reload("data-v-15cf4be6", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 103 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {};
+    },
+
+
+    methods: {
+        fetchProfessors: function fetchProfessors() {
+            var _this = this;
+
+            axios.get('').then(function (response) {
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this.courses = _response.data;
+                }
+            });
+        }
+    },
+
+    mounted: function mounted() {
+        this.fetchProfessors();
+    }
+});
+
+/***/ }),
+/* 104 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-4" }, [
+        _c("div", { staticClass: "card card-box" }, [
+          _c("div", { staticClass: "card-body no-padding " }, [
+            _c("div", { staticClass: "doctor-profile" }, [
+              _c("img", {
+                staticClass: "doctor-pic",
+                attrs: { src: "", alt: "" }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "profile-usertitle" }, [
+                _c("div", { staticClass: "doctor-name" }, [
+                  _vm._v("Pooja Patel ")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "name-center" }, [
+                  _vm._v(" Mathematics ")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v("A-103, shyam gokul flats, Mahatma Road "),
+                _c("br"),
+                _vm._v("Mumbai")
+              ]),
+              _vm._v(" "),
+              _c("div", [
+                _c("p", [
+                  _c("i", { staticClass: "fa fa-phone" }),
+                  _c("a", { attrs: { href: "tel:(123)456-7890" } }, [
+                    _vm._v("  (123)456-7890")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "profile-userbuttons" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-circle deepPink-bgcolor btn-sm",
+                    attrs: { href: "professor_profile.html" }
+                  },
+                  [_vm._v("Read More")]
+                )
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-4" }, [
+        _c("div", { staticClass: "card card-box" }, [
+          _c("div", { staticClass: "card-body no-padding " }, [
+            _c("div", { staticClass: "doctor-profile" }, [
+              _c("img", {
+                staticClass: "doctor-pic",
+                attrs: { src: "", alt: "" }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "profile-usertitle" }, [
+                _c("div", { staticClass: "doctor-name" }, [
+                  _vm._v("Pooja Patel ")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "name-center" }, [
+                  _vm._v(" Mathematics ")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v("A-103, shyam gokul flats, Mahatma Road "),
+                _c("br"),
+                _vm._v("Mumbai")
+              ]),
+              _vm._v(" "),
+              _c("div", [
+                _c("p", [
+                  _c("i", { staticClass: "fa fa-phone" }),
+                  _c("a", { attrs: { href: "tel:(123)456-7890" } }, [
+                    _vm._v("  (123)456-7890")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "profile-userbuttons" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-circle deepPink-bgcolor btn-sm",
+                    attrs: { href: "professor_profile.html" }
+                  },
+                  [_vm._v("Read More")]
+                )
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-4" }, [
+        _c("div", { staticClass: "card card-box" }, [
+          _c("div", { staticClass: "card-body no-padding " }, [
+            _c("div", { staticClass: "doctor-profile" }, [
+              _c("img", {
+                staticClass: "doctor-pic",
+                attrs: { src: "", alt: "" }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "profile-usertitle" }, [
+                _c("div", { staticClass: "doctor-name" }, [
+                  _vm._v("Pooja Patel ")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "name-center" }, [
+                  _vm._v(" Mathematics ")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v("A-103, shyam gokul flats, Mahatma Road "),
+                _c("br"),
+                _vm._v("Mumbai")
+              ]),
+              _vm._v(" "),
+              _c("div", [
+                _c("p", [
+                  _c("i", { staticClass: "fa fa-phone" }),
+                  _c("a", { attrs: { href: "tel:(123)456-7890" } }, [
+                    _vm._v("  (123)456-7890")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "profile-userbuttons" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-circle deepPink-bgcolor btn-sm",
+                    attrs: { href: "professor_profile.html" }
+                  },
+                  [_vm._v("Read More")]
+                )
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-4" }, [
+        _c("div", { staticClass: "card card-box" }, [
+          _c("div", { staticClass: "card-body no-padding " }, [
+            _c("div", { staticClass: "doctor-profile" }, [
+              _c("img", {
+                staticClass: "doctor-pic",
+                attrs: { src: "", alt: "" }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "profile-usertitle" }, [
+                _c("div", { staticClass: "doctor-name" }, [
+                  _vm._v("Pooja Patel ")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "name-center" }, [
+                  _vm._v(" Mathematics ")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v("A-103, shyam gokul flats, Mahatma Road "),
+                _c("br"),
+                _vm._v("Mumbai")
+              ]),
+              _vm._v(" "),
+              _c("div", [
+                _c("p", [
+                  _c("i", { staticClass: "fa fa-phone" }),
+                  _c("a", { attrs: { href: "tel:(123)456-7890" } }, [
+                    _vm._v("  (123)456-7890")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "profile-userbuttons" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-circle deepPink-bgcolor btn-sm",
+                    attrs: { href: "professor_profile.html" }
+                  },
+                  [_vm._v("Read More")]
+                )
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-4" }, [
+        _c("div", { staticClass: "card card-box" }, [
+          _c("div", { staticClass: "card-body no-padding " }, [
+            _c("div", { staticClass: "doctor-profile" }, [
+              _c("img", {
+                staticClass: "doctor-pic",
+                attrs: { src: "", alt: "" }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "profile-usertitle" }, [
+                _c("div", { staticClass: "doctor-name" }, [
+                  _vm._v("Pooja Patel ")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "name-center" }, [
+                  _vm._v(" Mathematics ")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v("A-103, shyam gokul flats, Mahatma Road "),
+                _c("br"),
+                _vm._v("Mumbai")
+              ]),
+              _vm._v(" "),
+              _c("div", [
+                _c("p", [
+                  _c("i", { staticClass: "fa fa-phone" }),
+                  _c("a", { attrs: { href: "tel:(123)456-7890" } }, [
+                    _vm._v("  (123)456-7890")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "profile-userbuttons" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-circle deepPink-bgcolor btn-sm",
+                    attrs: { href: "professor_profile.html" }
+                  },
+                  [_vm._v("Read More")]
+                )
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-15cf4be6", module.exports)
+  }
+}
+
+/***/ }),
+/* 105 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

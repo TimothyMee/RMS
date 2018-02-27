@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Department;
 use Illuminate\Http\Request;
-use Mockery\Exception;
 use App\User;
+use Image;
 
 class AuthController extends Controller
 {
@@ -20,7 +20,18 @@ class AuthController extends Controller
         try
         {
                 if($request->hasFile('photo')){
-                    $request['image'] = $request->photo->storeAs('images', $request['identification_no']);
+                   try{
+                       $image = $request->file('photo');
+                       $extension = $image->getClientOriginalExtension();
+                       $imageName = $request['identification_no'].'.'.$extension;
+
+                       $newImage = Image::make($image->getRealPath())->resize(600,600);
+                       $newImage->save(public_path('/images/').$imageName, 60);
+                       $request['image'] = $imageName;
+                   }
+                   catch (\Exception $e){
+                       echo '<script>alert("Upload a valid image");</script>';
+                   }
                 }
                 else
                 {

@@ -44,7 +44,7 @@
         <div class="page-header-inner ">
             <!-- logo start -->
             <div class="page-logo">
-                <a href="index.html">
+                <a href="{{route('home')}}">
                     <span class="logo-icon material-icons fa-rotate-50">school</span>
                     <span class="logo-default" >RMS</span> </a>
             </div>
@@ -100,7 +100,7 @@
                     <!-- start manage user dropdown -->
                     <li class="dropdown dropdown-user">
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                            <img alt="" class="img-circle " src="../assets/img/dp.jpg" />
+                                <img alt="" class="img-circle " src="/images/{{auth()->user()->image}}" />
                             <span class="username username-hide-on-mobile"> {{auth()->user()->lastname}} {{auth()->user()->firstname}}</span>
                             <i class="fa fa-angle-down"></i>
                         </a>
@@ -147,7 +147,7 @@
                         <li class="sidebar-user-panel">
                             <div class="user-panel">
                                 <div class="pull-left image">
-                                    <img src="../assets/img/dp.jpg" class="img-circle user-img-circle" alt="User Image" />
+                                    <img src="/images/{{auth()->user()->image}}" class="img-circle user-img-circle" alt="User Image" />
                                 </div>
                                 <div class="pull-left info">
                                     <p> {{auth()->user()->lastname}} {{auth()->user()->firstname}}</p>
@@ -156,7 +156,7 @@
                             </div>
                         </li>
                         <li class="nav-item start">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('home')}}" class="nav-link">
                                 <i class="material-icons">dashboard</i>
                                 <span class="title">Dashboard</span>
                                 <span class="selected"></span>
@@ -289,7 +289,9 @@
 
         <!-- start page content -->
         <div class="page-content-wrapper">
-            @yield('content')
+            <div id="app">
+                @yield('content')
+            </div>
         </div>
         <!-- end page content -->
 
@@ -374,6 +376,8 @@
     </div>
     <!-- end footer -->
 </div>
+{{--My Vue.js Include--}}
+
 <!-- start js include path -->
 <script src="/plugins/jquery/jquery.min.js" ></script>
 <script src="/plugins/popper/popper.js" ></script>

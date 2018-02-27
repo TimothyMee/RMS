@@ -47,6 +47,8 @@ Vue.component('view-result', require('./components/results/ViewResult.vue'));
 Vue.component('edit-result', require('./components/results/EditResult.vue'));
 Vue.component('student-view-result', require('./components/results/ViewResultForStudent.vue'));
 
+Vue.component('view-professors', require('./components/professors/ViewProfessors.vue'));
+
 
 
 
