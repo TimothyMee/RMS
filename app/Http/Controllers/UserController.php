@@ -113,4 +113,17 @@ class UserController extends Controller
             return apiFailure($e);
         }
     }
+
+    public function viewSpecificUserType(User $user, Request $request)
+    {
+        try
+        {
+            $result = $user->viewUserType($request->all());
+            return apiSuccess($result);
+        }
+        catch (\Exception $e)
+        {
+            return apiFailure($e);
+        }
+    }
 }

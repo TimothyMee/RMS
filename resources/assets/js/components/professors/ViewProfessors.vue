@@ -103,11 +103,12 @@
 
         methods: {
             fetchProfessors(){
-                axios.get('')
+                axios.post('/user/viewSpecificType', ['4'])
                     .then(response => {
+                        console.log(response);
                         var _response = response.data;
                         if(_response.status === 0){
-                            this.courses = _response.data;
+                           console.log(_response.data);
                         }
                     })
             }

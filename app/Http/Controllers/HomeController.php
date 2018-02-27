@@ -80,7 +80,7 @@ class HomeController extends Controller
             'courseCount' => $courseCount,
         ];
 
-        return view('welcome')->with('data',$data);
+        return view('home')->with('data',$data);
     }
 
     public function collectAuthUser()

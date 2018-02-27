@@ -52265,12 +52265,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         fetchProfessors: function fetchProfessors() {
-            var _this = this;
-
-            axios.get('').then(function (response) {
+            axios.post('/user/viewSpecificType', ['4']).then(function (response) {
+                console.log(response);
                 var _response = response.data;
                 if (_response.status === 0) {
-                    _this.courses = _response.data;
+                    console.log(_response.data);
                 }
             });
         }

@@ -26,9 +26,7 @@
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active fontawesome-demo" id="tab2">
-                                <div class="row">
-                                    <view-professors></view-professors>
-                                </div>
+                                <view-professors></view-professors>
                             </div>
                         </div>
                     </div>

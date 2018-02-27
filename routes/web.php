@@ -81,7 +81,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('add', 'UserController@add');
         Route::post('edit', 'UserController@edit');
         Route::get('view', 'UserController@viewUsers');
-        Route::post('view', 'UserController@viewUsers');
+        Route::post('view', 'UserController@viewUser');
+        Route::post('viewSpecificType', 'UserController@viewSpecificUserType');
         Route::get('index', 'UserController@index')->name('user.index');
         Route::get('password', 'UserController@openPasswordPage')->name('user.password');
         Route::post('password', 'UserController@changePassword');

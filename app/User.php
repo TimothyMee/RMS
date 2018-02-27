@@ -53,6 +53,16 @@ class User extends Authenticatable
         return $results;
     }
 
+    public function viewUserType(Array $requests)
+    {
+        foreach ($requests as $request)
+        {
+            $results[] = $this->where('user_type', $request)->get();
+        }
+
+        return $results;
+    }
+
     public function viewAll()
     {
         return $this->all();

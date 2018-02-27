@@ -377,7 +377,7 @@
     <!-- end footer -->
 </div>
 {{--My Vue.js Include--}}
-
+<script src="/js/app.js"></script>
 <!-- start js include path -->
 <script src="/plugins/jquery/jquery.min.js" ></script>
 <script src="/plugins/popper/popper.js" ></script>
