@@ -11,7 +11,11 @@ window.Vue = require('vue');
 
 import Switches from 'vue-switches'
 import Notifications from 'vue-notification'
+import VModal from 'vue-js-modal'
 
+
+
+Vue.use(VModal);
 Vue.use(Notifications);
 Vue.component('switches', Switches);
 
@@ -48,6 +52,8 @@ Vue.component('edit-result', require('./components/results/EditResult.vue'));
 Vue.component('student-view-result', require('./components/results/ViewResultForStudent.vue'));
 
 Vue.component('view-professors', require('./components/professors/ViewProfessors.vue'));
+Vue.component('add-professor', require('./components/professors/CreateProfessor.vue'));
+Vue.component('edit-professors', require('./components/professors/EditProfessor.vue'));
 
 
 

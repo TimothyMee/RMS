@@ -64,8 +64,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'UserType'], function(){
         Route::post('add', 'UserTypeController@add');
         Route::post('edit', 'UserTypeController@edit');
-        Route::get('view', 'UserTypeController@viewRoles');
-        Route::post('view', 'UserTypeController@viewRole');
+        Route::get('view', 'UserTypeController@viewTypes');
+        Route::post('view', 'UserTypeController@viewType');
         Route::get('index', 'UserTypeController@index')->name('UserType.index');
     });
 
@@ -86,6 +86,14 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('index', 'UserController@index')->name('user.index');
         Route::get('password', 'UserController@openPasswordPage')->name('user.password');
         Route::post('password', 'UserController@changePassword');
+    });
+
+    Route::group(['prefix' => 'professor'], function(){
+        Route::post('add', 'ProfessorController@postAdd');
+        Route::get('add', 'ProfessorController@add');
+        Route::get('edit', 'ProfessorController@edit')->name('professor.edit');
+        Route::post('edit', 'ProfessorController@postEdit');
+        Route::get('index', 'ProfessorController@index')->name('professor.index');
     });
 
     Route::group(['prefix' => 'department'], function(){

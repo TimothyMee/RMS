@@ -22,6 +22,8 @@
     <!--bootstrap -->
     <link href="/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="/plugins/summernote/summernote.css" rel="stylesheet">
+    <link href="/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
+
     <!-- Material Design Lite CSS -->
     <link rel="stylesheet" href="/plugins/material/material.min.css">
     <link rel="stylesheet" href="/css/material_style.css">
@@ -31,6 +33,7 @@
     <link href="/css/plugins.min.css" rel="stylesheet" type="text/css" />
     <link href="/css/responsive.css" rel="stylesheet" type="text/css" />
     <link href="/css/theme/light/theme-color.css" rel="stylesheet" type="text/css" />
+    <link href="/css/pages/formlayout.css" rel="stylesheet" type="text/css" />
     <!-- inbox style -->
     <link href="/css/pages/inbox.min.css" rel="stylesheet" type="text/css" />
     <!-- favicon -->
@@ -163,12 +166,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link nav-toggle"> <i class="material-icons">person</i>
+                            <a href="{{route('professor.index')}}" class="nav-link nav-toggle"> <i class="material-icons">person</i>
                                 <span class="title">Professors</span> <span class="arrow"></span>
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link "> <span class="title">All Professors</span>
+                                    <a href="{{route('professor.index')}}" class="nav-link "> <span class="title">All Professors</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -176,7 +179,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link "> <span class="title">Edit Professor</span>
+                                    <a href="{{route('professor.edit')}}" class="nav-link "> <span class="title">Edit Professor</span>
                                     </a>
                                 </li>
                             </ul>
@@ -186,7 +189,7 @@
                                 <span class="title">Students</span><span class="arrow"></span></a>
                             <ul class="sub-menu">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link "> <span class="title">All Students</span>
+                                    <a href="{{route('student.index')}}" class="nav-link "> <span class="title">All Students</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -205,7 +208,7 @@
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link "> <span class="title">All Courses</span>
+                                    <a href="{{route('course.index')}}" class="nav-link "> <span class="title">All Courses</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -388,9 +391,13 @@
 <script src="/plugins/bootstrap-switch/js/bootstrap-switch.min.js" ></script>
 <script src="/plugins/sparkline/jquery.sparkline.js" ></script>
 <script src="/js/pages/sparkline/sparkline-data.js" ></script>
+<script src="/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"  charset="UTF-8"></script>
+<script src="/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker-init.js"  charset="UTF-8"></script>
+
 <!-- Common js-->
 <script src="/js/app(copy).js" ></script>
 <script src="/js/layout.js" ></script>
+<script src="/js/pages/validation/form-validation.js" ></script>
 <script src="/js/theme-color.js" ></script>
 <!-- material -->
 <script src="/plugins/material/material.min.js"></script>

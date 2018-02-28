@@ -79,7 +79,9 @@ class User extends Authenticatable
                 'middlename' => $data['middlename'],
                 'tel_no' => $data['tel_no'],
                 'email' => $data['email'],
+                'address' => $data['address'],
                 'identification_no' => $data['identification_no'],
+                'image' => $data['image'],
                 'department_id' => $data['department_id'],
                 'user_type' => $data['user_type'],
                 'staff_id' => $data['staff_id']

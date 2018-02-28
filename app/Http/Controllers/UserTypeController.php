@@ -32,7 +32,7 @@ class UserTypeController extends Controller
     {
         try
         {
-            $result = $userType->deleteRole($request->all());
+            $result = $userType->deleteType($request->all());
             return apiSuccess($result);
         }
         catch (\Exception $e)
@@ -41,7 +41,7 @@ class UserTypeController extends Controller
         }
     }
 
-    public function viewRoles(UserType $userType)
+    public function viewTypes(UserType $userType)
     {
         try
         {
@@ -54,7 +54,7 @@ class UserTypeController extends Controller
         }
     }
 
-    public function viewRole(Request $request, UserType $userType)
+    public function viewType(Request $request, UserType $userType)
     {
         try
         {
@@ -71,7 +71,7 @@ class UserTypeController extends Controller
     {
         try
         {
-            $result = $userType->updateRole($request->all());
+            $result = $userType->updateType($request->all());
             return apiSuccess($result);
         }
         catch (\Exception $e)

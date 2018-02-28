@@ -22,11 +22,7 @@ class AuthController extends Controller
                 if($request->hasFile('photo')){
                    try{
                        $image = $request->file('photo');
-                       $extension = $image->getClientOriginalExtension();
-                       $imageName = $request['identification_no'].'.'.$extension;
-
-                       $newImage = Image::make($image->getRealPath())->resize(600,600);
-                       $newImage->save(public_path('/images/').$imageName, 60);
+                       $imageName = OptimiseImage($image, $request['identification_no']);
                        $request['image'] = $imageName;
                    }
                    catch (\Exception $e){
@@ -51,7 +47,7 @@ class AuthController extends Controller
         }
         catch (\Exception $e)
         {
-
+            echo '<script>alert("Try again later");</script>';
         }
     }
 

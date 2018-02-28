@@ -19,6 +19,7 @@
         "vue": "^2.5.13"
     },
     "dependencies": {
+        "vue-js-modal": "^1.3.12",
         "vue-notification": "^1.3.4",
         "vue-switches": "^2.0.1"
     }

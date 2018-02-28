@@ -1,59 +1,29 @@
 <template>
-    <div>
-        <notifications position="top center" />
-        <table class="table tbl-typical">
-            <tr>
-                <th class="">#</th>
-                <th class="">Name</th>
-                <th class="">Course Code</th>
-                <th class="">Unit</th>
-                <th class="">...</th>
-        </tr>
-
-            <tr v-for="(course, index) in courses">
-
-                <td class="">{{++index}}</td>
-                <td class="">{{course.name}}</td>
-                <td class="">{{course.course_code}}</td>
-                <td class="">{{course.unit}}</td>
-                <td class=""><a data-toggle="modal" :data-target='"#"+course.id'>...</a></td>
-
-
-                <div class="modal fade" :id="course.id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">Course</h4>
-                                <label style="margin-left: 20px;">Edit?</label><switches v-model="enabled" color="blue" style="margin-left:10px;"></switches>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class="form-group">
-                                        <label for="">Course name</label>
-                                        <input type="text" v-model="course.name" class="form-control" :disabled="!enabled">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Last name</label>
-                                        <input type="text" v-model="course.course_code" class="form-control" :disabled="!enabled">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Middle name</label>
-                                        <input type="text" v-model="course.unit" class="form-control" :disabled="!enabled">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal" @click="">Close</button>
-                                <button type="button" class="btn btn-primary"  @click="update(course)" :disabled="!enabled">Save changes</button>
-                            </div>
-                        </div>
+    <div class="row">
+        <div v-for="course in courses" class="col-lg-3 col-md-6 col-12 col-sm-6">
+            <div class="blogThumb">
+                <div class="thumb-center"><img class="img-responsive" alt="course" :src="'/images/'+course.image"></div>
+                <div class="course-box">
+                    <h4>{{course.name}}</h4>
+                    <div class="text-muted">
+                        <span class="m-r-10">{{course.course_code}}</span>
+                        <a class="course-likes m-l-10" href="#"><i class="fa fa-heart-o"></i> 654</a>
                     </div>
+                    <p><span><i class="ti-alarm-clock"></i> Duration: 1 Semester</span></p>
+                    <p>
+                        <span>
+                            <i class="ti-user"></i>
+                            Professor:
+                                <span v-for="professor in professors">
+                                    <span v-if="professor.id == course.professor_id">{{professor.lastname}} {{professor.firstname}}</span>
+                                </span>
+                        </span>
+                    </p>
+                    <!--<p><span><i class="fa fa-graduation-cap"></i> Students: 200+</span></p>-->
+                    <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-info">Read More</button>
                 </div>
-
-            </tr>
-
-        </table>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -62,7 +32,7 @@
         data() {
             return {
                 courses: '',
-                enabled: false
+                professors:''
             }
         },
 
@@ -76,26 +46,20 @@
                         }
                     })
             },
-            update(course){
-                axios.post('/course/edit', course)
+            fetchProfessors(){
+                axios.post('/user/viewSpecificType', ['4'])
                     .then(response => {
+                        console.log(response);
                         var _response = response.data;
                         if(_response.status === 0){
-                            this.fetchView();
-                            this.$notify({type: 'success', text: 'Course update successful', speed:400});
-                        }
-
-                        else{
-                            this.$notify({type: 'error', text: '<span style="color: white">Updating course. unsuccessfully. Try again later</span>', speed:400});
+                            this.professors = _response.data[0];
                         }
                     })
-                    .catch(error =>{
-                        this.$notify({type: 'error', text: '<span style="color: white">Updating course. unsuccessfully. Try again later</span>', speed:400});
-                    })
-            }
+            },
         },
 
         mounted(){
+            this.fetchProfessors();
             this.fetchView();
         }
     }

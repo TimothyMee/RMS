@@ -31,3 +31,14 @@ function apiFailure($data, $msg = "An Error Occurred",  $code = 2)
 
     return response()->json($responder);
 }
+
+function OptimiseImage ($image,$identification_no){
+    $extension = $image->getClientOriginalExtension();
+    $imageName = $identification_no.'.'.$extension;
+
+    $newImage = Image::make($image->getRealPath())->resize(600,600);
+    $newImage->save(public_path('/images/').$imageName, 60);
+
+    return $imageName;
+
+}

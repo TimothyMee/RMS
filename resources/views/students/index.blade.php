@@ -1,19 +1,39 @@
-@extends('layouts.app')
+@extends('layouts.app1')
 
 @section('content')
-    <div id="app">
-        <div class="container-fluid">
+    <!-- start page content -->
+    <div class="page-content-wrapper">
+        <div class="page-content">
+            <div class="page-bar">
+                <div class="page-title-breadcrumb">
+                    <div class=" pull-left">
+                        <div class="page-title">All Students List</div>
+                    </div>
+                    <ol class="breadcrumb page-breadcrumb pull-right">
+                        <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="{{route('home')}}">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                        </li>
+                        <li><a class="parent-item" href="#">Students</a>&nbsp;<i class="fa fa-angle-right"></i>
+                        </li>
+                        <li class="active">Students List</li>
+                    </ol>
+                </div>
+            </div>
             <div class="row">
-                <div class="col-xl-6">
-                    <add-students></add-students>
-                </div><!--.col-->
-
-                <div class="col-xl-6">
-                    <div class="row">
-                        <view-students></view-students>
-                    </div><!--.row-->
-                </div><!--.col-->
-            </div><!--.row-->
-        </div><!--.container-fluid-->
+                <div class="col-md-12">
+                    <div class="tabbable-line">
+                        <ul class="nav customtab nav-tabs" role="tablist">
+                            <li class="nav-item"><a href="#tab2" class="nav-link active" data-toggle="tab">Grid View</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active fontawesome-demo" id="tab2">
+                                <view-students></view-students>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <!-- end page content -->
+
 @endsection

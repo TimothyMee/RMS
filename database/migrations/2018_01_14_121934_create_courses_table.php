@@ -18,6 +18,8 @@ class CreateCoursesTable extends Migration
             $table->string('name');
             $table->string('course_code');
             $table->integer('unit');
+            $table->text('image');
+            $table->integer('professor_id');
             $table->integer('staff_id');
             $table->softDeletes();
             $table->timestamps();

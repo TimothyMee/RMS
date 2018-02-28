@@ -15,7 +15,7 @@ class UserType extends Model
         return $this->create($data);
     }
 
-    public function deleteRole($data)
+    public function deleteType($data)
     {
         return $this->delete($data);
     }
@@ -36,7 +36,7 @@ class UserType extends Model
         return $result;
     }
 
-    public function updateRole($data)
+    public function updateType($data)
     {
         $data['staff_id'] = auth()->id();
         return $this->where('id', $data['id'])
