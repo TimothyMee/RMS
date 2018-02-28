@@ -51793,12 +51793,8 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -51929,32 +51925,51 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-/* harmony default export */ __webpack_exports__["default"] = ({
+/* harmony default export */ __webpack_exports__["default"] = (_defineProperty({
     data: function data() {
         return {
-            professor: {}
+            professor: {},
+            departments: ''
         };
     },
     mounted: function mounted() {},
 
 
     methods: {
+        processFile: function processFile(event) {
+            this.image = event.target.files[0];
+            this.professor.image = this.image;
+        },
         create: function create() {
             var _this = this;
 
+            this.professor.user_type = 4;
             axios.post('/professor/add', this.professor).then(function (response) {
                 var _response = response.data;
                 if (_response.status == 0) {
-                    _this.$notify({ type: 'success', text: 'Course added sucessfully', speed: 400 });
+                    _this.$notify({ type: 'success', text: 'Professor added sucessfully', speed: 400 });
                 } else {
                     _this.$notify({ type: 'error', text: '<span style="color: white">Process unsuccessfully.Check if course exists and try again later</span>', speed: 400 });
                 }
             }).catch(function (error) {
                 _this.$notify({ type: 'error', text: '<span style="color: white">Process unsuccessfully.Check if course exists and try again later</span>', speed: 400 });
             });
+        },
+        fetchDepartments: function fetchDepartments() {
+            var _this2 = this;
+
+            axios.get('/department/view').then(function (response) {
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this2.departments = _response.data;
+                }
+            });
         }
     }
-});
+
+}, 'mounted', function mounted() {
+    this.fetchDepartments();
+}));
 
 /***/ }),
 /* 117 */
@@ -51964,147 +51979,45 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row" }, [
-    _c("div", { staticClass: "col-md-12 col-sm-12" }, [
-      _c("div", { staticClass: "card card-box" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("div", { staticClass: "card-body", attrs: { id: "bar-parent" } }, [
-          _c(
-            "form",
-            {
-              staticClass: "form-horizontal",
-              attrs: { action: "#", id: "form_sample_1" }
-            },
-            [
-              _c("div", { staticClass: "form-body" }, [
-                _c("div", { staticClass: "form-group row" }, [
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-5" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.professor.firstname,
-                          expression: "professor.firstname"
-                        }
-                      ],
-                      staticClass: "form-control input-height",
-                      attrs: {
-                        type: "text",
-                        "data-required": "1",
-                        placeholder: "enter first name"
-                      },
-                      domProps: { value: _vm.professor.firstname },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.professor,
-                            "firstname",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group row" }, [
-                  _vm._m(2),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-5" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.professor.middlename,
-                          expression: "professor.middlename"
-                        }
-                      ],
-                      staticClass: "form-control input-height",
-                      attrs: {
-                        type: "text",
-                        "data-required": "1",
-                        placeholder: "enter first name"
-                      },
-                      domProps: { value: _vm.professor.middlename },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.professor,
-                            "middlename",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group row" }, [
-                  _vm._m(3),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-5" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.professor.lastname,
-                          expression: "professor.lastname"
-                        }
-                      ],
-                      staticClass: "form-control input-height",
-                      attrs: {
-                        type: "text",
-                        "data-required": "1",
-                        placeholder: "enter last name"
-                      },
-                      domProps: { value: _vm.professor.lastname },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.professor,
-                            "lastname",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group row" }, [
-                  _vm._m(4),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-5" }, [
-                    _c("div", { staticClass: "input-group" }, [
-                      _vm._m(5),
-                      _vm._v(" "),
+  return _c(
+    "div",
+    { staticClass: "row" },
+    [
+      _c("notifications", { attrs: { position: "center" } }),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-12 col-sm-12" }, [
+        _c("div", { staticClass: "card card-box" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body", attrs: { id: "bar-parent" } }, [
+            _c(
+              "form",
+              {
+                staticClass: "form-horizontal",
+                attrs: { action: "#", id: "form_sample_1" }
+              },
+              [
+                _c("div", { staticClass: "form-body" }, [
+                  _c("div", { staticClass: "form-group row" }, [
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-5" }, [
                       _c("input", {
                         directives: [
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.professor.email,
-                            expression: "professor.email"
+                            value: _vm.professor.firstname,
+                            expression: "professor.firstname"
                           }
                         ],
                         staticClass: "form-control input-height",
-                        attrs: { type: "text", placeholder: "Email Address" },
-                        domProps: { value: _vm.professor.email },
+                        attrs: {
+                          type: "text",
+                          "data-required": "1",
+                          placeholder: "enter first name"
+                        },
+                        domProps: { value: _vm.professor.firstname },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
@@ -52112,336 +52025,474 @@ var render = function() {
                             }
                             _vm.$set(
                               _vm.professor,
-                              "email",
+                              "firstname",
                               $event.target.value
                             )
                           }
                         }
                       })
                     ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group row" }, [
-                  _vm._m(6),
+                  ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "col-md-5" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.professor.password,
-                          expression: "professor.password"
-                        }
-                      ],
-                      staticClass: "form-control input-height",
-                      attrs: {
-                        type: "password",
-                        "data-required": "1",
-                        placeholder: "enter Password"
-                      },
-                      domProps: { value: _vm.professor.password },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.professor,
-                            "password",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group row" }, [
-                  _vm._m(7),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-5" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.professor.cPassword,
-                          expression: "professor.cPassword"
-                        }
-                      ],
-                      staticClass: "form-control input-height",
-                      attrs: {
-                        type: "text",
-                        "data-required": "1",
-                        placeholder: "Reenter your password"
-                      },
-                      domProps: { value: _vm.professor.cPassword },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.professor,
-                            "cPassword",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group row" }, [
-                  _vm._m(8),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-5" }, [
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.professor.department,
-                            expression: "professor.department"
-                          }
-                        ],
-                        staticClass: "form-control input-height",
-                        on: {
-                          change: function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.professor,
-                              "department",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            )
-                          }
-                        }
-                      },
-                      [
-                        _c("option", { attrs: { value: "" } }, [
-                          _vm._v("Select...")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "Category 1" } }, [
-                          _vm._v("Computer")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "Category 2" } }, [
-                          _vm._v("Mechanical")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "Category 3" } }, [
-                          _vm._v("Mathematics")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "Category 4" } }, [
-                          _vm._v("Commerce")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "Category 5" } }, [
-                          _vm._v("Music")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "Category 6" } }, [
-                          _vm._v("Science")
-                        ])
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group row" }, [
-                  _vm._m(9),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-5" }, [
-                    _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.professor.gender,
-                            expression: "professor.gender"
-                          }
-                        ],
-                        staticClass: "form-control input-height",
-                        on: {
-                          change: function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.professor,
-                              "gender",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            )
-                          }
-                        }
-                      },
-                      [
-                        _c("option", { attrs: { value: "" } }, [
-                          _vm._v("Select...")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "Male" } }, [
-                          _vm._v("Male")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "Female" } }, [
-                          _vm._v("Female")
-                        ])
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group row" }, [
-                  _vm._m(10),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-5" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.professor.tel_no,
-                          expression: "professor.tel_no"
-                        }
-                      ],
-                      staticClass: "form-control input-height",
-                      attrs: { type: "text", placeholder: "mobile number" },
-                      domProps: { value: _vm.professor.tel_no },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.professor, "tel_no", $event.target.value)
-                        }
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group row" }, [
-                  _vm._m(11),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-5" }, [
-                    _vm._m(12),
+                  _c("div", { staticClass: "form-group row" }, [
+                    _vm._m(2),
                     _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.professor.DOB,
-                          expression: "professor.DOB"
-                        }
-                      ],
-                      attrs: { type: "hidden", id: "dtp_input5", value: "" },
-                      domProps: { value: _vm.professor.DOB },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                    _c("div", { staticClass: "col-md-5" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.professor.middlename,
+                            expression: "professor.middlename"
                           }
-                          _vm.$set(_vm.professor, "DOB", $event.target.value)
+                        ],
+                        staticClass: "form-control input-height",
+                        attrs: {
+                          type: "text",
+                          "data-required": "1",
+                          placeholder: "enter first name"
+                        },
+                        domProps: { value: _vm.professor.middlename },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.professor,
+                              "middlename",
+                              $event.target.value
+                            )
+                          }
                         }
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group row" }, [
-                  _vm._m(13),
+                      })
+                    ])
+                  ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "col-md-5" }, [
-                    _c("textarea", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.professor.address,
-                          expression: "professor.address"
-                        }
-                      ],
-                      staticClass: "form-control-textarea",
-                      attrs: { placeholder: "address", rows: "5" },
-                      domProps: { value: _vm.professor.address },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                  _c("div", { staticClass: "form-group row" }, [
+                    _vm._m(3),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-5" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.professor.lastname,
+                            expression: "professor.lastname"
                           }
-                          _vm.$set(
-                            _vm.professor,
-                            "address",
-                            $event.target.value
-                          )
+                        ],
+                        staticClass: "form-control input-height",
+                        attrs: {
+                          type: "text",
+                          "data-required": "1",
+                          placeholder: "enter last name"
+                        },
+                        domProps: { value: _vm.professor.lastname },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.professor,
+                              "lastname",
+                              $event.target.value
+                            )
+                          }
                         }
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _vm._m(14),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-actions" }, [
-                  _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "offset-md-3 col-md-9" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-info",
-                          attrs: { type: "submit" },
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group row" }, [
+                    _vm._m(4),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-5" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.professor.identification_no,
+                            expression: "professor.identification_no"
+                          }
+                        ],
+                        staticClass: "form-control input-height",
+                        attrs: {
+                          type: "text",
+                          "data-required": "1",
+                          placeholder: "enter ID no"
+                        },
+                        domProps: { value: _vm.professor.identification_no },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.professor,
+                              "identification_no",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group row" }, [
+                    _vm._m(5),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-5" }, [
+                      _c("div", { staticClass: "input-group" }, [
+                        _vm._m(6),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.professor.email,
+                              expression: "professor.email"
+                            }
+                          ],
+                          staticClass: "form-control input-height",
+                          attrs: { type: "text", placeholder: "Email Address" },
+                          domProps: { value: _vm.professor.email },
                           on: {
-                            click: function($event) {
-                              _vm.create()
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.professor,
+                                "email",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group row" }, [
+                    _vm._m(7),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-5" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.professor.password,
+                            expression: "professor.password"
+                          }
+                        ],
+                        staticClass: "form-control input-height",
+                        attrs: {
+                          type: "password",
+                          "data-required": "1",
+                          placeholder: "enter Password"
+                        },
+                        domProps: { value: _vm.professor.password },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.professor,
+                              "password",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group row" }, [
+                    _vm._m(8),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-5" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.professor.cPassword,
+                            expression: "professor.cPassword"
+                          }
+                        ],
+                        staticClass: "form-control input-height",
+                        attrs: {
+                          type: "password",
+                          "data-required": "1",
+                          placeholder: "Reenter your password"
+                        },
+                        domProps: { value: _vm.professor.cPassword },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.professor,
+                              "cPassword",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group row" }, [
+                    _vm._m(9),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-5" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.professor.department_id,
+                              expression: "professor.department_id"
+                            }
+                          ],
+                          staticClass: "form-control input-height",
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.professor,
+                                "department_id",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
                             }
                           }
                         },
-                        [_vm._v("Submit")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-default",
-                          attrs: { type: "button" }
-                        },
-                        [_vm._v("Cancel")]
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("Select...")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.departments, function(department) {
+                            return _c(
+                              "option",
+                              { domProps: { value: department.id } },
+                              [
+                                _vm._v(
+                                  "\n                                        " +
+                                    _vm._s(department.name) +
+                                    "\n                                    "
+                                )
+                              ]
+                            )
+                          })
+                        ],
+                        2
                       )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group row" }, [
+                    _vm._m(10),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-5" }, [
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.professor.gender,
+                              expression: "professor.gender"
+                            }
+                          ],
+                          staticClass: "form-control input-height",
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.professor,
+                                "gender",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("Select...")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "Male" } }, [
+                            _vm._v("Male")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "Female" } }, [
+                            _vm._v("Female")
+                          ])
+                        ]
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group row" }, [
+                    _vm._m(11),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-5" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.professor.tel_no,
+                            expression: "professor.tel_no"
+                          }
+                        ],
+                        staticClass: "form-control input-height",
+                        attrs: { type: "text", placeholder: "mobile number" },
+                        domProps: { value: _vm.professor.tel_no },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.professor,
+                              "tel_no",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group row" }, [
+                    _vm._m(12),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-5" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.professor.DOB,
+                            expression: "professor.DOB"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "date" },
+                        domProps: { value: _vm.professor.DOB },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.professor, "DOB", $event.target.value)
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group row" }, [
+                    _vm._m(13),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-5" }, [
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.professor.address,
+                            expression: "professor.address"
+                          }
+                        ],
+                        staticClass: "form-control-textarea",
+                        attrs: { placeholder: "address", rows: "5" },
+                        domProps: { value: _vm.professor.address },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.professor,
+                              "address",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-actions" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "offset-md-3 col-md-9" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-info",
+                            attrs: { type: "submit" },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm.create()
+                              }
+                            }
+                          },
+                          [_vm._v("Submit")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-default",
+                            attrs: { type: "button" }
+                          },
+                          [_vm._v("Cancel")]
+                        )
+                      ])
                     ])
                   ])
                 ])
-              ])
-            ]
-          )
+              ]
+            )
+          ])
         ])
       ])
-    ])
-  ])
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -52476,6 +52527,15 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("label", { staticClass: "control-label col-md-3" }, [
       _vm._v("Last Name\n                                "),
+      _c("span", { staticClass: "required" }, [_vm._v(" * ")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "control-label col-md-3" }, [
+      _vm._v("Identification No\n                                "),
       _c("span", { staticClass: "required" }, [_vm._v(" * ")])
     ])
   },
@@ -52554,53 +52614,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "input-group date form_date ",
-        attrs: {
-          "data-date": "",
-          "data-date-format": "D, d MM yyyy",
-          "data-link-field": "dtp_input5",
-          "data-link-format": "yyyy-mm-dd"
-        }
-      },
-      [
-        _c("input", {
-          staticClass: "form-control input-height",
-          attrs: { size: "16", placeholder: "date of Birth", type: "text" }
-        }),
-        _vm._v(" "),
-        _c("span", { staticClass: "input-group-addon" }, [
-          _c("span", { staticClass: "fa fa-calendar" })
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("label", { staticClass: "control-label col-md-3" }, [
       _vm._v("Address\n                                "),
       _c("span", { staticClass: "required" }, [_vm._v(" * ")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group row" }, [
-      _c("label", { staticClass: "control-label col-md-3" }, [
-        _vm._v("Profile Picture\n                            ")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "compose-editor" }, [
-        _c("input", {
-          staticClass: "default",
-          attrs: { type: "file", multiple: "" }
-        })
-      ])
     ])
   }
 ]

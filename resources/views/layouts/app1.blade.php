@@ -175,7 +175,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link "> <span class="title">Add Professor</span>
+                                    <a href="{{route('professor.add')}}" class="nav-link "> <span class="title">Add Professor</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">

@@ -17,6 +17,7 @@
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');*/
 
+use Illuminate\Http\Request;
 
 Route::get('/', function (){
    return redirect()->route('login');
@@ -89,8 +90,8 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::group(['prefix' => 'professor'], function(){
-        Route::post('add', 'ProfessorController@postAdd');
-        Route::get('add', 'ProfessorController@add');
+        Route::post('add', 'ProfessorController@postAdd')->name('create.professor');
+        Route::get('add', 'ProfessorController@add')->name('professor.add');;
         Route::get('edit', 'ProfessorController@edit')->name('professor.edit');
         Route::post('edit', 'ProfessorController@postEdit');
         Route::get('index', 'ProfessorController@index')->name('professor.index');
@@ -102,6 +103,14 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('view', 'DepartmentController@viewDepartment');
         Route::get('view', 'DepartmentController@viewDepartments');
         Route::get('index', 'DepartmentController@index')->name('department.index');
+    });
+
+    Route::group(['prefix' => 'image'], function(){
+        Route::post('process',function(Request $request){
+            $request = $request->all();
+            $imageName = OptimiseImage($request['image'], $request['identification_no']);
+            return $imageName;
+        });
     });
 
 

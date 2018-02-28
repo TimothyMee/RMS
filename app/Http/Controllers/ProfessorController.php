@@ -34,6 +34,24 @@ class ProfessorController extends Controller
 
     public function add()
     {
-        return view('professor.add');
+        return view('professors.add');
+    }
+
+    public function postAdd(Request $request, User $user)
+    {
+        try
+        {
+            $result = $user->createNew($request->all());
+            if ($result){
+                return apiSuccess($result);
+            }
+            else{
+                return apiFailure('');
+            }
+        }
+        catch (\Exception $e)
+        {
+            return apiFailure($e);
+        }
     }
 }

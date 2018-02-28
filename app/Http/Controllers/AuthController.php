@@ -47,7 +47,7 @@ class AuthController extends Controller
         }
         catch (\Exception $e)
         {
-            echo '<script>alert("Try again later");</script>';
+            echo '<script>alert("Try again later and fill all fields");</script>';
         }
     }
 

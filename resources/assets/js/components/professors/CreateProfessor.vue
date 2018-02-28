@@ -1,5 +1,6 @@
 <template>
     <div class="row">
+        <notifications position="center" />
         <div class="col-md-12 col-sm-12">
             <div class="card card-box">
                 <div class="card-head">
@@ -30,6 +31,13 @@
                                     <input type="text" v-model="professor.lastname" data-required="1" placeholder="enter last name" class="form-control input-height" /> </div>
                             </div>
                             <div class="form-group row">
+                                <label class="control-label col-md-3">Identification No
+                                    <span class="required"> * </span>
+                                </label>
+                                <div class="col-md-5">
+                                    <input type="text" v-model="professor.identification_no" data-required="1" placeholder="enter ID no" class="form-control input-height" /> </div>
+                            </div>
+                            <div class="form-group row">
                                 <label class="control-label col-md-3">Email
                                     <span class="required"> * </span>
                                 </label>
@@ -53,21 +61,18 @@
                                     <span class="required"> * </span>
                                 </label>
                                 <div class="col-md-5">
-                                    <input type="text" v-model="professor.cPassword" data-required="1" placeholder="Reenter your password" class="form-control input-height" /> </div>
+                                    <input type="password" v-model="professor.cPassword" data-required="1" placeholder="Reenter your password" class="form-control input-height" /> </div>
                             </div>
                             <div class="form-group row">
                                 <label class="control-label col-md-3">Departments
                                     <span class="required"> * </span>
                                 </label>
                                 <div class="col-md-5">
-                                    <select class="form-control input-height" v-model="professor.department">
+                                    <select class="form-control input-height" v-model="professor.department_id">
                                         <option value="">Select...</option>
-                                        <option value="Category 1">Computer</option>
-                                        <option value="Category 2">Mechanical</option>
-                                        <option value="Category 3">Mathematics</option>
-                                        <option value="Category 4">Commerce</option>
-                                        <option value="Category 5">Music</option>
-                                        <option value="Category 6">Science</option>
+                                        <option :value="department.id" v-for="department in departments">
+                                            {{department.name}}
+                                        </option>
                                     </select>
                                 </div>
                             </div>
@@ -95,11 +100,7 @@
                                     <span class="required"> * </span>
                                 </label>
                                 <div class="col-md-5">
-                                    <div class="input-group date form_date " data-date="" data-date-format="D, d MM yyyy" data-link-field="dtp_input5" data-link-format="yyyy-mm-dd">
-                                        <input class="form-control input-height" size="16" placeholder="date of Birth" type="text">
-                                        <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
-                                    </div>
-                                    <input type="hidden" id="dtp_input5" v-model="professor.DOB" value="" />
+                                    <input type="date" class="form-control" v-model="professor.DOB"/>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -110,17 +111,10 @@
                                     <textarea v-model="professor.address" placeholder="address" class="form-control-textarea" rows="5" ></textarea>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label class="control-label col-md-3">Profile Picture
-                                </label>
-                                <div class="compose-editor">
-                                    <input type="file" class="default"  multiple>
-                                </div>
-                            </div>
                             <div class="form-actions">
                                 <div class="row">
                                     <div class="offset-md-3 col-md-9">
-                                        <button type="submit" class="btn btn-info" @click="create()">Submit</button>
+                                        <button type="submit" class="btn btn-info" @click.prevent="create()">Submit</button>
                                         <button type="button" class="btn btn-default">Cancel</button>
                                     </div>
                                 </div>
@@ -137,7 +131,8 @@
     export default {
         data() {
             return {
-                professor:{}
+                professor:{},
+                departments:'',
             }
         },
 
@@ -146,12 +141,17 @@
         },
 
         methods: {
+            processFile(event){
+                this.image = event.target.files[0];
+                this.professor.image = this.image;
+            },
             create(){
+                this.professor.user_type = 4;
                 axios.post('/professor/add', this.professor)
                     .then(response => {
                         var _response = response.data;
                         if(_response.status == 0){
-                            this.$notify({type: 'success', text: 'Course added sucessfully', speed:400});
+                            this.$notify({type: 'success', text: 'Professor added sucessfully', speed:400});
                         }
                         else{
                             this.$notify({type: 'error', text: '<span style="color: white">Process unsuccessfully.Check if course exists and try again later</span>', speed:400});
@@ -160,7 +160,21 @@
                     .catch(error =>{
                         this.$notify({type: 'error', text: '<span style="color: white">Process unsuccessfully.Check if course exists and try again later</span>', speed:400});
                     })
-            }
+            },
+
+            fetchDepartments(){
+                axios.get('/department/view')
+                    .then(response => {
+                        var _response = response.data;
+                        if(_response.status === 0){
+                            this.departments = _response.data;
+                        }
+                    })
+            },
+        },
+
+        mounted(){
+            this.fetchDepartments();
         }
     }
 </script>
