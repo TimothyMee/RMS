@@ -1,4 +1,78 @@
 <template>
+    <div class="row">
+        <notifications position="center" />
+        <div class="col-md-12 col-sm-12">
+            <div class="card card-box">
+                <div class="card-head">
+                    <header>Result Filling</header>
+                </div>
+                <div class="card-body" id="bar-parent">
+                    <div class="col-md-12">
+                        <table class="tbl-typical">
+                            <tr>
+                                <td>
+                                    Year:
+                                    <input type="text" class="form-control" v-model="year" placeholder="2017/2018">
+                                </td>
+
+                                <td>
+                                    Semester:
+                                    <select name="" id="" class="form-control" v-model="semester">
+                                        <option value="" selected>Semester</option>
+                                        <option value="1st">First Semester</option>
+                                        <option value="2nd">Second Semester</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <hr>
+
+                        <table class="tbl-typical col-md-4">
+                            <tr>
+                                <th>Students</th>
+                            </tr>
+                            <tr v-for="courseRegisteredDetails in registeredCourses">
+                                <span v-for="student in students">
+                                    <span v-if="student.id == courseRegisteredDetails.student_id">
+                                        <td><a @click="viewResultForm(courseRegisteredDetails.student_id)">{{student.firstname}} &emsp; {{student.identification_no}}</a></td>
+                                    </span>
+                                </span>
+                            </tr>
+                        </table>
+                        <br><br>
+                        <table class="tbl-typical" v-show="resultEditor">
+                            <tr>
+                                <th>Course</th>
+                                <th>C.A.</th>
+                                <th>Exams</th>
+                            </tr>
+                            <tr v-for="result in resultDetails.results">
+                        <span v-for="courseDetails in listOfCourses">
+                            <td v-if="courseDetails.id == result.course_id.course_id">
+                                {{courseDetails.course_code}}
+                            </td>
+                        </span>
+                                <td>
+                                    <input type="text" class="form-control" v-model="result.C_A" placeholder="Enter C.A. scores">
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" v-model="result.Exam" placeholder="Enter Exam scores">
+                                </td>
+                            </tr>
+                        </table>
+                        <button class="btn btn-success" style="margin:20px; float:right;" @click.prevent="submitResult" v-show="resultEditor">
+                            <!--<img src="/assets/loaders/Spinner.svg" alt="loading" v-if="loading">--> Save
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<!--<template>
     <div>
         <notifications position="top center" />
         <div class="row">
@@ -60,14 +134,14 @@
                     </tr>
                 </table>
                 <button class="btn btn-success" style="margin:20px; float:right;" @click.prevent="submitResult" v-show="resultEditor">
-                    <!--<img src="/assets/loaders/Spinner.svg" alt="loading" v-if="loading">--> Save
+                    &lt;!&ndash;<img src="/assets/loaders/Spinner.svg" alt="loading" v-if="loading">&ndash;&gt; Save
                 </button>
 
             </div>
 
         </div>
     </div>
-</template>
+</template>-->
 <script>
     export default {
         data(){

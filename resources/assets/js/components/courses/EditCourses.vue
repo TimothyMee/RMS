@@ -96,7 +96,7 @@
                                                             <tbody>
                                                             <tr class="odd gradeX" v-for="(course, index) in courses">
                                                                 <td class="patient-img">
-                                                                    <img src="" alt="">
+                                                                    <img :src="'/images/'+course.image" alt="">
                                                                 </td>
                                                                 <td class="left">{{++index}}</td>
                                                                 <td>{{course.name}}</td>

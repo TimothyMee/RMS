@@ -43,6 +43,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('view', 'CourseController@viewCourses');
         Route::post('view', 'CourseController@viewCourse');
         Route::get('index', 'CourseController@index')->name('course.index');
+        Route::group(['prefix' => 'registration'],function(){
+            Route::get('view', 'CourseRegisteredController@viewRegistrations');
+            Route::post('view', 'CourseRegisteredController@viewRegistration');
+            Route::post('view-selected', 'CourseRegisteredController@viewSelectedRegistration');
+        });
     });
 
     Route::group(['prefix' => 'result'], function (){
@@ -127,7 +132,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('edit', 'CourseRegisteredController@edit');
             Route::get('view', 'CourseRegisteredController@viewRegistrations');
             Route::post('view', 'CourseRegisteredController@viewRegistration');
-            Route::post('view-selected', 'CourseRegisteredController@viewSelectedRegistration');
+            Route::post('view-selected', 'CourseRegisteredController@viewSelectedRegistrationForStudents');
             Route::get('edit', 'CourseRegisteredController@editIndex')->name('course-registration.edit');
             Route::get('new', 'CourseRegisteredController@newRegistration')->name('course-registration.new');
         });

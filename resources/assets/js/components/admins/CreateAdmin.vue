@@ -46,7 +46,7 @@
                                         <span class="input-group-addon">
                                             <i class="fa fa-envelope"></i>
                                         </span>
-                                        <input type="text" class="form-control input-height" v-model="admin.email" placeholder="Email Address"> </div>
+                                        <input tydpe="text" class="form-control input-height" v-model="admin.email" placeholder="Email Address"> </div>
                                 </div>
                             </div>
                             <div class="form-group row">

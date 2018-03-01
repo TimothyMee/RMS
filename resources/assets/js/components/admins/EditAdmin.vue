@@ -111,7 +111,7 @@
                                                                 <span v-show="false">{{++index1}}</span>
                                                                 <tr v-for="(admin,index2) in seperateTypes" class="odd gradeX">
                                                                     <td class="patient-img">
-                                                                        <img src="" alt="">
+                                                                        <img :src="'/images/'+admin.image" alt="">
                                                                     </td>
                                                                     <td class="left">{{++index2 * index1}}</td>
                                                                     <td>{{admin.lastname}} {{admin.firstname}}</td>

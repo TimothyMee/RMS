@@ -280,6 +280,32 @@
                                 </li>
                             </ul>
                         </li>
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link nav-toggle">
+                                <i class="material-icons">local_library</i>
+                                <span class="title">Results</span>
+                                <span class="arrow"></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li class="nav-item">
+                                    <a href="{{route('result.index')}}" class="nav-link ">
+                                        <span class="title">Enter Results</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('result.view')}}" class="nav-link ">
+                                        <span class="title">View Results</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('result.edit')}}" class="nav-link ">
+                                        <span class="title">Edit Results</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
                     </ul>
                 </div>
             </div>

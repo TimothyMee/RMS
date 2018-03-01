@@ -1,78 +1,84 @@
 <template>
-    <div>
-        <notifications position="top center" />
-        <table class="tbl-typical">
-            <tr>
-                <th align=""><h4>Select Year and Semester</h4></th>
-                <th></th>
-            </tr>
-            <tr>
-                <td>
-                    Year:
-                    <input type="text" class="form-control" v-model="year" placeholder="2017/2018">
-                </td>
-
-                <td>
-                    Semester:
-                    <select name="" id="" class="form-control col-md-6" v-model="semester">
-                        <option value="1st">First Semester</option>
-                        <option value="2nd">Second Semester</option>
-                    </select>
-                </td>
-            </tr>
-        </table>
-
-        <table class="tbl-typical col-md-4">
-            <tr>
-                <td><h4>Students</h4></td>
-            </tr>
-            <tr v-for="resultDetails in allResults">
-                <span v-for="student in students">
-                    <span v-if="student.id == resultDetails.student_id">
-                        <td><a href="#" @click="viewResult(resultDetails.student_id)">{{student.lastname}}&nbsp;{{student.firstname}} &emsp; {{student.identification_no}}</a></td>
-                    </span>
-                </span>
-            </tr>
-        </table>
-
-        <div v-show="showResult">
-            <table class="table tbl-typical">
-                <tr>
-                    <th align="center">Course Code</th>
-                    <th align="center">Unit</th>
-                    <th align="center">C.A</th>
-                    <th align="center">Exam</th>
-                    <th align="center">Total</th>
-                    <th align="center">Grade</th>
-                </tr>
-            </table>
-            <span v-for="results in resultArray">
-                <span v-for="result in results">
-                    <span v-if="result.student_id == selectedStudentId">
+    <div class="row">
+        <notifications position="center" />
+        <div class="col-md-12 col-sm-12">
+            <div class="card card-box">
+                <div class="card-head">
+                    <header>View Result</header>
+                </div>
+                <div class="card-body" id="bar-parent">
+                    <div class="col-md-12">
                         <table class="tbl-typical">
                             <tr>
-                                <td align="center">{{result.course_code}}</td>
-                                <td align="center">{{result.unit}}</td>
-                                <td align="center">{{result.C_A}}</td>
-                                <td align="center">{{result.Exam}}</td>
-                                <td align="center">{{result.total}}</td>
-                                <td align="center">{{result.grade}}</td>
+                                <th align=""><h4>Select Year and Semester</h4></th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Year:
+                                    <input type="text" class="form-control" v-model="year" placeholder="2017/2018">
+                                </td>
+
+                                <td>
+                                    Semester:
+                                    <select name="" id="" class="form-control" v-model="semester">
+                                        <option value="">Semester</option>
+                                        <option value="1st">First Semester</option>
+                                        <option value="2nd">Second Semester</option>
+                                    </select>
+                                </td>
                             </tr>
                         </table>
-                    </span>
-                </span>
-            </span>
-            <br><br>
-            <table class="tbl-typical">
-                <tr>
-                    <!--<th>&emsp;&emsp;&emsp;&emsp;&emsp;</th>-->
-                    <th align="center">Total Grade Points : {{gpa.totalGradePoints}}</th>
-                    <th align="center">Total Units : {{gpa.totalUnits}}</th>
-                    <th align="center">GPA : {{gpa.gpa}}</th>
-                </tr>
-            </table>
-        </div>
 
+                        <br><br>
+                        <table class="tbl-typical col-md-4">
+                            <tr>
+                                <td><h4>Students</h4></td>
+                            </tr>
+                            <tr v-for="resultDetails in allResults">
+                                <span v-for="student in students">
+                                    <span v-if="student.id == resultDetails.student_id">
+                                        <td><a href="#" @click="viewResult(resultDetails.student_id)">{{student.lastname}}&nbsp;{{student.firstname}} &emsp; {{student.identification_no}}</a></td>
+                                    </span>
+                                </span>
+                            </tr>
+                        </table>
+
+                        <div v-show="showResult" class="table-scrollable">
+                            <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle">
+                                <thead>
+                                    <tr>
+                                        <th align="center">Course Code</th>
+                                        <th align="center">Unit</th>
+                                        <th align="center">C.A</th>
+                                        <th align="center">Exam</th>
+                                        <th align="center">Total</th>
+                                        <th align="center">Grade</th>
+                                    </tr>
+                                </thead>
+                                <tbody v-for="results in resultArray">
+                                    <tr v-for="result in results" v-if="result.student_id == selectedStudentId">
+                                        <td align="center">{{result.course_code}}</td>
+                                        <td align="center">{{result.unit}}</td>
+                                        <td align="center">{{result.C_A}}</td>
+                                        <td align="center">{{result.Exam}}</td>
+                                        <td align="center">{{result.total}}</td>
+                                        <td align="center">{{result.grade}}</td>
+                                    </tr>
+                                </tbody>
+                                <tbody>
+                                <tr>
+                                    <th align="center" colspan="2">Total Grade Points: {{gpa.totalGradePoints}}</th>
+                                    <th align="center" colspan="2">Total Units: {{gpa.totalUnits}}</th>
+                                    <th align="center" colspan="2">GPA: {{gpa.gpa}}</th>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 

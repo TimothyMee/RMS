@@ -100,7 +100,7 @@
                                                             <tbody>
                                                             <tr class="odd gradeX" v-for="(professor, index) in professors">
                                                                 <td class="patient-img">
-                                                                    <img src="" alt="">
+                                                                    <img :src="'/images/'+professor.image" alt="">
                                                                 </td>
                                                                 <td class="left">{{++index}}</td>
                                                                 <td>{{professor.lastname}} {{professor.firstname}}</td>

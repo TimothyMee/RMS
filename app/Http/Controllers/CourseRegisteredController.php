@@ -104,5 +104,19 @@ class CourseRegisteredController extends Controller
         }
     }
 
+    public function viewSelectedRegistrationForStudents(Request $request, CourseRegistered $courseRegistered)
+    {
+        try
+        {
+            $result = $courseRegistered->viewSelectedForStudent($request->all());
+
+            return apiSuccess($result);
+        }
+        catch (\Exception $e)
+        {
+            return apiFailure($e);
+        }
+    }
+
 
 }

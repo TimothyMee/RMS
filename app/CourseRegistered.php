@@ -47,8 +47,18 @@ class CourseRegistered extends Model
 
         $results = $this->where('semester', $data['semester'])
                         ->where('year', $data['year'])
-                        ->where('student_id', $data['student_id'])
                         ->get();
+
+        return $results;
+    }
+
+    public function viewSelectedForStudent($data)
+    {
+
+        $results = $this->where('semester', $data['semester'])
+            ->where('year', $data['year'])
+            ->where('student_id', $data['student_id'])
+            ->get();
 
         return $results;
     }
