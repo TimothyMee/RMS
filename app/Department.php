@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Department extends Model
 {
-    protected $fillable = ['name', 'college_name'];
+    protected $fillable = ['name', 'college_name', 'HOD'];
     //
     public function createNew($data)
     {
@@ -38,8 +38,11 @@ class Department extends Model
     {
         $data['staff_id'] = auth()->id();
         return $this->where('id', $data['id'])
-            ->update(['name' => $data['name']],
-                ['college_name' => $data['college_name']]);
+            ->update([
+                'name' => $data['name'],
+                'college_name' => $data['college_name'],
+                'HOD' => $data['HOD']
+                ]);
     }
 
 }

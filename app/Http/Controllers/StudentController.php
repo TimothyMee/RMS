@@ -14,7 +14,13 @@ class StudentController extends Controller
     {
         return view('students.index');
     }
-    public function add(Request $request, User $user)
+
+    public function add()
+    {
+        return view('students.add');
+    }
+
+    public function postAdd(Request $request, User $user)
     {
         /*$this->validate()*/
 
@@ -29,13 +35,16 @@ class StudentController extends Controller
         }
     }
 
-    public function edit(Request $request, User $user)
+    public function edit()
     {
-        /*$this->validate()*/
+        return view ('students.edit');
+    }
 
+    public function postEdit(Request $request, User $user)
+    {
         try
         {
-            $result = $student->updateStudent($request->all());
+            $result = $user->updateUser($request->all());
             return apiSuccess($result);
         }
         catch (\Exception $e)
@@ -48,7 +57,7 @@ class StudentController extends Controller
     {
         try
         {
-            $result = $student->deleteUser($request->all());
+            $result = $user->deleteUser($request->all());
             return apiSuccess($result);
         }
         catch (\Exception $e)

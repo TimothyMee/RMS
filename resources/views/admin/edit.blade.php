@@ -2,5 +2,5 @@
 
 @section('content')
     <!-- start page content -->
-    <view-departments></view-departments>
+    <edit-admins></edit-admins>
 @endsection

@@ -193,11 +193,11 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link "> <span class="title">Add Student</span>
+                                    <a href="{{route('student.add')}}" class="nav-link "> <span class="title">Add Student</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link "> <span class="title">Edit Student</span>
+                                    <a href="{{route('student.edit')}}" class="nav-link "> <span class="title">Edit Student</span>
                                     </a>
                                 </li>
                             </ul>
@@ -212,11 +212,11 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link "> <span class="title">Add Course</span>
+                                    <a href="{{route('course.add')}}" class="nav-link "> <span class="title">Add Course</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link "> <span class="title">Edit Course</span>
+                                    <a href="{{route('course.edit')}}" class="nav-link "> <span class="title">Edit Course</span>
                                     </a>
                                 </li>
                             </ul>
@@ -227,34 +227,30 @@
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link "> <span class="title">All Departments</span>
+                                    <a href="{{route('department.index')}}" class="nav-link "> <span class="title">All Departments</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link "> <span class="title">Add Department</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link "> <span class="title">Edit Department</span>
+                                    <a href="{{route('department.add')}}" class="nav-link "> <span class="title">Add Department</span>
                                     </a>
                                 </li>
                             </ul>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link nav-toggle"> <i class="material-icons">face</i>
-                                <span class="title">Staff</span> <span class="arrow"></span>
+                                <span class="title">Admin</span> <span class="arrow"></span>
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link "> <span class="title">All Staff</span>
+                                    <a href="{{route('admin.index')}}" class="nav-link "> <span class="title">All Admin</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link "> <span class="title">Add Staff</span>
+                                    <a href="{{route('admin.add')}}" class="nav-link "> <span class="title">Add Admin</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link "> <span class="title">Edit Staff</span>
+                                    <a href="{{route('admin.edit')}}" class="nav-link "> <span class="title">Edit Admin</span>
                                     </a>
                                 </li>
                             </ul>
@@ -268,17 +264,17 @@
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item">
-                                    <a href="email_inbox.html" class="nav-link ">
+                                    <a href="#" class="nav-link ">
                                         <span class="title">Inbox</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="email_view.html" class="nav-link ">
+                                    <a href="#" class="nav-link ">
                                         <span class="title">View Mail</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="email_compose.html" class="nav-link ">
+                                    <a href="#" class="nav-link ">
                                         <span class="title">Compose Mail</span>
                                     </a>
                                 </li>

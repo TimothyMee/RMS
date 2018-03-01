@@ -7,7 +7,13 @@
                         <img :src="'/images/'+professor.image" class="doctor-pic" alt="">
                         <div class="profile-usertitle">
                             <div class="doctor-name">{{professor.lastname}} {{professor.firstname}}</div>
-                            <div class="name-center"> Mathematics </div>
+                            <div class="name-center">
+                                <span v-for="department in departments">
+                                    <span v-if="department.id == professor.department_id">
+                                        {{department.name}}
+                                    </span>
+                                </span>
+                            </div>
                         </div>
                         <p>{{professor.address}}</p>
                         <div><p><i class="fa fa-phone"></i><a :href="'tel:'+professor.tel_no">  {{professor.tel_no}}</a></p> </div>
@@ -26,6 +32,7 @@
         data() {
             return {
                 professors : '',
+                departments:'',
             }
         },
 
@@ -39,11 +46,21 @@
                             this.professors = _response.data[0];
                         }
                     })
-            }
+            },
+            fetchDepartments(){
+                axios.get('/department/view')
+                    .then(response => {
+                        var _response = response.data;
+                        if(_response.status === 0){
+                            this.departments = _response.data;
+                        }
+                    })
+            },
         },
 
         mounted(){
             this.fetchProfessors();
+            this.fetchDepartments();
         }
     }
 </script>

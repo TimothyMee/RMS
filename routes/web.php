@@ -36,8 +36,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('test', 'HomeController@test');
 
     Route::group(['prefix' => 'course'], function (){
-        Route::post('add', 'CourseController@add');
-        Route::post('edit', 'CourseController@edit');
+        Route::get('add', 'CourseController@add')->name('course.add');
+        Route::post('add', 'CourseController@postAdd')->name('course.postAdd');
+        Route::get('edit', 'CourseController@edit')->name('course.edit');
+        Route::post('edit', 'CourseController@postEdit');
         Route::get('view', 'CourseController@viewCourses');
         Route::post('view', 'CourseController@viewCourse');
         Route::get('index', 'CourseController@index')->name('course.index');
@@ -71,8 +73,10 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::group(['prefix' => 'student'], function(){
-        Route::post('add', 'StudentController@add');
-        Route::post('edit', 'StudentController@edit');
+        Route::get('add', 'StudentController@add')->name('student.add');
+        Route::post('add', 'StudentController@postAdd');
+        Route::get('edit', 'StudentController@edit')->name('student.edit');
+        Route::post('edit', 'StudentController@postEdit');
         Route::post('view', 'StudentController@viewStudent');
         Route::get('view', 'StudentController@viewStudents');
         Route::get('index', 'StudentController@index')->name('student.index');
@@ -91,28 +95,29 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'professor'], function(){
         Route::post('add', 'ProfessorController@postAdd')->name('create.professor');
-        Route::get('add', 'ProfessorController@add')->name('professor.add');;
+        Route::get('add', 'ProfessorController@add')->name('professor.add');
         Route::get('edit', 'ProfessorController@edit')->name('professor.edit');
         Route::post('edit', 'ProfessorController@postEdit');
         Route::get('index', 'ProfessorController@index')->name('professor.index');
     });
 
+    Route::group(['prefix' => 'admin'], function(){
+        Route::post('add', 'AdminController@postAdd');
+        Route::get('add', 'AdminController@add')->name('admin.add');
+        Route::get('edit', 'AdminController@edit')->name('admin.edit');
+        Route::post('edit', 'AdminController@postEdit');
+        Route::get('index', 'AdminController@index')->name('admin.index');
+    });
+
     Route::group(['prefix' => 'department'], function(){
-        Route::post('add', 'DepartmentController@add');
-        Route::post('edit', 'DepartmentController@edit');
-        Route::post('view', 'DepartmentController@viewDepartment');
+        Route::get('add', 'DepartmentController@add')->name('department.add');
+        Route::post('add', 'DepartmentController@postAdd');
+//        Route::get('edit', 'DepartmentController@edit')->name('department.edit');
+        Route::post('edit', 'DepartmentController@postEdit');
+//        Route::post('view', 'DepartmentController@viewDepartment');
         Route::get('view', 'DepartmentController@viewDepartments');
         Route::get('index', 'DepartmentController@index')->name('department.index');
     });
-
-    Route::group(['prefix' => 'image'], function(){
-        Route::post('process',function(Request $request){
-            $request = $request->all();
-            $imageName = OptimiseImage($request['image'], $request['identification_no']);
-            return $imageName;
-        });
-    });
-
 
     Route::group(['prefix' => 'student'],  function (){
         Route::get('home', 'HomeController@studentHome')->name('student.home');

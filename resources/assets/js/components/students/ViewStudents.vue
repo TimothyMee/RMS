@@ -7,7 +7,13 @@
                         <img :src="'/images/'+student.image" class="doctor-pic" alt="">
                         <div class="profile-usertitle">
                             <div class="doctor-name">{{student.lastname}} {{student.firstname}}</div>
-                            <div class="name-center"> Mathematics </div>
+                            <div class="name-center">
+                                <span v-for="department in departments">
+                                    <span v-if="department.id == student.department_id">
+                                        {{department.name}}
+                                    </span>
+                                </span>
+                            </div>
                         </div>
                         <p>{{student.address}}</p>
                         <div><p><i class="fa fa-phone"></i><a :href="'tel:'+student.tel_no">  {{student.tel_no}}</a></p> </div>
@@ -26,6 +32,7 @@
         data() {
             return {
                 students: '',
+                departments:'',
                 enabled: false
             }
         },
@@ -42,10 +49,21 @@
                     })
             },
 
+            fetchDepartments(){
+                axios.get('/department/view')
+                    .then(response => {
+                        var _response = response.data;
+                        if(_response.status === 0){
+                            this.departments = _response.data;
+                        }
+                    })
+            },
+
         },
 
         mounted(){
             this.fetchStudents();
+            this.fetchDepartments();
         }
     }
 </script>

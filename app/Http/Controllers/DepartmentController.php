@@ -12,7 +12,18 @@ class DepartmentController extends Controller
     {
         return  view('department.index');
     }
-    public function add(Request $request, Department $department)
+
+    public function edit()
+    {
+        return view ('department.edit');
+    }
+
+    public function add()
+    {
+        return view('department.add');
+    }
+
+    public function postAdd(Request $request, Department $department)
     {
         try
         {
@@ -65,7 +76,7 @@ class DepartmentController extends Controller
         }
     }
 
-    public function edit(Request $request, Department $department)
+    public function postEdit(Request $request, Department $department)
     {
         try
         {

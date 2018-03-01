@@ -32,16 +32,21 @@ Vue.component('add-user', require('./components/users/CreateUser.vue'));
 Vue.component('change-password', require('./components/users/ChangePassword.vue'));
 
 Vue.component('view-students', require('./components/students/ViewStudents.vue'));
-Vue.component('add-students', require('./components/students/CreateStudents.vue'));
+Vue.component('add-student', require('./components/students/CreateStudents.vue'));
+Vue.component('edit-students', require('./components/students/EditStudents.vue'));
+
 
 Vue.component('view-departments', require('./components/departments/ViewDepartments.vue'));
 Vue.component('add-department', require('./components/departments/CreateDepartment.vue'));
+Vue.component('edit-departments', require('./components/departments/EditDepartment.vue'));
 
 Vue.component('view-types', require('./components/user_type/ViewTypes.vue'));
 Vue.component('add-type', require('./components/user_type/CreateType.vue'));
 
 Vue.component('view-courses', require('./components/courses/ViewCourses.vue'));
 Vue.component('add-course', require('./components/courses/CreateCourse.vue'));
+Vue.component('edit-courses', require('./components/courses/EditCourses.vue'));
+
 
 Vue.component('new-registration', require('./components/course-registration/NewRegistration.vue'));
 Vue.component('view-registration', require('./components/course-registration/ViewRegistration.vue'));
@@ -54,6 +59,10 @@ Vue.component('student-view-result', require('./components/results/ViewResultFor
 Vue.component('view-professors', require('./components/professors/ViewProfessors.vue'));
 Vue.component('add-professor', require('./components/professors/CreateProfessor.vue'));
 Vue.component('edit-professors', require('./components/professors/EditProfessor.vue'));
+
+Vue.component('view-admin', require('./components/admins/ViewAdmin.vue'));
+Vue.component('add-admin', require('./components/admins/CreateAdmin.vue'));
+Vue.component('edit-admins', require('./components/admins/EditAdmin.vue'));
 
 
 

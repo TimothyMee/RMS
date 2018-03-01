@@ -141,17 +141,13 @@
         },
 
         methods: {
-            processFile(event){
-                this.image = event.target.files[0];
-                this.professor.image = this.image;
-            },
             create(){
                 this.professor.user_type = 4;
                 axios.post('/professor/add', this.professor)
                     .then(response => {
                         var _response = response.data;
                         if(_response.status == 0){
-                            this.$notify({type: 'success', text: 'Professor added sucessfully', speed:400});
+                            this.$notify({type: 'success', text: 'Professor added successfully', speed:400});
                         }
                         else{
                             this.$notify({type: 'error', text: '<span style="color: white">Process unsuccessfully.Check if course exists and try again later</span>', speed:400});

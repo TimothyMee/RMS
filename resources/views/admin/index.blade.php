@@ -7,14 +7,14 @@
             <div class="page-bar">
                 <div class="page-title-breadcrumb">
                     <div class=" pull-left">
-                        <div class="page-title">Admins List</div>
+                        <div class="page-title">Admin List</div>
                     </div>
                     <ol class="breadcrumb page-breadcrumb pull-right">
                         <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="{{route('home')}}">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
                         </li>
-                        <li><a class="parent-item" href="#">Admins</a>&nbsp;<i class="fa fa-angle-right"></i>
+                        <li><a class="parent-item" href="#">Admin</a>&nbsp;<i class="fa fa-angle-right"></i>
                         </li>
-                        <li class="active">Admins List</li>
+                        <li class="active">Admin List</li>
                     </ol>
                 </div>
             </div>

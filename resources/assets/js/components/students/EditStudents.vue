@@ -3,22 +3,40 @@
         <modal name="myModal" :draggable="true" :scrollable="true" @before-open="beforeOpen" :adaptive="true" height="auto">
 
             <div class="page-title">
-                <button class="btn btn-danger btn-xs" @click="$modal.hide('myModal')" style="float: right;"><span aria-hidden="true">&times;</span></button>
-                <span class="col-md-2">{{data.name}}</span>
+                <span class="col-md-2"><img :src="'/images/'+data.image" class="doctor-pic" alt=""> {{data.lastname}} {{data.firstname}}</span>
                 <span style="" class="col-md-2 col-md-offset-6"><label class=""><h5>Edit?</h5></label><switches v-model="enabled" color="blue" style="margin-left:10px;"></switches></span>
+                <button class="btn btn-danger btn-xs" @click="$modal.hide('myModal')" style="float: right;"><span aria-hidden="true">&times;</span></button>
             </div>
             <hr>
 
             <div class="container">
                 <div class="row">
                     <div class="form-group">
-                        <label for="">Name</label>
-                        <input type="text" v-model="data.name" class="form-control" :disabled=!enabled>
+                        <label for="">First Name</label>
+                        <input type="text" v-model="data.firstname" class="form-control" :disabled=!enabled>
                     </div>
                     <div class="form-group">
-                        <label for="">College Name </label>
-                        <input type="text" v-model="data.college_name" class="form-control" :disabled=!enabled>
+                        <label for="">Second Name </label>
+                        <input type="text" v-model="data.middlename" class="form-control" :disabled=!enabled>
                     </div>
+                    <div class="form-group">
+                        <label for="">Last Name </label>
+                        <input type="text" v-model="data.lastname" class="form-control" :disabled=!enabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Email </label>
+                        <input type="text" v-model="data.email" class="form-control" :disabled=!enabled>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="">Telephone </label>
+                        <input type="text" v-model="data.tel_no" class="form-control" :disabled=!enabled>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="">Address</label>
+                        <textarea name="" id="" cols="40" rows="10" v-model="data.address" class="form-control" :disabled=!enabled></textarea>
+                    </div>
+
                     <div class="form-group">
                         <button type="button" class="btn btn-default"  @click="$modal.hide('myModal')">Close</button>
                         <button type="button" class="btn btn-primary"  @click="update(data)" :disabled="!enabled">Save changes</button>
@@ -33,14 +51,14 @@
                 <div class="page-bar">
                     <div class="page-title-breadcrumb">
                         <div class=" pull-left">
-                            <div class="page-title">All Departments List</div>
+                            <div class="page-title">All Students List</div>
                         </div>
                         <ol class="breadcrumb page-breadcrumb pull-right">
                             <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="/home">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
                             </li>
-                            <li><a class="parent-item" href="#">Departments</a>&nbsp;<i class="fa fa-angle-right"></i>
+                            <li><a class="parent-item" href="#">Students</a>&nbsp;<i class="fa fa-angle-right"></i>
                             </li>
-                            <li class="active">All Departments List</li>
+                            <li class="active">All Students List</li>
                         </ol>
                     </div>
                 </div>
@@ -56,7 +74,7 @@
                                         <div class="col-md-12">
                                             <div class="card card-box">
                                                 <div class="card-head">
-                                                    <header>All Departments List</header>
+                                                    <header>All Students List</header>
                                                     <div class="tools">
                                                         <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
                                                         <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
@@ -72,20 +90,32 @@
                                                                 <th></th>
                                                                 <th> Roll No </th>
                                                                 <th> Name </th>
-                                                                <th> College </th>
+                                                                <th> Department </th>
+                                                                <th> Mobile </th>
+                                                                <th> Email </th>
+                                                                <th>Appointment Date</th>
                                                                 <th> Action </th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
-                                                            <tr class="odd gradeX" v-for="(department, index) in departments">
+                                                            <tr class="odd gradeX" v-for="(student, index) in students">
                                                                 <td class="patient-img">
                                                                     <img src="" alt="">
                                                                 </td>
                                                                 <td class="left">{{++index}}</td>
-                                                                <td>{{department.name}}</td>
-                                                                <td>{{department.college_name}}</td>
+                                                                <td>{{student.lastname}} {{student.firstname}}</td>
+                                                                <td class="left">
+                                                                    <span v-for="department in departments">
+                                                                        <span v-if="department.id == student.department_id">{{department.name}}</span>
+                                                                    </span>
+                                                                </td>
+                                                                <td><a :href="'tel:'+ student.tel_no">
+                                                                    {{student.tel_no}} </a></td>
+                                                                <td><a :href="'mailto:'+student.email">
+                                                                    {{student.email}}</a></td>
+                                                                <td class="left">{{student.created_at}}</td>
                                                                 <td>
-                                                                    <a class="btn btn-primary btn-xs" id="modal_launcher" @click="launch(department)">
+                                                                    <a class="btn btn-primary btn-xs" id="modal_launcher" @click="launch(student)">
                                                                         <i class="fa fa-pencil"></i>
                                                                     </a>
 
@@ -117,25 +147,37 @@
         data() {
             return {
                 departments: '',
+                students : '',
                 enabled: false,
                 data:'',
             }
         },
 
         methods: {
-            update(department){
-                axios.post('/department/edit', department)
+            fetchStudents(){
+                axios.post('/user/viewSpecificType', ['3'])
+                    .then(response => {
+                        console.log(response);
+                        var _response = response.data;
+                        if(_response.status === 0){
+                            this.students = _response.data[0];
+                        }
+                    })
+            },
+
+            update(student){
+                axios.post('/student/edit', student)
                     .then(response => {
                         var _response = response.data;
                         if (_response.status === 0){
-                            this.$notify({type: 'success', text: 'Department update successful', speed:400});
+                            this.$notify({type: 'success', text: 'Student update successful', speed:400});
                         }
                         else{
-                            this.$notify({type: 'error', text: '<span style="color: white">Updating Department\'s info. unsuccessfully. Try again later</span>', speed:400});
+                            this.$notify({type: 'error', text: '<span style="color: white">Updating Student\'s info. unsuccessfully. Try again later</span>', speed:400});
                         }
                     })
                     .catch(error =>{
-                        this.$notify({type: 'error', text: '<span style="color: white">Updating Department\'s info. unsuccessfully. Try again later</span>', speed:400});
+                        this.$notify({type: 'error', text: '<span style="color: white">Updating Student\'s info. unsuccessfully. Try again later</span>', speed:400});
                     })
             },
 
@@ -160,6 +202,7 @@
 
         mounted(){
             this.fetchDepartments();
+            this.fetchStudents();
         }
     }
 </script>

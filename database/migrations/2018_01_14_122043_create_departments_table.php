@@ -17,6 +17,7 @@ class CreateDepartmentsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('college_name')->nullable();
+            $table->integer('HOD');
             $table->timestamps();
         });
     }
