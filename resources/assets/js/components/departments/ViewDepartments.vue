@@ -73,6 +73,7 @@
                                                                 <th> Roll No </th>
                                                                 <th> Name </th>
                                                                 <th> College </th>
+                                                                <th> Head Of Department </th>
                                                                 <th> Action </th>
                                                             </tr>
                                                             </thead>
@@ -84,6 +85,13 @@
                                                                 <td class="left">{{++index}}</td>
                                                                 <td>{{department.name}}</td>
                                                                 <td>{{department.college_name}}</td>
+                                                                <td>
+                                                                    <span v-for="professor in professors">
+                                                                        <span v-if="professor.id == department.HOD">
+                                                                            {{professor.lastname}} {{professor.firstname}}
+                                                                        </span>
+                                                                    </span>
+                                                                </td>
                                                                 <td>
                                                                     <a class="btn btn-primary btn-xs" id="modal_launcher" @click="launch(department)">
                                                                         <i class="fa fa-pencil"></i>
@@ -117,6 +125,7 @@
         data() {
             return {
                 departments: '',
+                professors: '',
                 enabled: false,
                 data:'',
             }
@@ -136,6 +145,17 @@
                     })
                     .catch(error =>{
                         this.$notify({type: 'error', text: '<span style="color: white">Updating Department\'s info. unsuccessfully. Try again later</span>', speed:400});
+                    })
+            },
+
+            fetchProfessors(){
+                axios.post('/user/viewSpecificType', ['4'])
+                    .then(response => {
+                        console.log(response);
+                        var _response = response.data;
+                        if(_response.status === 0){
+                            this.professors = _response.data[0];
+                        }
                     })
             },
 
@@ -160,6 +180,7 @@
 
         mounted(){
             this.fetchDepartments();
+            this.fetchProfessors();
         }
     }
 </script>

@@ -49178,11 +49178,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             departments: '',
+            professors: '',
             enabled: false,
             data: ''
         };
@@ -49204,13 +49213,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.$notify({ type: 'error', text: '<span style="color: white">Updating Department\'s info. unsuccessfully. Try again later</span>', speed: 400 });
             });
         },
-        fetchDepartments: function fetchDepartments() {
+        fetchProfessors: function fetchProfessors() {
             var _this2 = this;
+
+            axios.post('/user/viewSpecificType', ['4']).then(function (response) {
+                console.log(response);
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this2.professors = _response.data[0];
+                }
+            });
+        },
+        fetchDepartments: function fetchDepartments() {
+            var _this3 = this;
 
             axios.get('/department/view').then(function (response) {
                 var _response = response.data;
                 if (_response.status === 0) {
-                    _this2.departments = _response.data;
+                    _this3.departments = _response.data;
                 }
             });
         },
@@ -49224,6 +49244,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     mounted: function mounted() {
         this.fetchDepartments();
+        this.fetchProfessors();
     }
 });
 
@@ -49450,6 +49471,32 @@ var render = function() {
                                                 )
                                               ]),
                                               _vm._v(" "),
+                                              _c(
+                                                "td",
+                                                _vm._l(_vm.professors, function(
+                                                  professor
+                                                ) {
+                                                  return _c("span", [
+                                                    professor.id ==
+                                                    department.HOD
+                                                      ? _c("span", [
+                                                          _vm._v(
+                                                            "\n                                                                        " +
+                                                              _vm._s(
+                                                                professor.lastname
+                                                              ) +
+                                                              " " +
+                                                              _vm._s(
+                                                                professor.firstname
+                                                              ) +
+                                                              "\n                                                                    "
+                                                          )
+                                                        ])
+                                                      : _vm._e()
+                                                  ])
+                                                })
+                                              ),
+                                              _vm._v(" "),
                                               _c("td", [
                                                 _c(
                                                   "a",
@@ -49591,6 +49638,8 @@ var staticRenderFns = [
         _c("th", [_vm._v(" Name ")]),
         _vm._v(" "),
         _c("th", [_vm._v(" College ")]),
+        _vm._v(" "),
+        _c("th", [_vm._v(" Head Of Department ")]),
         _vm._v(" "),
         _c("th", [_vm._v(" Action ")])
       ])
