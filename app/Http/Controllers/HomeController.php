@@ -6,6 +6,7 @@ use App\Course;
 use App\Department;
 use App\Student;
 use App\User;
+use App\UserSetting;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -20,7 +21,7 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(User $user,  Course $course, Department $department)
+    public function index(User $user,  Course $course, Department $department, UserSetting $userSetting)
     {
         if(auth()->user()->user_type != 1 && auth()->user()->user_type != 2){
             return view('auth.login');
@@ -29,6 +30,8 @@ class HomeController extends Controller
         $courses = $course->viewAll();
         $users = $user->viewAll();
         $departments = $department->viewAll();
+        $userSetting = $userSetting->view(auth()->id());
+        $userSetting = $userSetting[0]->theme;
 
         $admin = array();
         $student = array();
@@ -78,6 +81,7 @@ class HomeController extends Controller
             'studentCount' => $studentCount,
             'professorCount' => $professorCount,
             'courseCount' => $courseCount,
+            'theme' => $userSetting,
         ];
 
         return view('home')->with('data',$data);

@@ -34,6 +34,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('home', 'HomeController@index')->name('home');
     Route::get('test', 'HomeController@test');
+    Route::post('saveThemeSetting', 'UserSettingController@add')->name('save_theme');
 
     Route::group(['prefix' => 'course'], function (){
         Route::get('add', 'CourseController@add')->name('course.add');
