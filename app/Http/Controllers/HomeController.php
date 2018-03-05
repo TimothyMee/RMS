@@ -81,8 +81,11 @@ class HomeController extends Controller
             'studentCount' => $studentCount,
             'professorCount' => $professorCount,
             'courseCount' => $courseCount,
-            'theme' => $userSetting,
         ];
+
+//        Saving the theme value into the session
+        session(['theme' => $userSetting]);
+
 
         return view('home')->with('data',$data);
     }

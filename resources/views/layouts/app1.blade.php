@@ -28,11 +28,11 @@
     <link rel="stylesheet" href="/plugins/material/material.min.css">
     <link rel="stylesheet" href="/css/material_style.css">
     <!-- Theme Styles -->
-    @if($data['theme'] == 0)
+    @if(session('theme') == 0)
         <link href="/css/theme/light/theme_style.css" rel="stylesheet" id="rt_style_components" type="text/css" />
         <link href="/css/theme/light/style.css" rel="stylesheet" type="text/css" />
         <link href="/css/theme/light/theme-color.css" rel="stylesheet" type="text/css" />
-    @elseif($data['theme'] == 1)
+    @elseif(session('theme') == 1)
         <link href="/css/theme/dark/theme_style.css" rel="stylesheet" id="rt_style_components" type="text/css" />
         <link href="/css/theme/dark/style.css" rel="stylesheet" type="text/css" />
         <link href="/css/theme/dark/theme-color.css" rel="stylesheet" type="text/css" />
@@ -46,9 +46,9 @@
     {{--<link rel="shortcut icon" href="../assets/img/favicon.ico" />--}}
 </head>
 <!-- END HEAD -->
-@if($data['theme'] == 0)
+@if(session('theme') == 0)
  <body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-white white-sidebar-color logo-indigo">
-@elseif($data['theme'] == 1)
+@elseif(session('theme') == 1)
  <body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-dark dark-sidebar-color logo-dark dark-theme">
 @endif
     <div class="page-wrapper">
