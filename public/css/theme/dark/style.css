@@ -21,7 +21,7 @@
 ***************************************/
 
 ul.docListWindow {
-	list-style-type: none;
+    list-style-type: none;
     padding: 0 10px;
     height: 430px;
     overflow: hidden;
@@ -152,7 +152,7 @@ h4.vew-mail-header b {
     font-weight: 700;
 }
 .compose-editor{
-	padding-left: 15px;
+    padding-left: 15px;
 }
 .mail-label {
     padding: .2em .6em .3em !important;
@@ -178,7 +178,7 @@ h4.vew-mail-header b {
     content: " ";
     width: 7px;
     height: 9px;
-    background: url(images/arrow-down.html);
+    background: url(images/arrow-down.png);
     position: absolute;
     right: 10px;
     top: 0;
@@ -220,7 +220,7 @@ h4.vew-mail-header b {
     left: 15px;
 }
 .display-none{
-	display: none;
+    display: none;
 }
 .control-sidebar-btn.btn {
     position: absolute;
@@ -274,7 +274,7 @@ h4.vew-mail-header b {
     margin: 5px;
     color: transparent;
     position: relative;
-    background-color: #EAEEF3; 
+    background-color: #EAEEF3;
 }
 .quick-setting ul#themecolors li a.green-theme {
     background-color: #0f0;
@@ -332,47 +332,47 @@ h4.vew-mail-header b {
 .theme-color a[data-theme="logo-indigo"] .head:after,
 .theme-color a[data-theme="header-indigo"] .head:before,
 .theme-color a[data-theme="header-indigo"] .head:after{
-	background: #6673FC;
+    background: #6673FC;
 }
 .theme-color a[data-theme="cyan"] .cont:after,
 .theme-color a[data-theme="cyan"] .head:after,
 .theme-color a[data-theme="logo-cyan"] .head:after,
 .theme-color a[data-theme="header-cyan"] .head:before,
 .theme-color a[data-theme="header-cyan"] .head:after{
-	background: #4ABAD2;
+    background: #4ABAD2;
 }
 .theme-color a[data-theme="green"] .cont:after,
 .theme-color a[data-theme="green"] .head:after,
 .theme-color a[data-theme="logo-green"] .head:after,
 .theme-color a[data-theme="header-green"] .head:before,
 .theme-color a[data-theme="header-green"] .head:after{
-	background: #49D075;
+    background: #49D075;
 }
 .theme-color a[data-theme="red"] .cont:after,
 .theme-color a[data-theme="red"] .head:after,
 .theme-color a[data-theme="logo-red"] .head:after,
 .theme-color a[data-theme="header-red"] .head:before,
 .theme-color a[data-theme="header-red"] .head:after{
-	background: #E44F56;
+    background: #E44F56;
 }
 .theme-color a[data-theme="dark"] .head:after,
 .theme-color a[data-theme="logo-dark"] .head:after{
     background: #303548;
 }
 .layout-theme a[data-theme="dark"] .cont{
-	background: #464545;
+    background: #464545;
 }
 .layout-theme a[data-theme="dark"] .head:before{
-	background: #242b3a;
+    background: #242b3a;
 }
 .layout-theme a[data-theme="light"] .cont{
-	background: #ffffff;
+    background: #ffffff;
 }
 .layout-theme a[data-theme="light"] .head:before{
-	background: #ffffff;
+    background: #ffffff;
 }
 .layout-theme a[data-theme="light"] .head:after{
-	background: #6673FC;
+    background: #6673FC;
 }
 
 .theme-color a .head {
@@ -407,56 +407,56 @@ h4.vew-mail-header b {
 			6. SOCIAL BUTTONS
 ***************************************/
 .btn-facebook {
-  color: #ffffff !important;
-  background-color: #3b5998 !important;
+    color: #ffffff !important;
+    background-color: #3b5998 !important;
 }
 .btn-twitter {
-  color: #ffffff !important;
-  background-color: #00aced !important;
+    color: #ffffff !important;
+    background-color: #00aced !important;
 }
 .btn-linkedin {
-  color: #ffffff !important;
-  background-color: #007bb6 !important;
+    color: #ffffff !important;
+    background-color: #007bb6 !important;
 }
 .btn-dribbble {
-  color: #ffffff !important;
-  background-color: #ea4c89 !important;
+    color: #ffffff !important;
+    background-color: #ea4c89 !important;
 }
 .btn-googleplus {
-  color: #ffffff !important;
-  background-color: #dd4b39 !important;
+    color: #ffffff !important;
+    background-color: #dd4b39 !important;
 }
 .btn-instagram {
-  color: #ffffff !important;
-  background-color: #517fa4 !important;
+    color: #ffffff !important;
+    background-color: #517fa4 !important;
 }
 .btn-pinterest {
-  color: #ffffff !important;
-  background-color: #cb2027 !important;
+    color: #ffffff !important;
+    background-color: #cb2027 !important;
 }
 .btn-dropbox {
-  color: #ffffff !important;
-  background-color: #007ee5 !important;
+    color: #ffffff !important;
+    background-color: #007ee5 !important;
 }
 .btn-flickr {
-  color: #ffffff !important;
-  background-color: #ff0084 !important;
+    color: #ffffff !important;
+    background-color: #ff0084 !important;
 }
 .btn-tumblr {
-  color: #ffffff !important;
-  background-color: #32506d !important;
+    color: #ffffff !important;
+    background-color: #32506d !important;
 }
 .btn-skype {
-  color: #ffffff !important;
-  background-color: #00aff0 !important;
+    color: #ffffff !important;
+    background-color: #00aff0 !important;
 }
 .btn-youtube {
-  color: #ffffff !important;
-  background-color: #bb0000 !important;
+    color: #ffffff !important;
+    background-color: #bb0000 !important;
 }
 .btn-github {
-  color: #ffffff !important;
-  background-color: #171515 !important;
+    color: #ffffff !important;
+    background-color: #171515 !important;
 }
 /**************************************
 			7. PROGRESS BAR
@@ -540,8 +540,8 @@ h4.vew-mail-header b {
     border-radius: 2px
 }
 .analysis-box{
-	padding: 2px 20px 10px 20px;
-	margin-bottom: 20px;
+    padding: 2px 20px 10px 20px;
+    margin-bottom: 20px;
 }
 
 .legend table {
@@ -712,7 +712,7 @@ span.online-status {
     background-repeat: no-repeat!important;
     text-indent: -10000px;
     outline: 0;
-    background-image: url(../img/remove-icon-small.html)!important
+    background-image: url(../img/remove-icon-small.png)!important
 }
 .help-block {
     margin-top: 5px;
@@ -735,7 +735,7 @@ span.online-status {
     width: auto;
 }
 .no-pad-left{
-	padding-left: 0 !important;
+    padding-left: 0 !important;
 }
 .text-purple .fa-facebook {
     font-size: 20px;
@@ -749,7 +749,7 @@ span.online-status {
 
 .app-search {
     position: relative;
-}	
+}
 .contact-detail {
     float: left;
     width: 100%;
@@ -788,18 +788,18 @@ tr.group:hover {
 }
 
 .selector-title{
-	margin-top: 0px !important; 
-	color: #000000;
+    margin-top: 0px !important;
+    color: #000000;
 }
 .note-icon-font{
-	background-color: transparent !important;
+    background-color: transparent !important;
 }
 .course-likes {
     float: right;
     margin-right: 20px;
 }
 .course-picture{
-	float: left;
+    float: left;
     width: 100%;
     text-align: center;
 }
@@ -828,7 +828,7 @@ tr.group:hover {
     background-color: #e55957;
 }
 .green-color{
-	color: green;
+    color: green;
 }
 
 .bg-danger {
