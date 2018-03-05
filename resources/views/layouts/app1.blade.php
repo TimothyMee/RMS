@@ -28,11 +28,17 @@
     <link rel="stylesheet" href="/plugins/material/material.min.css">
     <link rel="stylesheet" href="/css/material_style.css">
     <!-- Theme Styles -->
-    <link href="/css/theme/light/theme_style.css" rel="stylesheet" id="rt_style_components" type="text/css" />
-    <link href="/css/theme/light/style.css" rel="stylesheet" type="text/css" />
+    @if($data['theme'] == 0)
+        <link href="/css/theme/light/theme_style.css" rel="stylesheet" id="rt_style_components" type="text/css" />
+        <link href="/css/theme/light/style.css" rel="stylesheet" type="text/css" />
+        <link href="/css/theme/light/theme-color.css" rel="stylesheet" type="text/css" />
+    @elseif($data['theme'] == 1)
+        <link href="/css/theme/dark/theme_style.css" rel="stylesheet" id="rt_style_components" type="text/css" />
+        <link href="/css/theme/dark/style.css" rel="stylesheet" type="text/css" />
+        <link href="/css/theme/dark/theme-color.css" rel="stylesheet" type="text/css" />
+    @endif
     <link href="/css/plugins.min.css" rel="stylesheet" type="text/css" />
     <link href="/css/responsive.css" rel="stylesheet" type="text/css" />
-    <link href="/css/theme/light/theme-color.css" rel="stylesheet" type="text/css" />
     <link href="/css/pages/formlayout.css" rel="stylesheet" type="text/css" />
     <!-- inbox style -->
     <link href="/css/pages/inbox.min.css" rel="stylesheet" type="text/css" />
@@ -40,8 +46,12 @@
     {{--<link rel="shortcut icon" href="../assets/img/favicon.ico" />--}}
 </head>
 <!-- END HEAD -->
-<body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-white white-sidebar-color logo-indigo">
-<div class="page-wrapper">
+@if($data['theme'] == 0)
+ <body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-white white-sidebar-color logo-indigo">
+@elseif($data['theme'] == 1)
+ <body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-dark dark-sidebar-color logo-dark dark-theme">
+@endif
+    <div class="page-wrapper">
     <!-- start header -->
     <div class="page-header navbar navbar-fixed-top">
         <div class="page-header-inner ">
@@ -119,7 +129,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="login.html">
+                                <a href="{{route('logout')}}">
                                     <i class="icon-logout"></i> Log Out </a>
                             </li>
                         </ul>
@@ -317,6 +327,7 @@
             <div id="app">
                 @yield('content')
             </div>
+
         </div>
         <!-- end page content -->
 
@@ -372,13 +383,22 @@
                                             </select>
                                         </div>
                                     </div>
+
+                                    <br><br><br>
+
+                                    <div class="chat-header"><h5 class="list-heading">Theme Settings</h5></div>
                                     <div class="setting-item">
                                         <div class="setting-text">Theme Mode</div>
                                         <div class="setting-set">
-                                            <select class="page-footer-option form-control input-inline input-sm input-small " name="theme_mode">
-                                                <option value="0" selected="selected">Light Mode</option>
-                                                <option value="1">Night Mode</option>
-                                            </select>
+                                            <form method="post" action="{{route('save_theme')}}" >
+                                                {{csrf_field()}}
+                                                <select class="page-footer-option form-control input-inline input-sm input-small " name="theme">
+                                                    <option value="0">Day Mode</option>
+                                                    <option value="1">Night Mode</option>
+                                                </select>
+                                                <br>
+                                                <input type="submit" class="btn btn-primary btn-sm" value="Save Theme Setting">
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
