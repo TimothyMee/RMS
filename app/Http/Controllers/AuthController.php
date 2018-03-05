@@ -73,7 +73,7 @@ class AuthController extends Controller
                 }
                 elseif(auth()->user()->user_type == 4)
                 {
-                    return 'Parent';
+                    return 'Professor';
                 }
             }
             return redirect()->back()->with('error', 'Identification No and Password Combination Incorrect')->withInput();
