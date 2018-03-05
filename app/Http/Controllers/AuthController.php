@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Department;
+use App\UserSetting;
 use Illuminate\Http\Request;
 use App\User;
 use Image;
@@ -57,13 +58,17 @@ class AuthController extends Controller
         return view('auth.login', compact('title'));
     }
 
-    public function postLogin(Request $request)
+    public function postLogin(Request $request, UserSetting $userSetting)
     {
         $data = $request->all();
         try{
             if (auth()->attempt(['email' => $data['email'], 'password' => $data['password'], 'is_active' => true])) {
                 if (auth()->user()->user_type == 1 || auth()->user()->user_type == 2)
                 {
+                    //Saving the theme value into the session
+                    $userSetting = $userSetting->view(auth()->id());
+                    $userSetting = $userSetting[0]->theme;
+                    session(['theme' => $userSetting]);
                     return redirect()->intended(route('home'));
                 }
 

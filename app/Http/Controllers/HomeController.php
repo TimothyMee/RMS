@@ -30,8 +30,6 @@ class HomeController extends Controller
         $courses = $course->viewAll();
         $users = $user->viewAll();
         $departments = $department->viewAll();
-        $userSetting = $userSetting->view(auth()->id());
-        $userSetting = $userSetting[0]->theme;
 
         $admin = array();
         $student = array();
@@ -82,9 +80,6 @@ class HomeController extends Controller
             'professorCount' => $professorCount,
             'courseCount' => $courseCount,
         ];
-
-//        Saving the theme value into the session
-        session(['theme' => $userSetting]);
 
 
         return view('home')->with('data',$data);

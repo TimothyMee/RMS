@@ -19,10 +19,21 @@ class UserSetting extends Model
         if(! $existingData->exists()){
             $data['user_id'] = auth()->id();
             $this->create($data);
+
+            //Saving the theme value into the session
+            $userSetting = $this->view(auth()->id());
+            $userSetting = $userSetting[0]->theme;
+            session(['theme' => $userSetting]);
             return true;
         }
         else{
             $this->updateUserSettings($data);
+
+            //Saving the theme value into the session
+            $userSetting = $this->view(auth()->id());
+            $userSetting = $userSetting[0]->theme;
+            session(['theme' => '']);
+            session(['theme' => $userSetting]);
             return true;
         }
     }
