@@ -1,6 +1,5 @@
 /*
  *  Document   : theme-color.css
- *  Author     : RedStar Theme
  *  Description: stylesheet for change theme color, user can set any custom color for template, User have to just replace three classes
  	(header-white white-sidebar-color logo-indigo) with (custom-sidebar-color logo-custom header-custom) classes in template <body> tag 
  	and set bellow variable color as per desire. Thats It !!!!!!
