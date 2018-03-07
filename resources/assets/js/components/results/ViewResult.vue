@@ -10,7 +10,7 @@
                     <div class="col-md-12">
                         <table class="tbl-typical">
                             <tr>
-                                <th align=""><h4>Select Year and Semester</h4></th>
+                                <th align=""><h4>Select Year and Semester Of Approved Result</h4></th>
                                 <th></th>
                             </tr>
                             <tr>
@@ -38,7 +38,7 @@
                             <tr v-for="resultDetails in allResults">
                                 <span v-for="student in students">
                                     <span v-if="student.id == resultDetails.student_id">
-                                        <td><a href="#" @click="viewResult(resultDetails.student_id)">{{student.lastname}}&nbsp;{{student.firstname}} &emsp; {{student.identification_no}}</a></td>
+                                        <td><a href="#" @click.prevent="viewResult(resultDetails.student_id)">{{student.lastname}}&nbsp;{{student.firstname}} &emsp; {{student.identification_no}}</a></td>
                                     </span>
                                 </span>
                             </tr>
@@ -74,6 +74,11 @@
                                 </tr>
                                 </tbody>
                             </table>
+                            <br>
+                            <div style="float: right">
+                                <button class="btn btn-sm btn-default" @click="print"><span class="fa fa-print"></span></button>
+                                <button class="btn btn-sm btn-default"><span class="fa fa-file-pdf-o"></span></button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -117,6 +122,7 @@
 
                             this.allResults.forEach( entry => {
                                var result = JSON.parse(entry.results);
+                               result.status = entry.status;
                                entry.results = JSON.parse(entry.results);
 
                                /*calculating the grade*/
@@ -179,6 +185,7 @@
 //                console.log(this.allResults);
 //                console.log(this.resultArray);
                 this.calculateCGPA(student_id);
+                this.printTemplate(student_id);
                 this.selectedStudentId = student_id;
                 this.showResult = !this.showResult;
             },
@@ -239,7 +246,15 @@
                 this.gpa.gpa = gpa;
                 this.gpa.student_id = student_id;
 
-            }
+            },
+
+            approveResult(result){
+                console.log(result.id);
+            },
+
+            printTemplate(student_id){
+
+            },
 
             /*update(course){
                 axios.post('/course/edit', course)
@@ -254,8 +269,7 @@
         },
 
         mounted(){
-            /*this.fetchView();*/
-            /*this.getAllCourses();*/
+            this.getAuthUser();
 
         },
 

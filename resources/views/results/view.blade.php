@@ -13,7 +13,7 @@
                         </li>
                         <li><a class="parent-item" href="#">Result</a>&nbsp;<i class="fa fa-angle-right"></i>
                         </li>
-                        <li class="active">Create Result</li>
+                        <li class="active">View Result</li>
                     </ol>
                 </div>
             </div>

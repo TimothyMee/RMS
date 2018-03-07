@@ -4,7 +4,7 @@
         <div class="col-md-12 col-sm-12">
             <div class="card card-box">
                 <div class="card-head">
-                    <header>View Result</header>
+                    <header>Edit Result</header>
                 </div>
                 <div class="card-body" id="bar-parent">
                     <div class="col-md-12">
@@ -53,11 +53,11 @@
                                 <th><label style="margin-left: 20px;">Edit?</label><switches v-model="edit" color="blue" style="margin-left:10px;"></switches></th>
                             </tr>
                             <tr v-for="result in resultArray">
-                        <span v-for="courseDetails in listOfCourses">
-                            <td v-if="courseDetails.id == result.course_id.course_id">
-                                {{courseDetails.course_code}}
-                            </td>
-                        </span>
+                                <span v-for="courseDetails in listOfCourses">
+                                    <td v-if="courseDetails.id == result.course_id.course_id">
+                                        {{courseDetails.course_code}}
+                                    </td>
+                                </span>
                                 <td>
                                     <input type="text" class="form-control" v-model="result.C_A" placeholder="Enter C.A. scores" :disabled="!edit">
                                 </td>
@@ -67,9 +67,17 @@
                                 </td>
                             </tr>
                         </table>
-                        <button class="btn btn-success" style="margin:20px; float:right;" @click.prevent="updateResult" v-show="resultEditor" :disabled="!edit">
-                            <!--<img src="/assets/loaders/Spinner.svg" alt="loading" v-if="loading">--> Save
+                        <button class="btn btn-success" style="margin:10px; float:right;" @click.prevent="updateResult" v-show="resultEditor" :disabled="!edit">
+                            <!--<img src="/assets/loaders/Spinner.svg" alt="loading" v-if="loading">--> Save Edit
                         </button>
+                        <br><br>
+                        <hr>
+                        <span v-if="authUser.user_type == 1 && focused_result.status == 0" v-show="resultEditor">
+                            <button class="btn btn-success" style="float: right;" @click="approveResult">Approve Result</button>
+                        </span>
+                        <Span v-if="focused_result.status == 1">
+                            <h3 style="float: right;">Result already Approved</h3>
+                        </Span>
 
                     </div>
                 </div>
@@ -81,6 +89,7 @@
     export default {
         data(){
             return {
+                authUser:'',
                 students :'',
                 resultEditor:false,
                 listOfCourses:{},
@@ -91,12 +100,24 @@
                 resultArray: '',
                 edit:false,
                 focused_student_id:'',
+                focused_result:'',
 
                 resultDetails: {},
             }
         },
 
         methods: {
+
+            getAuthUser(){
+                axios.get('/auth')
+                    .then(response => {
+                        var _response = response.data;
+                        if (_response.status === 0){
+                            this.authUser = _response.data;
+                        }
+                    })
+            },
+
             fetchStudents(){
                 axios.get('/student/view')
                     .then(response => {
@@ -128,7 +149,7 @@
                         var _response = response.data;
                         if(_response.status === 0){
                             this.allResults = _response.data;
-                            console.log(this.allResults);
+//                            console.log(this.allResults);
                         }
                     })
             },
@@ -138,6 +159,7 @@
                 this.resultArray = '';
                 this.resultArray = JSON.parse(results.results);
                 this.focused_student_id = results.student_id;
+                this.focused_result = results;
 
             },
 
@@ -161,10 +183,35 @@
                     .catch(error =>{
                         this.$notify({type: 'error', text: '<span style="color: white">Updating of result unsuccessfully. Try again later</span>', speed:400});
                     })
+            },
+
+            approveResult(){
+                this.resultDetails.semester = this.semester;
+                this.resultDetails.year = this.year;
+                this.resultDetails.results = JSON.stringify(this.resultArray);
+                this.resultDetails.student_id = this.focused_student_id;
+                this.resultDetails.status = true;
+
+//                console.log(this.resultDetails);
+
+                axios.post('/result/edit', this.resultDetails)
+                    .then(response => {
+                        var _response = response.data;
+                        if(_response.status === 0){
+                            this.$notify({type: 'success', text: 'Result Approved sucessfully', speed:400});
+                        }
+                        else{
+                            this.$notify({type: 'error', text: '<span style="color: white">Approving of result unsuccessfully. Try again later</span>', speed:400});
+                        }
+                    })
+                    .catch(error =>{
+                        this.$notify({type: 'error', text: '<span style="color: white">Approving of result unsuccessfully. Try again later</span>', speed:400});
+                    })
             }
         },
 
         mounted(){
+            this.getAuthUser();
             this.fetchStudents();
             this.getCourses();
         },

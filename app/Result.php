@@ -44,12 +44,19 @@ class Result extends Model
     public function updateResult($data)
     {
         $data['staff_id'] = auth()->id();
+
+        if(!isset($data['status']))
+        {
+            $data['status'] = 0;
+        }
+
         return $this->where('student_id', $data['student_id'])
                     ->where('semester', $data['semester'])
                     ->where('year', $data['year'])
                     ->update([
                                 'results' => $data['results'],
-                                'staff_id' => $data['staff_id']
+                                'staff_id' => $data['staff_id'],
+                                'status' => $data['status'],
                             ]);
     }
 
@@ -75,6 +82,7 @@ class Result extends Model
     {
         $results = $this->where('semester', $data['semester'])
             ->where('year', $data['year'])
+            ->where('status', 1)
             ->get();
 
         return $results;

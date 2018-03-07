@@ -95,8 +95,8 @@ class HomeController extends Controller
         return view('studentHome', ['id' => auth()->user()->identification_no,]);
     }
 
-    public function test()
+    public function auth()
     {
-        return view('welcome');
+        return apiSuccess(auth()->user());
     }
 }

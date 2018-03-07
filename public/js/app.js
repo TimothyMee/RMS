@@ -54247,6 +54247,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -54284,6 +54289,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                     _this.allResults.forEach(function (entry) {
                         var result = JSON.parse(entry.results);
+                        result.status = entry.status;
                         entry.results = JSON.parse(entry.results);
 
                         /*calculating the grade*/
@@ -54344,6 +54350,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             //                console.log(this.allResults);
             //                console.log(this.resultArray);
             this.calculateCGPA(student_id);
+            this.printTemplate(student_id);
             this.selectedStudentId = student_id;
             this.showResult = !this.showResult;
         },
@@ -54402,25 +54409,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.gpa.totalUnits = totalUnits;
             this.gpa.gpa = gpa;
             this.gpa.student_id = student_id;
-        }
-
-        /*update(course){
-            axios.post('/course/edit', course)
-                .then(response => {
-                    this.fetchView();
-                    this.$notify({type: 'success', text: 'Course update successful', speed:400});
-                })
-                .catch(error =>{
-                    this.$notify({type: 'error', text: '<span style="color: white">Updating course. unsuccessfully. Try again later</span>', speed:400});
-                })
-        }*/
-
+        },
+        approveResult: function approveResult(result) {
+            console.log(result.id);
+        },
+        printTemplate: function printTemplate(student_id) {}
     },
 
     mounted: function mounted() {
-        /*this.fetchView();*/
-        /*this.getAllCourses();*/
-
+        this.getAuthUser();
     },
 
 
@@ -54567,6 +54564,7 @@ var render = function() {
                                       attrs: { href: "#" },
                                       on: {
                                         click: function($event) {
+                                          $event.preventDefault()
                                           _vm.viewResult(
                                             resultDetails.student_id
                                           )
@@ -54684,7 +54682,22 @@ var render = function() {
                       ])
                     ],
                     2
-                  )
+                  ),
+                  _vm._v(" "),
+                  _c("br"),
+                  _vm._v(" "),
+                  _c("div", { staticStyle: { float: "right" } }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-sm btn-default",
+                        on: { click: _vm.print }
+                      },
+                      [_c("span", { staticClass: "fa fa-print" })]
+                    ),
+                    _vm._v(" "),
+                    _vm._m(4)
+                  ])
                 ]
               )
             ])
@@ -54710,7 +54723,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("tr", [
       _c("th", { attrs: { align: "" } }, [
-        _c("h4", [_vm._v("Select Year and Semester")])
+        _c("h4", [_vm._v("Select Year and Semester Of Approved Result")])
       ]),
       _vm._v(" "),
       _c("th")
@@ -54740,6 +54753,14 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { align: "center" } }, [_vm._v("Grade")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("button", { staticClass: "btn btn-sm btn-default" }, [
+      _c("span", { staticClass: "fa fa-file-pdf-o" })
     ])
   }
 ]
@@ -54884,10 +54905,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
+            authUser: '',
             students: '',
             resultEditor: false,
             listOfCourses: {},
@@ -54898,6 +54928,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             resultArray: '',
             edit: false,
             focused_student_id: '',
+            focused_result: '',
 
             resultDetails: {}
         };
@@ -54905,28 +54936,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
-        fetchStudents: function fetchStudents() {
+        getAuthUser: function getAuthUser() {
             var _this = this;
+
+            axios.get('/auth').then(function (response) {
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this.authUser = _response.data;
+                }
+            });
+        },
+        fetchStudents: function fetchStudents() {
+            var _this2 = this;
 
             axios.get('/student/view').then(function (response) {
                 var _response = response.data;
                 if (_response.status === 0) {
-                    _this.students = _response.data;
+                    _this2.students = _response.data;
                 }
             });
         },
         getCourses: function getCourses() {
-            var _this2 = this;
+            var _this3 = this;
 
             axios.get('/course/view').then(function (response) {
                 var _response = response.data;
                 if (_response.status === 0) {
-                    _this2.listOfCourses = _response.data;
+                    _this3.listOfCourses = _response.data;
                 }
             });
         },
         fetchResults: function fetchResults() {
-            var _this3 = this;
+            var _this4 = this;
 
             var params = {
                 semester: this.semester,
@@ -54936,8 +54977,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.post('/result/view-selected', params).then(function (response) {
                 var _response = response.data;
                 if (_response.status === 0) {
-                    _this3.allResults = _response.data;
-                    console.log(_this3.allResults);
+                    _this4.allResults = _response.data;
+                    //                            console.log(this.allResults);
                 }
             });
         },
@@ -54946,9 +54987,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.resultArray = '';
             this.resultArray = JSON.parse(results.results);
             this.focused_student_id = results.student_id;
+            this.focused_result = results;
         },
         updateResult: function updateResult() {
-            var _this4 = this;
+            var _this5 = this;
 
             this.resultDetails.semester = this.semester;
             this.resultDetails.year = this.year;
@@ -54959,17 +55001,40 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.post('/result/edit', this.resultDetails).then(function (response) {
                 var _response = response.data;
                 if (_response.status === 0) {
-                    _this4.$notify({ type: 'success', text: 'Result updated sucessfully', speed: 400 });
+                    _this5.$notify({ type: 'success', text: 'Result updated sucessfully', speed: 400 });
                 } else {
-                    _this4.$notify({ type: 'error', text: '<span style="color: white">Updating of result unsuccessfully. Try again later</span>', speed: 400 });
+                    _this5.$notify({ type: 'error', text: '<span style="color: white">Updating of result unsuccessfully. Try again later</span>', speed: 400 });
                 }
             }).catch(function (error) {
-                _this4.$notify({ type: 'error', text: '<span style="color: white">Updating of result unsuccessfully. Try again later</span>', speed: 400 });
+                _this5.$notify({ type: 'error', text: '<span style="color: white">Updating of result unsuccessfully. Try again later</span>', speed: 400 });
+            });
+        },
+        approveResult: function approveResult() {
+            var _this6 = this;
+
+            this.resultDetails.semester = this.semester;
+            this.resultDetails.year = this.year;
+            this.resultDetails.results = JSON.stringify(this.resultArray);
+            this.resultDetails.student_id = this.focused_student_id;
+            this.resultDetails.status = true;
+
+            //                console.log(this.resultDetails);
+
+            axios.post('/result/edit', this.resultDetails).then(function (response) {
+                var _response = response.data;
+                if (_response.status === 0) {
+                    _this6.$notify({ type: 'success', text: 'Result Approved sucessfully', speed: 400 });
+                } else {
+                    _this6.$notify({ type: 'error', text: '<span style="color: white">Approving of result unsuccessfully. Try again later</span>', speed: 400 });
+                }
+            }).catch(function (error) {
+                _this6.$notify({ type: 'error', text: '<span style="color: white">Approving of result unsuccessfully. Try again later</span>', speed: 400 });
             });
         }
     },
 
     mounted: function mounted() {
+        this.getAuthUser();
         this.fetchStudents();
         this.getCourses();
     },
@@ -55008,285 +55073,330 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "card-body", attrs: { id: "bar-parent" } }, [
-            _c("div", { staticClass: "col-md-12" }, [
-              _c("table", { staticClass: "tbl-typical" }, [
-                _vm._m(1),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("td", [
-                    _vm._v(
-                      "\n                                Year:\n                                "
-                    ),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.year,
-                          expression: "year"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: { type: "text", placeholder: "2017/2018" },
-                      domProps: { value: _vm.year },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.year = $event.target.value
-                        }
-                      }
-                    })
-                  ]),
+            _c(
+              "div",
+              { staticClass: "col-md-12" },
+              [
+                _c("table", { staticClass: "tbl-typical" }, [
+                  _vm._m(1),
                   _vm._v(" "),
-                  _c("td", [
-                    _vm._v(
-                      "\n                                Semester:\n                                "
-                    ),
-                    _c(
-                      "select",
-                      {
+                  _c("tr", [
+                    _c("td", [
+                      _vm._v(
+                        "\n                                Year:\n                                "
+                      ),
+                      _c("input", {
                         directives: [
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.semester,
-                            expression: "semester"
+                            value: _vm.year,
+                            expression: "year"
                           }
                         ],
                         staticClass: "form-control",
-                        attrs: { name: "", id: "" },
+                        attrs: { type: "text", placeholder: "2017/2018" },
+                        domProps: { value: _vm.year },
                         on: {
-                          change: function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.semester = $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.year = $event.target.value
                           }
                         }
-                      },
-                      [
-                        _c("option", { attrs: { value: "1st" } }, [
-                          _vm._v("First Semester")
-                        ]),
-                        _vm._v(" "),
-                        _c("option", { attrs: { value: "2nd" } }, [
-                          _vm._v("Second Semester")
-                        ])
-                      ]
-                    )
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("hr"),
-              _vm._v(" "),
-              _c(
-                "table",
-                { staticClass: "tbl-typical col-md-4" },
-                [
-                  _vm._m(2),
-                  _vm._v(" "),
-                  _vm._l(_vm.allResults, function(results) {
-                    return _c(
-                      "tr",
-                      _vm._l(_vm.students, function(student) {
-                        return _c("span", [
-                          student.id == results.student_id
-                            ? _c("span", [
-                                _c("td", [
-                                  _c(
-                                    "a",
-                                    {
-                                      attrs: { href: "#" },
-                                      on: {
-                                        click: function($event) {
-                                          _vm.viewResultForm(results)
-                                        }
-                                      }
-                                    },
-                                    [
-                                      _vm._v(
-                                        _vm._s(student.lastname) +
-                                          " " +
-                                          _vm._s(student.firstname) +
-                                          "   " +
-                                          _vm._s(student.identification_no)
-                                      )
-                                    ]
-                                  )
-                                ])
-                              ])
-                            : _vm._e()
-                        ])
                       })
-                    )
-                  })
-                ],
-                2
-              ),
-              _vm._v(" "),
-              _c("br"),
-              _c("br"),
-              _vm._v(" "),
-              _c(
-                "table",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.resultEditor,
-                      expression: "resultEditor"
-                    }
-                  ],
-                  staticClass: "tbl-typical"
-                },
-                [
-                  _c("tr", [
-                    _c("th", [_vm._v("Course")]),
+                    ]),
                     _vm._v(" "),
-                    _c("th", [_vm._v("C.A.")]),
-                    _vm._v(" "),
-                    _c("th", [_vm._v("Exams")]),
-                    _vm._v(" "),
-                    _c(
-                      "th",
-                      [
-                        _c(
-                          "label",
-                          { staticStyle: { "margin-left": "20px" } },
-                          [_vm._v("Edit?")]
-                        ),
-                        _c("switches", {
-                          staticStyle: { "margin-left": "10px" },
-                          attrs: { color: "blue" },
-                          model: {
-                            value: _vm.edit,
-                            callback: function($$v) {
-                              _vm.edit = $$v
-                            },
-                            expression: "edit"
+                    _c("td", [
+                      _vm._v(
+                        "\n                                Semester:\n                                "
+                      ),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.semester,
+                              expression: "semester"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { name: "", id: "" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.semester = $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            }
                           }
-                        })
-                      ],
-                      1
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.resultArray, function(result) {
-                    return _c(
-                      "tr",
-                      [
-                        _vm._l(_vm.listOfCourses, function(courseDetails) {
+                        },
+                        [
+                          _c("option", { attrs: { value: "1st" } }, [
+                            _vm._v("First Semester")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "2nd" } }, [
+                            _vm._v("Second Semester")
+                          ])
+                        ]
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("hr"),
+                _vm._v(" "),
+                _c(
+                  "table",
+                  { staticClass: "tbl-typical col-md-4" },
+                  [
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _vm._l(_vm.allResults, function(results) {
+                      return _c(
+                        "tr",
+                        _vm._l(_vm.students, function(student) {
                           return _c("span", [
-                            courseDetails.id == result.course_id.course_id
-                              ? _c("td", [
-                                  _vm._v(
-                                    "\n                            " +
-                                      _vm._s(courseDetails.course_code) +
-                                      "\n                        "
-                                  )
+                            student.id == results.student_id
+                              ? _c("span", [
+                                  _c("td", [
+                                    _c(
+                                      "a",
+                                      {
+                                        attrs: { href: "#" },
+                                        on: {
+                                          click: function($event) {
+                                            _vm.viewResultForm(results)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          _vm._s(student.lastname) +
+                                            " " +
+                                            _vm._s(student.firstname) +
+                                            "   " +
+                                            _vm._s(student.identification_no)
+                                        )
+                                      ]
+                                    )
+                                  ])
                                 ])
                               : _vm._e()
                           ])
-                        }),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: result.C_A,
-                                expression: "result.C_A"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              placeholder: "Enter C.A. scores",
-                              disabled: !_vm.edit
-                            },
-                            domProps: { value: result.C_A },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(result, "C_A", $event.target.value)
-                              }
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: result.Exam,
-                                expression: "result.Exam"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              placeholder: "Enter Exam scores",
-                              disabled: !_vm.edit
-                            },
-                            domProps: { value: result.Exam },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(result, "Exam", $event.target.value)
-                              }
-                            }
-                          })
-                        ])
-                      ],
-                      2
-                    )
-                  })
-                ],
-                2
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.resultEditor,
-                      expression: "resultEditor"
-                    }
+                        })
+                      )
+                    })
                   ],
-                  staticClass: "btn btn-success",
-                  staticStyle: { margin: "20px", float: "right" },
-                  attrs: { disabled: !_vm.edit },
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      _vm.updateResult($event)
+                  2
+                ),
+                _vm._v(" "),
+                _c("br"),
+                _c("br"),
+                _vm._v(" "),
+                _c(
+                  "table",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.resultEditor,
+                        expression: "resultEditor"
+                      }
+                    ],
+                    staticClass: "tbl-typical"
+                  },
+                  [
+                    _c("tr", [
+                      _c("th", [_vm._v("Course")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("C.A.")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Exams")]),
+                      _vm._v(" "),
+                      _c(
+                        "th",
+                        [
+                          _c(
+                            "label",
+                            { staticStyle: { "margin-left": "20px" } },
+                            [_vm._v("Edit?")]
+                          ),
+                          _c("switches", {
+                            staticStyle: { "margin-left": "10px" },
+                            attrs: { color: "blue" },
+                            model: {
+                              value: _vm.edit,
+                              callback: function($$v) {
+                                _vm.edit = $$v
+                              },
+                              expression: "edit"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.resultArray, function(result) {
+                      return _c(
+                        "tr",
+                        [
+                          _vm._l(_vm.listOfCourses, function(courseDetails) {
+                            return _c("span", [
+                              courseDetails.id == result.course_id.course_id
+                                ? _c("td", [
+                                    _vm._v(
+                                      "\n                                    " +
+                                        _vm._s(courseDetails.course_code) +
+                                        "\n                                "
+                                    )
+                                  ])
+                                : _vm._e()
+                            ])
+                          }),
+                          _vm._v(" "),
+                          _c("td", [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: result.C_A,
+                                  expression: "result.C_A"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                placeholder: "Enter C.A. scores",
+                                disabled: !_vm.edit
+                              },
+                              domProps: { value: result.C_A },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(result, "C_A", $event.target.value)
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: result.Exam,
+                                  expression: "result.Exam"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                placeholder: "Enter Exam scores",
+                                disabled: !_vm.edit
+                              },
+                              domProps: { value: result.Exam },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(result, "Exam", $event.target.value)
+                                }
+                              }
+                            })
+                          ])
+                        ],
+                        2
+                      )
+                    })
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.resultEditor,
+                        expression: "resultEditor"
+                      }
+                    ],
+                    staticClass: "btn btn-success",
+                    staticStyle: { margin: "10px", float: "right" },
+                    attrs: { disabled: !_vm.edit },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        _vm.updateResult($event)
+                      }
                     }
-                  }
-                },
-                [_vm._v(" Save\n                    ")]
-              )
-            ])
+                  },
+                  [_vm._v(" Save Edit\n                    ")]
+                ),
+                _vm._v(" "),
+                _c("br"),
+                _c("br"),
+                _vm._v(" "),
+                _c("hr"),
+                _vm._v(" "),
+                _vm.authUser.user_type == 1 && _vm.focused_result.status == 0
+                  ? _c(
+                      "span",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.resultEditor,
+                            expression: "resultEditor"
+                          }
+                        ]
+                      },
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-success",
+                            staticStyle: { float: "right" },
+                            on: { click: _vm.approveResult }
+                          },
+                          [_vm._v("Approve Result")]
+                        )
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.focused_result.status == 1
+                  ? _c("Span", [
+                      _c("h3", { staticStyle: { float: "right" } }, [
+                        _vm._v("Result already Approved")
+                      ])
+                    ])
+                  : _vm._e()
+              ],
+              1
+            )
           ])
         ])
       ])
@@ -55300,7 +55410,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-head" }, [
-      _c("header", [_vm._v("View Result")])
+      _c("header", [_vm._v("Edit Result")])
     ])
   },
   function() {
