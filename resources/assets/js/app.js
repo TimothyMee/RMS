@@ -12,12 +12,14 @@ window.Vue = require('vue');
 import Switches from 'vue-switches'
 import Notifications from 'vue-notification'
 import VModal from 'vue-js-modal'
+import Print from 'vue-print-nb'
 
 
 
 Vue.use(VModal);
 Vue.use(Notifications);
 Vue.component('switches', Switches);
+Vue.use(Print);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

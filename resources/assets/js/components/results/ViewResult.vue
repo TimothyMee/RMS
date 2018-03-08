@@ -45,8 +45,17 @@
                         </table>
 
                         <div v-show="showResult" class="table-scrollable">
-                            <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle">
-                                <thead>
+                            <div id="printMe">
+                                <label>
+                                    <span v-for="student in students">
+                                        <span v-if="student.id == selectedStudentId"><h4><strong><h5>Name:</h5> {{student.lastname}} {{student.firstname}} &emsp; <br><h5>Identification No:</h5> {{student.identification_no}}</strong></h4></span>
+                                    </span>
+                                    <span>
+                                        <h4><strong><h5>Year: </h5> {{year}}<h5>Semester: </h5> {{semester}}</strong></h4>
+                                    </span>
+                                </label>
+                                <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle">
+                                    <thead>
                                     <tr>
                                         <th align="center">Course Code</th>
                                         <th align="center">Unit</th>
@@ -55,8 +64,8 @@
                                         <th align="center">Total</th>
                                         <th align="center">Grade</th>
                                     </tr>
-                                </thead>
-                                <tbody v-for="results in resultArray">
+                                    </thead>
+                                    <tbody v-for="results in resultArray">
                                     <tr v-for="result in results" v-if="result.student_id == selectedStudentId">
                                         <td align="center">{{result.course_code}}</td>
                                         <td align="center">{{result.unit}}</td>
@@ -65,19 +74,20 @@
                                         <td align="center">{{result.total}}</td>
                                         <td align="center">{{result.grade}}</td>
                                     </tr>
-                                </tbody>
-                                <tbody>
-                                <tr>
-                                    <th align="center" colspan="2">Total Grade Points: {{gpa.totalGradePoints}}</th>
-                                    <th align="center" colspan="2">Total Units: {{gpa.totalUnits}}</th>
-                                    <th align="center" colspan="2">GPA: {{gpa.gpa}}</th>
-                                </tr>
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                    <tbody>
+                                    <tr>
+                                        <th align="center" colspan="2">Total Grade Points: {{gpa.totalGradePoints}}</th>
+                                        <th align="center" colspan="2">Total Units: {{gpa.totalUnits}}</th>
+                                        <th align="center" colspan="2">GPA: {{gpa.gpa}}</th>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                             <br>
                             <div style="float: right">
                                 <button class="btn btn-sm btn-default" @click="print"><span class="fa fa-print"></span></button>
-                                <button class="btn btn-sm btn-default"><span class="fa fa-file-pdf-o"></span></button>
+                                <button class="btn btn-sm btn-default" @click.prevent="pdf"><span class="fa fa-file-pdf-o"></span></button>
                             </div>
                         </div>
                     </div>
@@ -185,9 +195,34 @@
 //                console.log(this.allResults);
 //                console.log(this.resultArray);
                 this.calculateCGPA(student_id);
-                this.printTemplate(student_id);
                 this.selectedStudentId = student_id;
                 this.showResult = !this.showResult;
+            },
+
+            print(){
+                var prtContent = document.getElementById("printMe");
+                var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+                WinPrint.document.write(prtContent.innerHTML);
+                WinPrint.document.close();
+                WinPrint.focus();
+                WinPrint.print();
+                WinPrint.close();
+            },
+
+            pdf(){
+                var data = {
+                    result : this.resultArray,
+                    student_id: this.selectedStudentId,
+                    gpa: this.gpa
+                }
+
+                axios.get('/result/pdf/make', {
+                    params:{
+                        result : this.resultArray,
+                        student_id: this.selectedStudentId,
+                        gpa: this.gpa
+                    }
+                });
             },
 
             /*calculateCGPA (){
@@ -228,7 +263,7 @@
                /* var student_id = '';*/
                 this.resultArray.forEach(entry =>{
                     entry.forEach(subEntry => {
-                        if(subEntry.student_id == student_id){
+                        if(subEntry.student_id == student_id){;
                             var v1 = parseInt(subEntry.unit);
                             var v2 = parseInt(subEntry.points);
                             totalUnits += parseInt(subEntry.unit);

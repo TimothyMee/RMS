@@ -1,0 +1,1 @@
+[Thu Mar 08 10:04:54.615446 2018] [:error] [pid 22716] [client 127.0.0.1:36202] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in /var/www/html/meWork/timothy/steemit/RMS/laravel-project/app/Http/Controllers/PdfController.php on line 119, referer: http://rms.local/result/openView
