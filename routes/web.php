@@ -35,6 +35,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('home', 'HomeController@index')->name('home');
     Route::get('test', 'HomeController@test');
     Route::get('auth', 'HomeController@auth');
+    Route::get('pdf', 'HomeController@pdf');
     Route::post('saveThemeSetting', 'UserSettingController@add')->name('save_theme');
 
     Route::group(['prefix' => 'course'], function (){
@@ -68,6 +69,13 @@ Route::group(['middleware' => 'auth'], function () {
         });
         Route::group(['prefix' => 'status'], function (){
            Route::post('update', 'ResultController@updateStatus');
+        });
+
+        Route::group(['prefix' => 'pdf'], function (){
+           /*Route::get('index', function (){
+               return '<form method="post" action="/result/pdf/make">'.csrf_field().'<input type="Submit"></form>';
+           });*/
+           Route::get('make', 'PdfController@make');
         });
     });
 
