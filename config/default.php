@@ -22,7 +22,7 @@ return [
     ],
 
     'department'   => [
-        ['name' => 'ICT', 'college_name' => ''],
+        ['name' => 'ICT', 'college_name' => '', 'HOD' => 1],
     ],
 
 ];
