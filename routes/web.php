@@ -26,11 +26,16 @@ Route::get('/', function (){
 Route::get('login', 'AuthController@login')->name('login');
 Route::get('logout', 'AuthController@logout')->name('logout');
 Route::post('login', 'AuthController@postLogin')->name('auth.login');
+
+Route::post('/2fa', function () {
+                 return redirect(URL()->previous());
+            })->name('2fa')->middleware('2fa');
+
 Route::get('register', 'AuthController@registerStudent')->name('student.register');
 Route::post('register', 'AuthController@postStudentRegistration')->name('register');
 
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth', '2fa']], function () {
 
     Route::get('home', 'HomeController@index')->name('home');
     Route::get('test', 'HomeController@test');
@@ -122,6 +127,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('edit', 'AdminController@edit')->name('admin.edit');
         Route::post('edit', 'AdminController@postEdit');
         Route::get('index', 'AdminController@index')->name('admin.index');
+        Route::get('complete-registration', 'AdminController@finalAdding')->name('complete-registration');
     });
 
     Route::group(['prefix' => 'department'], function(){

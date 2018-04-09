@@ -41,7 +41,32 @@ class AdminController extends Controller
     {
         try
         {
-            $result = $user->createNew($request->all());
+            $google2fa = app('pragmarx.google2fa');
+            $registration_data = $request->all();
+            $registration_data['google2fa_secret'] = $google2fa->generateSecretKey();
+
+            $request->session()->flash('registration_data', $registration_data);
+
+            $QR_Image = $google2fa->getQRCodeInline(
+                config('app.name'),
+                $registration_data['email'],
+                $registration_data['google2fa_secret']
+            );
+            // Pass the QR barcode image to our view
+            return view('google2fa.register', ['QR_Image' => $QR_Image, 'secret' => $registration_data['google2fa_secret']]);
+        }
+        catch (\Exception $e)
+        {
+            return apiFailure($e);
+        }
+    }
+
+    public function finalAdding(Request $request, User $user)
+    {
+        try
+        {
+            $request->merge(session('registration_data'));
+            $result = $user->createNew($request);
             if ($result){
                 return apiSuccess($result);
             }
