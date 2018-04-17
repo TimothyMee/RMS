@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'firstname', 'middlename', 'lastname', 'gender', 'DOB', 'tel_no', 'email', 'address', 'password',
+        'firstname', 'middlename', 'lastname', 'gender', 'DOB', 'tel_no', 'email', 'address', 'password','google2fa_secret',
         'image', 'identification_no', 'department_id', 'user_type', 'staff_id', 'is_active'
     ];
 
@@ -25,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token','google2fa_secret',
     ];
 
     public function createNew($data)
@@ -108,4 +108,14 @@ class User extends Authenticatable
 
 
     }
+
+    /*public function setGoogle2faSecretAttribute($value)
+    {
+        $this->attributes['google2fa_secret'] = encrypt($value);
+    }
+
+    public function getGoogle2faSecretAttribute($value)
+    {
+        return decrypt($value);
+    }*/
 }

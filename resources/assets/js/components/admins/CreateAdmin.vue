@@ -111,15 +111,17 @@
                                     <textarea v-model="admin.address" placeholder="address" class="form-control-textarea" rows="5" ></textarea>
                                 </div>
                             </div>
-                            <div>
+                            <div class="form-group row">
                                 <label class="control-label col-md-3">Admin Type
                                     <span class="required"> * </span>
                                 </label>
-                                <select name="" id="" v-model="admin.user_type">
-                                    <option value="" selected>Admin Type</option>
-                                    <option value="1">Super Admin</option>
-                                    <option value="2">Admin</option>
-                                </select>
+                                <div class="col-md-3">
+                                    <select name="" id="" v-model="admin.user_type" class="form-control">
+                                        <option value="" selected disabled>Admin Type</option>
+                                        <option value="1">Super Admin</option>
+                                        <option value="2">Admin</option>
+                                    </select>
+                                </div>
                             </div>
 
                             <div class="form-actions">
