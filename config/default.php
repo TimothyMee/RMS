@@ -13,7 +13,7 @@ return [
         'user_type'   => 1,
         'staff_id' => 1,
         'gender' => 'Male',
-        'DOB' => '27-06-1997',
+        'DOB' => \Carbon\Carbon::today(),
     ],
 
     'user_type'     => [
