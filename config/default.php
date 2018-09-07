@@ -12,6 +12,7 @@ return [
         'department_id' => 1,
         'user_type'   => 1,
         'staff_id' => 1,
+        'gender' => 'Male',
     ],
 
     'user_type'     => [
