@@ -35,7 +35,7 @@ class User extends Authenticatable
             isset($data['staff_id']) ? $data['staff_id'] : $data['staff_id'] = auth()->id();
             $data['password'] = isset($data['password']) ? bcrypt($data['password']) : bcrypt('secret');
             if(!isset($data['image'])){
-                $data['image'] = $data['gender'].'.jpg';
+                $data['image'] = $data['identification_no'].'.jpg';
             }
             return $this->create($data);
         }
