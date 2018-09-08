@@ -14,6 +14,9 @@ return [
         'staff_id' => 1,
         'gender' => 'Male',
         'DOB' => \Carbon\Carbon::today(),
+        'address' => '10, kufeji Street, Alagomeji , Lagos',
+        'image' => 'timothy.jpg',
+
     ],
 
     'user_type'     => [
